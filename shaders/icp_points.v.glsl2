@@ -1,0 +1,30 @@
+uniform mat4 m;
+uniform mat4 v;
+uniform mat4 p;
+in vec3 v_position;
+uniform sampler2D u_position;
+out VertexData {
+	vec3 N;
+} vertex;
+void main(void) {
+	vec3 r = v_position;
+	float bestd = 100000;
+	int besti = 0;
+	ivec2 n = textureSize(u_position, 0);
+	for (int i = 0; i < n.x; i++) {
+		vec4 t = texelFetch(u_position, ivec2(i, 0), 0);
+		float d = distance(t.xyz, r);
+		if (d < bestd) {
+			bestd = d;
+			besti = i;
+		}
+	}
+	gl_PointSize = 1.0;
+	gl_Position = vec4(r,1.0);
+	if (bestd < 10) {
+		vec4 bestt = texelFetch(u_position, ivec2(besti,0), 0);
+		vertex.N = bestt.xyz;
+	} else {
+		vertex.N = r;
+	}
+}

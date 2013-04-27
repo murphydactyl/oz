@@ -1,0 +1,13 @@
+#ifndef __OZ__GL_CONSTANTS__
+#define __OZ__GL_CONSTANTS__
+
+#define ATTRIB_V_POSITION 0
+#define ATTRIB_V_NORMAL 1
+#define ATTRIB_V_TEXCOORD 2
+#define ATTRIB_V_COLOR 3
+#define ATTRIB_V_BONE_ID 4
+#define ATTRIB_V_BONE_WEIGHT 5
+#define ATTRIB_V_TANGENT 6
+#define ATTRIB_V_BITANGENT 7
+
+#endif

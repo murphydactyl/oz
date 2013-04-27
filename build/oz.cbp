@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+   <FileVersion major="1" minor="6" />
+   <Project>
+      <Option title="oz" />
+      <Option makefile_is_custom="1" />
+      <Option compiler="gcc" />
+      <Option virtualFolders="CMake Files\;" />
+      <Build>
+      <Target title="all">
+         <Option working_dir="/Users/murphy/oz/build" />
+         <Option type="4" />
+         <MakeCommands>
+            <Build command="/opt/local/bin/gmake -f &quot;/Users/murphy/oz/build/Makefile&quot;  VERBOSE=1 all" />
+            <CompileFile command="/opt/local/bin/gmake -f &quot;/Users/murphy/oz/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/opt/local/bin/gmake -f &quot;/Users/murphy/oz/build/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/opt/local/bin/gmake -f &quot;/Users/murphy/oz/build/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="oz">
+         <Option output="/Users/murphy/oz/build/oz" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="/Users/murphy/oz/build" />
+         <Option object_output="./" />
+         <Option type="1" />
+         <Option compiler="gcc" />
+         <Compiler>
+            <Add directory="/Users/murphy/oz/oz-source" />
+            <Add directory="/usr/local/include" />
+            <Add directory="/usr/local/include/GL" />
+            <Add directory="/usr/local/include/eigen3" />
+            <Add directory="/usr/local/include/freetype2" />
+         </Compiler>
+         <MakeCommands>
+            <Build command="/opt/local/bin/gmake -f &quot;/Users/murphy/oz/build/Makefile&quot;  VERBOSE=1 oz" />
+            <CompileFile command="/opt/local/bin/gmake -f &quot;/Users/murphy/oz/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/opt/local/bin/gmake -f &quot;/Users/murphy/oz/build/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/opt/local/bin/gmake -f &quot;/Users/murphy/oz/build/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="oz/fast">
+         <Option output="/Users/murphy/oz/build/oz" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="/Users/murphy/oz/build" />
+         <Option object_output="./" />
+         <Option type="1" />
+         <Option compiler="gcc" />
+         <Compiler>
+            <Add directory="/Users/murphy/oz/oz-source" />
+            <Add directory="/usr/local/include" />
+            <Add directory="/usr/local/include/GL" />
+            <Add directory="/usr/local/include/eigen3" />
+            <Add directory="/usr/local/include/freetype2" />
+         </Compiler>
+         <MakeCommands>
+            <Build command="/opt/local/bin/gmake -f &quot;/Users/murphy/oz/build/Makefile&quot;  VERBOSE=1 oz/fast" />
+            <CompileFile command="/opt/local/bin/gmake -f &quot;/Users/murphy/oz/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/opt/local/bin/gmake -f &quot;/Users/murphy/oz/build/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/opt/local/bin/gmake -f &quot;/Users/murphy/oz/build/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="rebuild_cache">
+         <Option working_dir="/Users/murphy/oz/build" />
+         <Option type="4" />
+         <MakeCommands>
+            <Build command="/opt/local/bin/gmake -f &quot;/Users/murphy/oz/build/Makefile&quot;  VERBOSE=1 rebuild_cache" />
+            <CompileFile command="/opt/local/bin/gmake -f &quot;/Users/murphy/oz/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/opt/local/bin/gmake -f &quot;/Users/murphy/oz/build/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/opt/local/bin/gmake -f &quot;/Users/murphy/oz/build/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="sandbox">
+         <Option output="/Users/murphy/oz/build/sandbox" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="/Users/murphy/oz/build" />
+         <Option object_output="./" />
+         <Option type="1" />
+         <Option compiler="gcc" />
+         <Compiler>
+            <Add directory="/Users/murphy/oz/oz-source" />
+            <Add directory="/usr/local/include" />
+            <Add directory="/usr/local/include/GL" />
+            <Add directory="/usr/local/include/eigen3" />
+            <Add directory="/usr/local/include/freetype2" />
+         </Compiler>
+         <MakeCommands>
+            <Build command="/opt/local/bin/gmake -f &quot;/Users/murphy/oz/build/Makefile&quot;  VERBOSE=1 sandbox" />
+            <CompileFile command="/opt/local/bin/gmake -f &quot;/Users/murphy/oz/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/opt/local/bin/gmake -f &quot;/Users/murphy/oz/build/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/opt/local/bin/gmake -f &quot;/Users/murphy/oz/build/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="sandbox/fast">
+         <Option output="/Users/murphy/oz/build/sandbox" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="/Users/murphy/oz/build" />
+         <Option object_output="./" />
+         <Option type="1" />
+         <Option compiler="gcc" />
+         <Compiler>
+            <Add directory="/Users/murphy/oz/oz-source" />
+            <Add directory="/usr/local/include" />
+            <Add directory="/usr/local/include/GL" />
+            <Add directory="/usr/local/include/eigen3" />
+            <Add directory="/usr/local/include/freetype2" />
+         </Compiler>
+         <MakeCommands>
+            <Build command="/opt/local/bin/gmake -f &quot;/Users/murphy/oz/build/Makefile&quot;  VERBOSE=1 sandbox/fast" />
+            <CompileFile command="/opt/local/bin/gmake -f &quot;/Users/murphy/oz/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/opt/local/bin/gmake -f &quot;/Users/murphy/oz/build/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/opt/local/bin/gmake -f &quot;/Users/murphy/oz/build/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      </Build>
+      <Unit filename="/Users/murphy/oz/apps/AppBasic/AppBasic.cpp">
+      </Unit>
+      <Unit filename="/Users/murphy/oz/apps/main_eigen.cpp">
+      </Unit>
+      <Unit filename="/Users/murphy/oz/oz-source/App/App.cpp">
+      </Unit>
+      <Unit filename="/Users/murphy/oz/oz-source/App/Keyboard.cpp">
+      </Unit>
+      <Unit filename="/Users/murphy/oz/oz-source/App/Mouse.cpp">
+      </Unit>
+      <Unit filename="/Users/murphy/oz/oz-source/GL/GLContext.cpp">
+      </Unit>
+      <Unit filename="/Users/murphy/oz/oz-source/GL/Shader.cpp">
+      </Unit>
+      <Unit filename="/Users/murphy/oz/oz-source/GL/ShaderProgram.cpp">
+      </Unit>
+      <Unit filename="/Users/murphy/oz/apps/AppBasic/AppBasic.h">
+      </Unit>
+      <Unit filename="/Users/murphy/oz/oz-source/App/App.h">
+      </Unit>
+      <Unit filename="/Users/murphy/oz/oz-source/App/Keyboard.h">
+      </Unit>
+      <Unit filename="/Users/murphy/oz/oz-source/App/KeyboardListener.h">
+      </Unit>
+      <Unit filename="/Users/murphy/oz/oz-source/App/Mouse.h">
+      </Unit>
+      <Unit filename="/Users/murphy/oz/oz-source/App/MouseListener.h">
+      </Unit>
+      <Unit filename="/Users/murphy/oz/oz-source/GL/Constants.h">
+      </Unit>
+      <Unit filename="/Users/murphy/oz/oz-source/GL/GLContext.h">
+      </Unit>
+      <Unit filename="/Users/murphy/oz/oz-source/GL/Shader.h">
+      </Unit>
+      <Unit filename="/Users/murphy/oz/oz-source/GL/ShaderProgram.h">
+      </Unit>
+      <Unit filename="/Users/murphy/oz/oz-source/Math/Math.h">
+      </Unit>
+      <Unit filename="/Users/murphy/oz/oz-source/Vector/Vector.h">
+      </Unit>
+      <Unit filename="/Users/murphy/oz/CMakeLists.txt">
+          <Option virtualFolder="CMake Files\" />
+      </Unit>
+   </Project>
+</CodeBlocks_project_file>

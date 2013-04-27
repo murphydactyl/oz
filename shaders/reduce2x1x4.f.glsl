@@ -1,0 +1,28 @@
+uniform sampler2D tex0;
+uniform sampler2D tex1;
+uniform sampler2D tex2;
+uniform sampler2D tex3;
+uniform int tex_width;
+uniform int tex_height;
+layout(pixel_center_integer) in vec4 gl_FragCoord;
+out vec4 fragColor;
+out vec4 fragColor1;
+out vec4 fragColor2;
+out vec4 fragColor3;
+
+void main(void) {
+	int x = 2 * int(gl_FragCoord.x);
+	int y = int(gl_FragCoord.y);
+	vec4 t0_0 = texelFetch(tex0, ivec2(x,			y), 0);
+	vec4 t0_1 = texelFetch(tex0, ivec2(x + 1,		y), 0);
+	vec4 t1_0 = texelFetch(tex1, ivec2(x,			y), 0);
+	vec4 t1_1 = texelFetch(tex1, ivec2(x + 1,		y), 0);
+	vec4 t2_0 = texelFetch(tex2, ivec2(x,			y), 0);
+	vec4 t2_1 = texelFetch(tex2, ivec2(x + 1,		y), 0);
+	vec4 t3_0 = texelFetch(tex3, ivec2(x,			y), 0);
+	vec4 t3_1 = texelFetch(tex3, ivec2(x + 1,		y), 0);
+	fragColor =		t0_0 + t0_1;
+	fragColor1 =		t1_0 + t1_1;
+	fragColor2 =		t2_0 + t2_1;
+	fragColor3 =		t3_0 + t3_1;
+}
