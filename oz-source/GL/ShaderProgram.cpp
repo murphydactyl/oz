@@ -7,6 +7,7 @@
 //
 
 #include "GL/ShaderProgram.h"
+using namespace gl;
 
 ShaderProgram::ShaderProgram() {
   fShader = nullptr;
@@ -43,20 +44,20 @@ ShaderProgram::ShaderProgram(string vs_filename,
 }
 
 ShaderProgram* ShaderProgram::attachSourceVS(string name, string vs) {
-  GLContext::checkError("Before attachVS");
+  gl::checkError("Before attachVS");
   vShader = VertexShader::loadString(name, vs);
   setDefaultAttribLocations();
   assert(vShader->glName());
-  GLContext::checkError("After attachVS");
+  gl::checkError("After attachVS");
   return this;
 }
 
 ShaderProgram* ShaderProgram::attachSourceFS(string name, string fs) {
-  GLContext::checkError("Before attachFS");
+  gl::checkError("Before attachFS");
   fShader = FragmentShader::loadString(name, fs);
   setDefaultFragDataLocations();
   assert(fShader->glName());
-  GLContext::checkError("After attachFS");
+  gl::checkError("After attachFS");
   return this;
 }
 
@@ -67,20 +68,20 @@ ShaderProgram* ShaderProgram::attachSourceGS(string name, string gs) {
 
 
 ShaderProgram* ShaderProgram::attachVS(string vs_filename) {
-  GLContext::checkError("Before attachVS");
+  gl::checkError("Before attachVS");
   vShader = VertexShader::load(vs_filename);
   setDefaultAttribLocations();
   assert(vShader->glName());
-  GLContext::checkError("After attachVS");
+  gl::checkError("After attachVS");
   return this;
 }
 
 ShaderProgram* ShaderProgram::attachFS(string fs_filename) {
-  GLContext::checkError("Before attachFS");
+  gl::checkError("Before attachFS");
   fShader = FragmentShader::load(fs_filename);
   setDefaultFragDataLocations();
   assert(fShader->glName());
-  GLContext::checkError("After attachFS");
+  gl::checkError("After attachFS");
   return this;
 }
 
@@ -96,19 +97,17 @@ ShaderProgram::~ShaderProgram() {
 }
 
 void ShaderProgram::setDefaultAttribLocations() {
-
-  glBindAttribLocation(_glName, ATTRIB_V_POSITION, "v_position");
-  glBindAttribLocation(_glName, ATTRIB_V_NORMAL, "v_normal");
-  glBindAttribLocation(_glName, ATTRIB_V_COLOR, "v_color");
-  glBindAttribLocation(_glName, ATTRIB_V_TEXCOORD, "v_texcoord");
-  glBindAttribLocation(_glName, ATTRIB_V_BONE_ID, "v_boneid");
-  glBindAttribLocation(_glName, ATTRIB_V_BONE_WEIGHT, "v_boneweight");
-  glBindAttribLocation(_glName, ATTRIB_V_TANGENT, "v_tangent");
-  glBindAttribLocation(_glName, ATTRIB_V_BITANGENT, "v_bitangent");
+  glBindAttribLocation(_glName, gl::ATTRIB_V_POSITION, "v_position");
+  glBindAttribLocation(_glName, gl::ATTRIB_V_NORMAL, "v_normal");
+  glBindAttribLocation(_glName, gl::ATTRIB_V_COLOR, "v_color");
+  glBindAttribLocation(_glName, gl::ATTRIB_V_TEXCOORD, "v_texcoord");
+  glBindAttribLocation(_glName, gl::ATTRIB_V_BONE_ID, "v_boneid");
+  glBindAttribLocation(_glName, gl::ATTRIB_V_BONE_WEIGHT, "v_boneweight");
+  glBindAttribLocation(_glName, gl::ATTRIB_V_TANGENT, "v_tangent");
+  glBindAttribLocation(_glName, gl::ATTRIB_V_BITANGENT, "v_bitangent");
 }
 
 void ShaderProgram::setDefaultFragDataLocations() {
-
   glBindFragDataLocation(_glName, 0, "fragColor");
   glBindFragDataLocation(_glName, 1, "fragColor1");
   glBindFragDataLocation(_glName, 2, "fragColor2");
@@ -117,17 +116,17 @@ void ShaderProgram::setDefaultFragDataLocations() {
   glBindFragDataLocation(_glName, 5, "fragColor5");
   glBindFragDataLocation(_glName, 6, "fragColor6");
   glBindFragDataLocation(_glName, 7, "fragColor7");
-
 }
+
 void ShaderProgram::setFragDataLocation(GLint colorNum, string name) {
   glBindFragDataLocation(_glName, colorNum, name.c_str());
 }
 
 GLint ShaderProgram::link() {
-  GLContext::checkError("before link");
+  gl::checkError("before link");
   GLint link_ok = GL_FALSE;
   glAttachShader(_glName, vShader->glName());
-  GLContext::checkError("here");
+  gl::checkError("here");
   glAttachShader(_glName, fShader->glName());
   if (gShader != nullptr) {
       glAttachShader(_glName, gShader->glName());
@@ -143,7 +142,7 @@ GLint ShaderProgram::link() {
     }
 
   owns_program = true;
-  GLContext::checkError("after link");
+  gl::checkError("after link");
   return GL_TRUE;
 }
 
@@ -165,9 +164,6 @@ GLuint ShaderProgram::glName() {
   return _glName;
 }
 
-void ShaderProgram::bind() {
-  glUseProgram(_glName);
-}
 
 GLint ShaderProgram::getUniformLocation(string name) {
   GLint loc = glGetUniformLocation(_glName, name.c_str());
@@ -224,7 +220,7 @@ void ShaderProgram::setUniform(string n, GLfloat v0) {
   if (loc > -1) {
       glUniform1f(loc, v0);
     }
-  GLContext::checkError("Error in setUniform", __LINE__, __FILE__);
+  gl::checkError("Error in setUniform", __LINE__, __FILE__);
 }
 void ShaderProgram::setUniform(string n, GLfloat v0, GLfloat v1) {
   bind();
@@ -232,7 +228,7 @@ void ShaderProgram::setUniform(string n, GLfloat v0, GLfloat v1) {
   if (loc > -1) {
       glUniform2f(loc, v0, v1);
     }
-  GLContext::checkError("Error in setUniform", __LINE__, __FILE__);
+  gl::checkError("Error in setUniform", __LINE__, __FILE__);
 }
 void ShaderProgram::setUniform(string n,
                                GLfloat v0, GLfloat v1, GLfloat v2) {
@@ -241,7 +237,7 @@ void ShaderProgram::setUniform(string n,
   if (loc > -1) {
       glUniform3f(loc, v0, v1, v2);
     }
-  GLContext::checkError("Error in setUniform", __LINE__, __FILE__);
+  gl::checkError("Error in setUniform", __LINE__, __FILE__);
 }
 void ShaderProgram::setUniform(string n,
                                GLfloat v0, GLfloat v1, GLfloat v2, GLfloat v3) {
@@ -250,7 +246,7 @@ void ShaderProgram::setUniform(string n,
   if (loc > -1) {
       glUniform4f(loc, v0, v1, v2, v3);
     }
-  GLContext::checkError("Error in setUniform", __LINE__, __FILE__);
+  gl::checkError("Error in setUniform", __LINE__, __FILE__);
 }
 
 // GLuint ///////////////////////////////////////////////////////////////////////
@@ -260,7 +256,7 @@ void ShaderProgram::setUniform(string n, GLuint v0) {
   if (loc > -1) {
       glUniform1ui(loc, v0);
     }
-  GLContext::checkError("Error in setUniform", __LINE__, __FILE__);
+  gl::checkError("Error in setUniform", __LINE__, __FILE__);
 }
 
 
@@ -270,7 +266,7 @@ void ShaderProgram::setUniform(string n, GLint v0) {
   if (loc > -1) {
       glUniform1i(loc, v0);
     }
-  GLContext::checkError("Error in setUniform", __LINE__, __FILE__);
+  gl::checkError("Error in setUniform", __LINE__, __FILE__);
 }
 void ShaderProgram::setUniform(string n, GLint v0, GLint v1) {
   bind();
@@ -278,7 +274,7 @@ void ShaderProgram::setUniform(string n, GLint v0, GLint v1) {
   if (loc > -1) {
       glUniform2i(loc, v0, v1);
     }
-  GLContext::checkError("Error in setUniform", __LINE__, __FILE__);
+  gl::checkError("Error in setUniform", __LINE__, __FILE__);
 }
 void ShaderProgram::setUniform(string n, GLint v0, GLint v1, GLint v2) {
   bind();
@@ -286,7 +282,7 @@ void ShaderProgram::setUniform(string n, GLint v0, GLint v1, GLint v2) {
   if (loc > -1) {
       glUniform3i(loc, v0, v1, v2);
     }
-  GLContext::checkError("Error in setUniform", __LINE__, __FILE__);
+  gl::checkError("Error in setUniform", __LINE__, __FILE__);
 }
 void ShaderProgram::setUniform(string n,
                                GLint v0, GLint v1, GLint v2, GLint v3) {
@@ -295,31 +291,31 @@ void ShaderProgram::setUniform(string n,
   if (loc > -1) {
       glUniform4i(loc, v0, v1, v2, v3);
     }
-  GLContext::checkError("Error in setUniform", __LINE__, __FILE__);
+  gl::checkError("Error in setUniform", __LINE__, __FILE__);
 }
-void ShaderProgram::setUniform(string n, const Vec3f &v) {
+void ShaderProgram::setUniform(string n, const Math::Vec3f &v) {
   setUniform(n, v.x(), v.y(), v.z());
-  GLContext::checkError("Error in setUniform", __LINE__, __FILE__);
+  gl::checkError("Error in setUniform", __LINE__, __FILE__);
 }
 
-void ShaderProgram::setUniform(string n, const Vec4f &v) {
+void ShaderProgram::setUniform(string n, const Math::Vec4f &v) {
   setUniform(n, v.x(), v.y(), v.z(), v.w());
-  GLContext::checkError("Error in setUniform", __LINE__, __FILE__);
+  gl::checkError("Error in setUniform", __LINE__, __FILE__);
 }
 
-void ShaderProgram::setUniform(string n, Mat3f &m) {
+void ShaderProgram::setUniform(string n, Math::Mat3f &m) {
   bind();
   GLint loc = getUniformLocation(n.c_str());
   if (loc > -1) {
-      glUniformMatrix3fv(loc, 1, GL_FALSE, m.data());
+      glUniformMatrix3fv(loc, 1, OZ_ISROWMAJOR, m.data());
     }
-  GLContext::checkError("Error in setUniform", __LINE__, __FILE__);
+  gl::checkError("Error in setUniform", __LINE__, __FILE__);
 }
-void ShaderProgram::setUniform(string n, Mat4f &m) {
+void ShaderProgram::setUniform(string n, Math::Mat4f &m) {
   bind();
   GLint loc = getUniformLocation(n.c_str());
   if (loc > -1) {
-      glUniformMatrix4fv(loc, 1, GL_FALSE, m.data());
+      glUniformMatrix4fv(loc, 1, OZ_ISROWMAJOR, m.data());
     }
-  GLContext::checkError("Error in setUniform", __LINE__, __FILE__);
+  gl::checkError("Error in setUniform", __LINE__, __FILE__);
 }

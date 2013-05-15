@@ -9,48 +9,20 @@
 
 #include <chrono>
 
-#include "App/app.h"
-
-
-Keyboard* App::keys = nullptr;
-Mouse* App::mouse = nullptr;
-App* App::gApp = nullptr;
-bool App::isExiting = false;
+#include "App/App.h"
 
 random_device App::rd;
 mt19937 App::rng;
 
-void App::mouseDrag(int x, int y) {
+App* App::gApp = nullptr;
+bool App::isExiting = false;
+
+void App::window(int width, int height, string title) {
+  Window* newWindow = new Window(width, height, title);
+  windows_.push_back(newWindow);
 }
 
-void App::mouseScroll(int s) {
-}
-
-
-void App::keyUp(key_code_t keyCode) {
-  char keyChar = static_cast<char>(keyCode);
-  switch (keyChar) {
-    case 'L':
-      break;
-    case 'N':
-      break;
-    }
-}
-
-void App::keyDown(key_code_t keyCode) {
-}
-
-void App::keyStillDown(key_code_t keyCode) {
-  char keyChar = static_cast<char>(keyCode);
-  switch (keyChar) {
-    case 'S':
-      break;
-    }
-}
-
-App::App(int width, int height) {
-  screen_width = width;
-  screen_height = height;
+App::App() {
   init();
   gApp = this;
 }
@@ -58,96 +30,175 @@ App::App(int width, int height) {
 App::~App() {
   cout << "inside destructor" << endl;
   isExiting = true;
-  shutDown(1);
+  shutdown(1);
 }
 
+void App::onGLFWError(int error, const char *description) {
+  fprintf(stderr, "Error: %s\n", description);
+}
 
-int App::initResources()
-{
+void App::onMouseEnterOrLeave(GLFWwindow* h, int msg) {
+
+  Window* w = findWindowByHandle(h);
+  if (w == nullptr) {
+    cout << "Uh-oh, exited or found unknown window";
+  } else {
+    if (msg == GL_TRUE) {
+      w->onMouseEnter();
+    } else {
+      w->onMouseLeave();
+    }
+  }
+}
+
+void App::onMouseMove(GLFWwindow* h, double x, double y) {
+  Window* w = findWindowByHandle(h);
+  if (w == nullptr) {
+    cout << "UH-OH, requested window not found for mouse move event" << endl;
+  } else {
+    w->onMouseMove(x, y);
+    gApp->onMouseMove(x, y);
+    if (gApp->isDraggingLeft_) {
+      gApp->onMouseDrag(w->mouseX() - gApp->startDragXLeft_, w->mouseY() - gApp->startDragYLeft_);
+    }
+  }
+}
+
+void App::onMouseButton(GLFWwindow* h, int button, int action) {
+  Window* w = findWindowByHandle(h);
+  if (w == nullptr) {
+    cout << "UH-OH, requested window not found for onMouseButton." << endl;
+  } else {
+    double x = w->mouseX();
+    double y = w->mouseY();
+    if (action == GLFW_PRESS) {
+      if (button == GLFW_MOUSE_BUTTON_LEFT) {
+        gApp->startDragXLeft_ = x;
+        gApp->startDragYLeft_ = y;
+        gApp->isDraggingLeft_ = true;
+        cout << "start dragging " << gApp->startDragXLeft_ << " " << gApp->startDragYLeft_ << endl;
+        w->onMouseDownLeft(x, y);
+      } else if (button == GLFW_MOUSE_BUTTON_RIGHT) {
+        w->onMouseDownRight(x, y);
+      }
+    } else if (action == GLFW_RELEASE) {
+      if (button == GLFW_MOUSE_BUTTON_LEFT) {
+        gApp->isDraggingLeft_ = false;
+        w->onMouseUpLeft(x, y);
+        gApp->onMouseUp(x, y);
+      } else if (button == GLFW_MOUSE_BUTTON_RIGHT) {
+        w->onMouseUpRight(x, y);
+      }
+    }
+  }
+}
+
+void App::onKeyPressed(GLFWwindow* h, int key, int action) {
+  Window* w = findWindowByHandle(h);
+  if (w == nullptr) {
+    cout << "UH-OH, requested window not found for keypress" << endl;
+  } else {
+    char c = static_cast<char>(key);
+
+    switch (action) {
+      case GLFW_PRESS:
+        w->onCharDown(c);
+        w->onKeyDown(key);
+        gApp->charDown(c, false);
+        break;
+      case GLFW_RELEASE:
+        w->onCharUp(c);
+        w->onKeyUp(key);
+        break;
+      case GLFW_REPEAT:
+        w->onCharRepeat(c);
+        w->onKeyRepeat(key);
+        gApp->charDown(c, true);
+        break;
+    }
+
+    bool superr_down =   glfwGetKey(h, GLFW_KEY_RSUPER) == GLFW_PRESS;
+    bool superl_down =  glfwGetKey(h, GLFW_KEY_LSUPER) == GLFW_PRESS;
+    if (key == GLFW_KEY_Q && (superr_down || superl_down)) {
+      cout << "Super-Q caught..." << endl;
+     gApp->shutdown(1);
+    }
+  }
+}
+
+Window* App::findWindowByHandle(GLFWwindow *request) {
+  Window* w = nullptr;
+
+  for (int i = 0; i < gApp->windows_.size(); i++) {
+    if (gApp->windows_[i]->handle() == request) {
+      w = gApp->windows_[i];
+      break;
+    }
+  }
+
+  return w;
+}
+
+void App::init() {  
+  int glfw_init_done = glfwInit();
+  if (glfw_init_done != GL_TRUE) {
+    shutdown(0);
+  } else {
+    cout << "glfw initalized..." << endl;
+  }
+
+  glfwSetErrorCallback(App::onGLFWError);
+
   _frames = 0;
   _prev_fps_clock_time = chrono::high_resolution_clock::now();
 
-  return 1;
-}
-
-void App::init() {
-  
-  int glfw_init_done = glfwInit();
-  if (glfw_init_done != GL_TRUE) {
-      shutDown(0);
-    } else {
-      cout << "glfw initalized..." << endl;
-    }
-  
-  glfwOpenWindowHint(GLFW_OPENGL_VERSION_MAJOR, 3);
-  glfwOpenWindowHint(GLFW_OPENGL_VERSION_MINOR, 2);
-  glfwOpenWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-  glfwOpenWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-  glfwOpenWindowHint( GLFW_REFRESH_RATE, 60 );																		// doesn't seem to go past 60
-  //glfwOpenWindowHint(GLFW_FSAA_SAMPLES, 2);
-
-  if (! glfwOpenWindow(screen_width, screen_height,
-                       32, 32, 32, 32, 24, 8, GLFW_WINDOW)) {
-      shutDown(1);
-    }
-  int major, minor, rev;
-  glfwGetGLVersion(&major, &minor, &rev);
-  fprintf(stderr, "OpenGL version recieved: %d.%d.%d\n", major, minor, rev);
-  
-  glfwSetWindowTitle("App");
-  glfwSetWindowCloseCallback(handleWindowClose);
-  glfwSwapInterval(1);																													// 1 = vsync, 0 = no vsync
-  glEnable(GL_BLEND);
-  //glEnable(GL_POLYGON_SMOOTH);
-  glEnable(GL_CULL_FACE);
-  glEnable(GL_DEPTH_TEST);
-  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-  App::keys = new Keyboard();
-  App::keys->addListener(this);
-  App::mouse = new Mouse();
-  App::mouse->addListener(this);
-
-  initResources();
+  startDragXLeft_ = 0;
+  startDragYLeft_ = 0;
+  isDraggingLeft_ = false;
 }
 
 void App::run() {
-  while(!isExiting)
-    {
-      keys->poll();
-      mouse->poll();
-      update();
-      draw();
-      glfwSwapBuffers();
+  while (!isExiting) {
+
+    updateFPS();
+    for (int i = 0; i < windows_.size(); i++) {
+      Window* w = windows_[i];
+      if (w->isActive()) {
+        glfwMakeContextCurrent(w->handle());
+        update();
+//        w->onUpdate();
+//        w->onDraw();
+        glfwSwapBuffers(w->handle());
+      }
     }
-  shutDown(1);
-}
 
-void App::update() {
-  updateFPS();
-}
 
-void App::draw() {
-  glClearColor(0.2, 0.2, 0.2, 1.0);
-  glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
-}
-
-int GLFWCALL App::handleWindowClose() {
-  cout << "Window is closing..." << endl;
-  App::isExiting = true;
-  gApp->shutDown(1);
-  return 1;
+    glfwPollEvents();
+    uint32_t nDestroyed = 0;
+    for (int i = 0; i < windows_.size(); i++) {
+      Window* w = windows_[i];
+      if (w->isActive() && glfwWindowShouldClose(w->handle())) {
+        w->onClose();
+        glfwDestroyWindow(w->handle());
+      }
+      if (w->isDestroyed()) {
+        nDestroyed++;
+      }
+    }
+    if (nDestroyed == windows_.size()) {
+      isExiting = true;
+    }
+  }
+  shutdown(1);
 }
 
 void App::freeResources()
 {
   cout << "freeing resources..." << endl;
-  delete keys;
-  delete mouse;
   cout << "freed resources." << endl;
 }
 
-void App::shutDown(int return_code)
+void App::shutdown(int return_code)
 {
   cout << "App is Shutting down..." << endl;
   App::isExiting = true;
@@ -156,39 +207,21 @@ void App::shutDown(int return_code)
   exit(return_code);
 }
 
-void App::onReshape(int width, int height) {
-  screen_width = width;
-  screen_height = height;
-  glViewport(0, 0, screen_width, screen_height);
-}
-
-uint32_t App::getWidth() {
-  return screen_width;
-}
-
-uint32_t App::getHeight() {
-  return screen_height;
-}
-
-void App::setWindowTitle(string title) {
-  glfwSetWindowTitle(title.c_str());
-}
-
 void App::updateFPS() {
   using namespace chrono;
   auto now = high_resolution_clock::now();
   auto us = duration_cast<microseconds>(now - _prev_fps_clock_time).count();
   if (us >= 1e6) {
-      _fps = ((float)1e6 / us) * (float)(_frames);
-      _frames = 1;
-      _prev_fps_clock_time = now;
-    }
+    _fps = ((float)1e6 / us) * (float)(_frames);
+    _frames = 1;
+    _prev_fps_clock_time = now;
+  }
   _frames++;
 }
 
-uint64_t App::time() {
+double App::time() {
   using namespace chrono;
   auto now = high_resolution_clock::now();
-  uint64_t ms = duration_cast<milliseconds>(now.time_since_epoch()).count();
-  return ms;
+  uint64_t us = duration_cast<microseconds>(now.time_since_epoch()).count();
+  return us / 1000.0;
 }

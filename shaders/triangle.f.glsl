@@ -1,5 +1,5 @@
-in vec3 C;
+in vec4 C;
 out vec4 fragColor;
 void main(void) {
-  fragColor = vec4(C.xyz, 1.0);
+  fragColor = C;
 }

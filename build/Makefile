@@ -202,53 +202,29 @@ oz-source/App/App.cpp.s:
 	$(MAKE) -f CMakeFiles/oz.dir/build.make CMakeFiles/oz.dir/oz-source/App/App.cpp.s
 .PHONY : oz-source/App/App.cpp.s
 
-oz-source/App/Keyboard.o: oz-source/App/Keyboard.cpp.o
-.PHONY : oz-source/App/Keyboard.o
+oz-source/App/Window.o: oz-source/App/Window.cpp.o
+.PHONY : oz-source/App/Window.o
 
 # target to build an object file
-oz-source/App/Keyboard.cpp.o:
-	$(MAKE) -f CMakeFiles/oz.dir/build.make CMakeFiles/oz.dir/oz-source/App/Keyboard.cpp.o
-.PHONY : oz-source/App/Keyboard.cpp.o
+oz-source/App/Window.cpp.o:
+	$(MAKE) -f CMakeFiles/oz.dir/build.make CMakeFiles/oz.dir/oz-source/App/Window.cpp.o
+.PHONY : oz-source/App/Window.cpp.o
 
-oz-source/App/Keyboard.i: oz-source/App/Keyboard.cpp.i
-.PHONY : oz-source/App/Keyboard.i
-
-# target to preprocess a source file
-oz-source/App/Keyboard.cpp.i:
-	$(MAKE) -f CMakeFiles/oz.dir/build.make CMakeFiles/oz.dir/oz-source/App/Keyboard.cpp.i
-.PHONY : oz-source/App/Keyboard.cpp.i
-
-oz-source/App/Keyboard.s: oz-source/App/Keyboard.cpp.s
-.PHONY : oz-source/App/Keyboard.s
-
-# target to generate assembly for a file
-oz-source/App/Keyboard.cpp.s:
-	$(MAKE) -f CMakeFiles/oz.dir/build.make CMakeFiles/oz.dir/oz-source/App/Keyboard.cpp.s
-.PHONY : oz-source/App/Keyboard.cpp.s
-
-oz-source/App/Mouse.o: oz-source/App/Mouse.cpp.o
-.PHONY : oz-source/App/Mouse.o
-
-# target to build an object file
-oz-source/App/Mouse.cpp.o:
-	$(MAKE) -f CMakeFiles/oz.dir/build.make CMakeFiles/oz.dir/oz-source/App/Mouse.cpp.o
-.PHONY : oz-source/App/Mouse.cpp.o
-
-oz-source/App/Mouse.i: oz-source/App/Mouse.cpp.i
-.PHONY : oz-source/App/Mouse.i
+oz-source/App/Window.i: oz-source/App/Window.cpp.i
+.PHONY : oz-source/App/Window.i
 
 # target to preprocess a source file
-oz-source/App/Mouse.cpp.i:
-	$(MAKE) -f CMakeFiles/oz.dir/build.make CMakeFiles/oz.dir/oz-source/App/Mouse.cpp.i
-.PHONY : oz-source/App/Mouse.cpp.i
+oz-source/App/Window.cpp.i:
+	$(MAKE) -f CMakeFiles/oz.dir/build.make CMakeFiles/oz.dir/oz-source/App/Window.cpp.i
+.PHONY : oz-source/App/Window.cpp.i
 
-oz-source/App/Mouse.s: oz-source/App/Mouse.cpp.s
-.PHONY : oz-source/App/Mouse.s
+oz-source/App/Window.s: oz-source/App/Window.cpp.s
+.PHONY : oz-source/App/Window.s
 
 # target to generate assembly for a file
-oz-source/App/Mouse.cpp.s:
-	$(MAKE) -f CMakeFiles/oz.dir/build.make CMakeFiles/oz.dir/oz-source/App/Mouse.cpp.s
-.PHONY : oz-source/App/Mouse.cpp.s
+oz-source/App/Window.cpp.s:
+	$(MAKE) -f CMakeFiles/oz.dir/build.make CMakeFiles/oz.dir/oz-source/App/Window.cpp.s
+.PHONY : oz-source/App/Window.cpp.s
 
 oz-source/GL/GLContext.o: oz-source/GL/GLContext.cpp.o
 .PHONY : oz-source/GL/GLContext.o
@@ -322,6 +298,102 @@ oz-source/GL/ShaderProgram.cpp.s:
 	$(MAKE) -f CMakeFiles/oz.dir/build.make CMakeFiles/oz.dir/oz-source/GL/ShaderProgram.cpp.s
 .PHONY : oz-source/GL/ShaderProgram.cpp.s
 
+oz-source/Geometry/Assimp.o: oz-source/Geometry/Assimp.cpp.o
+.PHONY : oz-source/Geometry/Assimp.o
+
+# target to build an object file
+oz-source/Geometry/Assimp.cpp.o:
+	$(MAKE) -f CMakeFiles/oz.dir/build.make CMakeFiles/oz.dir/oz-source/Geometry/Assimp.cpp.o
+.PHONY : oz-source/Geometry/Assimp.cpp.o
+
+oz-source/Geometry/Assimp.i: oz-source/Geometry/Assimp.cpp.i
+.PHONY : oz-source/Geometry/Assimp.i
+
+# target to preprocess a source file
+oz-source/Geometry/Assimp.cpp.i:
+	$(MAKE) -f CMakeFiles/oz.dir/build.make CMakeFiles/oz.dir/oz-source/Geometry/Assimp.cpp.i
+.PHONY : oz-source/Geometry/Assimp.cpp.i
+
+oz-source/Geometry/Assimp.s: oz-source/Geometry/Assimp.cpp.s
+.PHONY : oz-source/Geometry/Assimp.s
+
+# target to generate assembly for a file
+oz-source/Geometry/Assimp.cpp.s:
+	$(MAKE) -f CMakeFiles/oz.dir/build.make CMakeFiles/oz.dir/oz-source/Geometry/Assimp.cpp.s
+.PHONY : oz-source/Geometry/Assimp.cpp.s
+
+oz-source/Geometry/Primitives.o: oz-source/Geometry/Primitives.cpp.o
+.PHONY : oz-source/Geometry/Primitives.o
+
+# target to build an object file
+oz-source/Geometry/Primitives.cpp.o:
+	$(MAKE) -f CMakeFiles/oz.dir/build.make CMakeFiles/oz.dir/oz-source/Geometry/Primitives.cpp.o
+.PHONY : oz-source/Geometry/Primitives.cpp.o
+
+oz-source/Geometry/Primitives.i: oz-source/Geometry/Primitives.cpp.i
+.PHONY : oz-source/Geometry/Primitives.i
+
+# target to preprocess a source file
+oz-source/Geometry/Primitives.cpp.i:
+	$(MAKE) -f CMakeFiles/oz.dir/build.make CMakeFiles/oz.dir/oz-source/Geometry/Primitives.cpp.i
+.PHONY : oz-source/Geometry/Primitives.cpp.i
+
+oz-source/Geometry/Primitives.s: oz-source/Geometry/Primitives.cpp.s
+.PHONY : oz-source/Geometry/Primitives.s
+
+# target to generate assembly for a file
+oz-source/Geometry/Primitives.cpp.s:
+	$(MAKE) -f CMakeFiles/oz.dir/build.make CMakeFiles/oz.dir/oz-source/Geometry/Primitives.cpp.s
+.PHONY : oz-source/Geometry/Primitives.cpp.s
+
+oz-source/Geometry/TriangleMesh.o: oz-source/Geometry/TriangleMesh.cpp.o
+.PHONY : oz-source/Geometry/TriangleMesh.o
+
+# target to build an object file
+oz-source/Geometry/TriangleMesh.cpp.o:
+	$(MAKE) -f CMakeFiles/oz.dir/build.make CMakeFiles/oz.dir/oz-source/Geometry/TriangleMesh.cpp.o
+.PHONY : oz-source/Geometry/TriangleMesh.cpp.o
+
+oz-source/Geometry/TriangleMesh.i: oz-source/Geometry/TriangleMesh.cpp.i
+.PHONY : oz-source/Geometry/TriangleMesh.i
+
+# target to preprocess a source file
+oz-source/Geometry/TriangleMesh.cpp.i:
+	$(MAKE) -f CMakeFiles/oz.dir/build.make CMakeFiles/oz.dir/oz-source/Geometry/TriangleMesh.cpp.i
+.PHONY : oz-source/Geometry/TriangleMesh.cpp.i
+
+oz-source/Geometry/TriangleMesh.s: oz-source/Geometry/TriangleMesh.cpp.s
+.PHONY : oz-source/Geometry/TriangleMesh.s
+
+# target to generate assembly for a file
+oz-source/Geometry/TriangleMesh.cpp.s:
+	$(MAKE) -f CMakeFiles/oz.dir/build.make CMakeFiles/oz.dir/oz-source/Geometry/TriangleMesh.cpp.s
+.PHONY : oz-source/Geometry/TriangleMesh.cpp.s
+
+oz-source/Scene/Scene.o: oz-source/Scene/Scene.cpp.o
+.PHONY : oz-source/Scene/Scene.o
+
+# target to build an object file
+oz-source/Scene/Scene.cpp.o:
+	$(MAKE) -f CMakeFiles/oz.dir/build.make CMakeFiles/oz.dir/oz-source/Scene/Scene.cpp.o
+.PHONY : oz-source/Scene/Scene.cpp.o
+
+oz-source/Scene/Scene.i: oz-source/Scene/Scene.cpp.i
+.PHONY : oz-source/Scene/Scene.i
+
+# target to preprocess a source file
+oz-source/Scene/Scene.cpp.i:
+	$(MAKE) -f CMakeFiles/oz.dir/build.make CMakeFiles/oz.dir/oz-source/Scene/Scene.cpp.i
+.PHONY : oz-source/Scene/Scene.cpp.i
+
+oz-source/Scene/Scene.s: oz-source/Scene/Scene.cpp.s
+.PHONY : oz-source/Scene/Scene.s
+
+# target to generate assembly for a file
+oz-source/Scene/Scene.cpp.s:
+	$(MAKE) -f CMakeFiles/oz.dir/build.make CMakeFiles/oz.dir/oz-source/Scene/Scene.cpp.s
+.PHONY : oz-source/Scene/Scene.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -341,12 +413,9 @@ help:
 	@echo "... oz-source/App/App.o"
 	@echo "... oz-source/App/App.i"
 	@echo "... oz-source/App/App.s"
-	@echo "... oz-source/App/Keyboard.o"
-	@echo "... oz-source/App/Keyboard.i"
-	@echo "... oz-source/App/Keyboard.s"
-	@echo "... oz-source/App/Mouse.o"
-	@echo "... oz-source/App/Mouse.i"
-	@echo "... oz-source/App/Mouse.s"
+	@echo "... oz-source/App/Window.o"
+	@echo "... oz-source/App/Window.i"
+	@echo "... oz-source/App/Window.s"
 	@echo "... oz-source/GL/GLContext.o"
 	@echo "... oz-source/GL/GLContext.i"
 	@echo "... oz-source/GL/GLContext.s"
@@ -356,6 +425,18 @@ help:
 	@echo "... oz-source/GL/ShaderProgram.o"
 	@echo "... oz-source/GL/ShaderProgram.i"
 	@echo "... oz-source/GL/ShaderProgram.s"
+	@echo "... oz-source/Geometry/Assimp.o"
+	@echo "... oz-source/Geometry/Assimp.i"
+	@echo "... oz-source/Geometry/Assimp.s"
+	@echo "... oz-source/Geometry/Primitives.o"
+	@echo "... oz-source/Geometry/Primitives.i"
+	@echo "... oz-source/Geometry/Primitives.s"
+	@echo "... oz-source/Geometry/TriangleMesh.o"
+	@echo "... oz-source/Geometry/TriangleMesh.i"
+	@echo "... oz-source/Geometry/TriangleMesh.s"
+	@echo "... oz-source/Scene/Scene.o"
+	@echo "... oz-source/Scene/Scene.i"
+	@echo "... oz-source/Scene/Scene.s"
 .PHONY : help
 
 

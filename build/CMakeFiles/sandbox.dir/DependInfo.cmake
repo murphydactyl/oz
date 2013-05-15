@@ -8,6 +8,14 @@ SET(CMAKE_DEPENDS_CHECK_CXX
   )
 SET(CMAKE_CXX_COMPILER_ID "Clang")
 
+# Preprocessor definitions for this target.
+SET(CMAKE_TARGET_DEFINITIONS
+  "GLFW_INCLUDE_GLCOREARB"
+  "ASSIMP_BUILD_BOOST_WORKAROUND"
+  "GLFW_INCLUDE_GLCOREARB"
+  "ASSIMP_BUILD_BOOST_WORKAROUND"
+  )
+
 # Targets to which this target links.
 SET(CMAKE_TARGET_LINKED_INFO_FILES
   )
@@ -16,6 +24,7 @@ SET(CMAKE_TARGET_LINKED_INFO_FILES
 SET(CMAKE_C_TARGET_INCLUDE_PATH
   "/usr/local/include"
   "/usr/local/include/freetype2"
+  "../apps"
   "../oz-source"
   "/usr/local/include/GL"
   "/usr/local/include/eigen3"

@@ -12,6 +12,8 @@ SET(CMAKE_MAKEFILE_DEPENDS
   "CMakeFiles/2.8.10/CMakeSystem.cmake"
   "/opt/local/share/cmake-2.8/Modules/CMakeCXXInformation.cmake"
   "/opt/local/share/cmake-2.8/Modules/CMakeCommonLanguageInclude.cmake"
+  "/opt/local/share/cmake-2.8/Modules/CMakeExtraGeneratorDetermineCompilerMacrosAndIncludeDirs.cmake"
+  "/opt/local/share/cmake-2.8/Modules/CMakeFindCodeBlocks.cmake"
   "/opt/local/share/cmake-2.8/Modules/CMakeGenericSystem.cmake"
   "/opt/local/share/cmake-2.8/Modules/CMakeParseArguments.cmake"
   "/opt/local/share/cmake-2.8/Modules/CMakeSystemSpecificInformation.cmake"

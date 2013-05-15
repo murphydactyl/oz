@@ -7,13 +7,17 @@
 #IncludeRegexTransform: 
 
 ../oz-source/Math/Math.h
-Eigen/Dense
+Eigen/Core
+-
+Eigen/Geometry
 -
 
 /Users/murphy/oz/apps/main_eigen.cpp
 iostream
 -
 Eigen/Dense
+-
+time.h
 -
 Math/Math.h
 /Users/murphy/oz/apps/Math/Math.h

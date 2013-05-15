@@ -1,7 +1,7 @@
 set(CMAKE_CXX_COMPILER "/usr/bin/c++")
 set(CMAKE_CXX_COMPILER_ARG1 "")
 set(CMAKE_CXX_COMPILER_ID "Clang")
-set(CMAKE_CXX_COMPILER_VERSION "4.0.0")
+set(CMAKE_CXX_COMPILER_VERSION "4.2.0")
 set(CMAKE_CXX_PLATFORM_ID "Darwin")
 
 set(CMAKE_AR "/usr/bin/ar")
@@ -49,7 +49,7 @@ endif()
 
 
 
-set(CMAKE_CXX_IMPLICIT_LINK_LIBRARIES "stdc++;/usr/bin/../lib/clang/4.0/lib/darwin/libclang_rt.osx.a")
+set(CMAKE_CXX_IMPLICIT_LINK_LIBRARIES "stdc++;/usr/bin/../lib/clang/4.2/lib/darwin/libclang_rt.osx.a")
 set(CMAKE_CXX_IMPLICIT_LINK_DIRECTORIES "")
 
 

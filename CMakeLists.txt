@@ -14,12 +14,16 @@ IF(APPLE)
     MESSAGE("DETECTED APPLE")
     SET(EXTRA_LIBS "-framework Cocoa -framework OpenGL -framework IOKit")
 ELSEIF(MSVC)
-        SET(EXTRA_LIBS "glu32.lib" "opengl32.lib")
+    MESSAGE("DETECTED Microsoft Windows")
+    SET(EXTRA_LIBS "glu32.lib" "opengl32.lib")
 ENDIF(APPLE)
 
 if(UNIX)
-    SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -Wall -std=c++11 -stdlib=libc++")
+    SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -Wall -std=c++11 -stdlib=libc++ ")
 endif()
+
+add_definitions(-DGLFW_INCLUDE_GLCOREARB)
+add_definitions(-DASSIMP_BUILD_BOOST_WORKAROUND)
 
 INCLUDE(FindFreetype)
 IF(NOT FREETYPE_FOUND)
@@ -28,7 +32,7 @@ IF(NOT FREETYPE_FOUND)
 ENDIF(NOT FREETYPE_FOUND)
 INCLUDE_DIRECTORIES(${FREETYPE_INCLUDE_DIRS})
 
-set(EXTRA_LIBS "${EXTRA_LIBS}" glfw ${FREETYPE_LIBRARIES})
+set(EXTRA_LIBS "${EXTRA_LIBS}" glfw3 ${FREETYPE_LIBRARIES} assimp)
 set(EIGEN_INCLUDE_DIRS /usr/local/include/eigen3)
 set(GLFW_INCLUDE_DIRS /usr/local/include/GL/)
 
@@ -37,14 +41,28 @@ set(GLFW_INCLUDE_DIRS /usr/local/include/GL/)
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
 set(ROOT_HEADER_DIR oz-source)
 set(ROOT_SOURCE_DIR oz-source)
-set(ROOT_APP_DIR apps)
+set(STATIC_LIB_DIR lib)
+set(SHADERS_DIR shaders)
+set(APPS_DIR apps)
+
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
+# IMPORT ASSIMP
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
+# add imported target
+#add_library(assimp STATIC IMPORTED)
+
+# point the imported target at the real file
+#set_property(TARGET assimp PROPERTY IMPORTED_LOCATION ${STATIC_LIB_DIR}/libassimp.a)
+
 
 
 file(GLOB_RECURSE OZ_SOURCE ${ROOT_SOURCE_DIR}/*.cpp)
 file(GLOB_RECURSE OZ_HEADER ${ROOT_HEADER_DIR}/*.h)
+file(GLOB_RECURSE OZ_SHADER ${SHADERS_DIR}/*.glsl)
 
 # INCLUDES
 include_directories(
+        ${APPS_DIR}
         ${ROOT_HEADER_DIR}
         ${GLFW_INCLUDE_DIRS}
         ${EIGEN_INCLUDE_DIRS}
@@ -53,11 +71,10 @@ include_directories(
 #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
 # OZ TARGET
 #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
-link_libraries(/usr/local/lib)
-add_executable(${PROJECT_NAME} ${ROOT_APP_DIR}/AppBasic/AppBasic.cpp ${OZ_SOURCE} ${OZ_HEADER})
+add_executable(${PROJECT_NAME} ${APPS_DIR}/AppBasic/AppBasic.cpp ${OZ_SOURCE} ${OZ_HEADER} ${APPS_DIR}/AppBasic/AppBasic.h ${OZ_SHADER})
 target_link_libraries(${PROJECT_NAME} ${EXTRA_LIBS})
 
 #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
 # TEST TARGETS
 #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
-add_executable(sandbox ${ROOT_APP_DIR}/main_eigen.cpp ${OZ_HEADER})
+add_executable(sandbox ${APPS_DIR}/main_eigen.cpp ${OZ_HEADER})

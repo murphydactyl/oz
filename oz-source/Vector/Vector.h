@@ -86,7 +86,13 @@ public:
 		_size = _size + 1;
 	}
 
-	void appendCopyFrom(Vector<T> other) {
+    T pop_back() {
+      assert(_size > 0);
+      _size--;
+      return _data[_size];
+    }
+
+    void appendCopyFrom(Vector<T>& other) {
 		idx_t orig_size = size();
 		idx_t other_size = other.size();
 		resize(orig_size + other_size);
