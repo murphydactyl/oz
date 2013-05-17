@@ -4,6 +4,7 @@
 #include "GL/GLContext.h"
 #include "GL/VertexArrayObject.h"
 #include "GL/VertexBuffer.h"
+#include "GL/ShaderProgram.h"
 
 namespace gl {
   class VertexArrayObject;
@@ -25,7 +26,7 @@ namespace geom {
 
   class Geometry {
     public:
-      virtual void draw()=0;
+      virtual void draw(gl::ShaderProgram* shader)=0;
       virtual void nVerts(uint64_t newSize)=0;
       virtual uint64_t nVerts()=0;
       virtual element_t elementType()=0;

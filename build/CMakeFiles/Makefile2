@@ -65,7 +65,7 @@ CMAKE_BINARY_DIR = /Users/murphy/oz/build
 CMakeFiles/oz.dir/all:
 	$(MAKE) -f CMakeFiles/oz.dir/build.make CMakeFiles/oz.dir/depend
 	$(MAKE) -f CMakeFiles/oz.dir/build.make CMakeFiles/oz.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /Users/murphy/oz/build/CMakeFiles  1 2 3 4 5 6 7 8 9 10
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/murphy/oz/build/CMakeFiles  1 2 3 4 5 6 7 8 9 10 11 12 13
 	@echo "Built target oz"
 .PHONY : CMakeFiles/oz.dir/all
 
@@ -75,7 +75,7 @@ all: CMakeFiles/oz.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/oz.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/murphy/oz/build/CMakeFiles 10
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/murphy/oz/build/CMakeFiles 13
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/oz.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/murphy/oz/build/CMakeFiles 0
 .PHONY : CMakeFiles/oz.dir/rule
@@ -94,13 +94,48 @@ clean: CMakeFiles/oz.dir/clean
 .PHONY : clean
 
 #=============================================================================
+# Target rules for target CMakeFiles/pngtest.dir
+
+# All Build rule for target.
+CMakeFiles/pngtest.dir/all:
+	$(MAKE) -f CMakeFiles/pngtest.dir/build.make CMakeFiles/pngtest.dir/depend
+	$(MAKE) -f CMakeFiles/pngtest.dir/build.make CMakeFiles/pngtest.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/murphy/oz/build/CMakeFiles  14
+	@echo "Built target pngtest"
+.PHONY : CMakeFiles/pngtest.dir/all
+
+# Include target in all.
+all: CMakeFiles/pngtest.dir/all
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/pngtest.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/murphy/oz/build/CMakeFiles 1
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/pngtest.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/murphy/oz/build/CMakeFiles 0
+.PHONY : CMakeFiles/pngtest.dir/rule
+
+# Convenience name for target.
+pngtest: CMakeFiles/pngtest.dir/rule
+.PHONY : pngtest
+
+# clean rule for target.
+CMakeFiles/pngtest.dir/clean:
+	$(MAKE) -f CMakeFiles/pngtest.dir/build.make CMakeFiles/pngtest.dir/clean
+.PHONY : CMakeFiles/pngtest.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/pngtest.dir/clean
+.PHONY : clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/sandbox.dir
 
 # All Build rule for target.
 CMakeFiles/sandbox.dir/all:
 	$(MAKE) -f CMakeFiles/sandbox.dir/build.make CMakeFiles/sandbox.dir/depend
 	$(MAKE) -f CMakeFiles/sandbox.dir/build.make CMakeFiles/sandbox.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /Users/murphy/oz/build/CMakeFiles  11
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/murphy/oz/build/CMakeFiles  15
 	@echo "Built target sandbox"
 .PHONY : CMakeFiles/sandbox.dir/all
 

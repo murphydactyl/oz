@@ -5,9 +5,12 @@
 #include "Math/Math.h"
 #include "Geometry/Geometry.h"
 #include "GL/ElementBuffer.h"
+#include "GL/Texture.h"
+
 
 namespace gl {
   template <typename uint16_t> class ElementBuffer;
+  class ShaderProgram;
 }
 
 namespace geom {
@@ -23,24 +26,27 @@ namespace geom {
   typedef Math::Mat3Xu16 faces_t;
   typedef Math::Mat2Xf texcoord_t;
 
-  template <element_t E>
+  template <element_t E=TRIANGLE>
   class TriangleMesh : public Geometry {
 
     public:
 
       TriangleMesh();
       ~TriangleMesh();
-      virtual void draw();
+      virtual void draw(gl::ShaderProgram* shader=nullptr);
       uint64_t nFaces();
       uint64_t nVerts();
       void nVerts(uint64_t newSize);
       void nFaces(uint64_t nFaces);
+      void attachTexture(gl::Texture* tex);
       element_t elementType();
       eboptr_t ebo();
       faces_t& faces();
       positions_t& positions();
       normals_t& normals();
       colors_t& colors();
+      texcoord_t& texcoords();
+      bool hasTexture();
 
     protected:
       element_t elementType_ = E;
@@ -51,8 +57,8 @@ namespace geom {
       colors_t colors_;
       normals_t normals_;
       faces_t faces_;
-      texcoord_t texcoord_;
-
+      texcoord_t texcoords_;
+      gl::Texture* tex_;
   };
 }
 

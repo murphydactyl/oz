@@ -77,6 +77,8 @@ Geometry* geom::makeCube(float unit) {
     0, 0, 0, a,
   };
 
+
+
   uint16_t faces[] = {
     0,   1,    2,
     2,   3,    0,
@@ -127,6 +129,13 @@ Geometry* geom::makeQuad(float unit)
     1, 1, 1, 1
   };
 
+  float texcoords[] = {
+    0, 1,
+    1, 1,
+    0, 0,
+    1, 0
+  };
+
   uint16_t faces[] {
     0, 1, 2,
     2, 1, 3
@@ -134,9 +143,10 @@ Geometry* geom::makeQuad(float unit)
 
   g->nVerts(4);
   g->vao()->bind();
-  g->vbo()->reserveNBytesOnGPU(g->nVerts() * 8 * 4);
+  g->vbo()->reserveNBytesOnGPU(g->nVerts() * (4 + 4 + 2) * 4);
   g->vbo()->copy2GPUPoints(points, 4);
   g->vbo()->copy2GPUColors(colors, 4);
+  g->vbo()->copy2GPUTexcoords(texcoords, 4);
   g->vbo()->printBuffer(4);
   g->vao()->unbind();
 

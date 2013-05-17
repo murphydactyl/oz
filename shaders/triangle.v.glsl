@@ -4,6 +4,8 @@ uniform mat4 p;
 uniform mat3 i;
 in vec3 v_position;
 in vec4 v_color;
+in vec2 v_texcoord;
+
 out vec4 C;
 
 void main(void) {

@@ -3,6 +3,7 @@
 #include "GL/VertexArrayObject.h"
 #include "GL/VertexBuffer.h"
 #include "GL/ElementBuffer.h"
+#include "GL/ShaderProgram.h"
 
 using namespace geom;
 using namespace std;
@@ -15,6 +16,8 @@ TriangleMesh<E>::TriangleMesh() {
 
   nVerts_ = 0;
   nFaces_ = 0;
+
+  tex_ = nullptr;
 }
 
 template <element_t E>
@@ -77,9 +80,30 @@ faces_t& TriangleMesh<E>::faces() {
   return faces_;
 }
 
+template <element_t E>
+texcoord_t& TriangleMesh<E>::texcoords() {
+  return texcoords_;
+}
 
 template <element_t E>
-void TriangleMesh<E>::draw() {
+void TriangleMesh<E>::attachTexture(gl::Texture *tex)
+{
+  tex_ = tex;
+}
+
+template <element_t E>
+bool TriangleMesh<E>::hasTexture()
+{
+  return tex_ != nullptr;
+}
+
+
+
+template <element_t E>
+void TriangleMesh<E>::draw(gl::ShaderProgram* shader) {
+  if (hasTexture()) {
+    shader->setUniform("tex", 0);
+  }
   vao_->bind();
   glEnable(GL_POLYGON_SMOOTH);
   glEnable(GL_DEPTH_TEST);

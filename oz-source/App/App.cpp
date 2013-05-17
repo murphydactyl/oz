@@ -155,6 +155,7 @@ void App::init() {
   startDragXLeft_ = 0;
   startDragYLeft_ = 0;
   isDraggingLeft_ = false;
+
 }
 
 void App::run() {

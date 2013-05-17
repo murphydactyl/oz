@@ -13,11 +13,15 @@ namespace gl {
 
     const static uint8_t extent_position = 3;
     const static uint8_t extent_color = 4;
+    const static uint8_t extent_texcoord = 2;
 
     typedef struct vertex_t {
       GLfloat v_position[extent_position];
-      GLfloat v_custom;
+      GLfloat v_custom1;
       GLfloat v_color[extent_color];
+      GLfloat v_texcoord[extent_texcoord];
+      GLfloat v_custom2;
+      GLfloat v_custom3;
     } vertex_t;
 
     void enablePoints() {
@@ -50,6 +54,21 @@ namespace gl {
       gl::checkError("VBO @ after binding colors");
     }
 
+    void enableTexcoords() {
+      gl::checkError("VBO @ before binding colors");
+      glBindBuffer(GL_ARRAY_BUFFER, buf_);
+      glEnableVertexAttribArray(gl::ATTRIB_V_TEXCOORD);
+      glVertexAttribPointer( gl::ATTRIB_V_TEXCOORD,     // attribute
+                             extent_texcoord,           // number of elements per vertex
+                             GL_FLOAT,                  // the type of each element
+                             GL_FALSE,                  // GL_TRUE == normalize
+                             sizeof(vertex_t),          // bytes between elements
+                             reinterpret_cast<void*>(offsetof(vertex_t, v_texcoord))   // offset of first element
+                             );
+      glBindBuffer(GL_ARRAY_BUFFER, 0);
+      gl::checkError("VBO @ after binding colors");
+    }
+
     void copy2GPUPoints(float* data, uint32_t nVerts) {
       enablePoints();
       copyToGPUInterleaved((char*)data,
@@ -72,6 +91,18 @@ namespace gl {
                            sizeof(vertex_t));
     }
 
+    void copy2GPUTexcoords(float* data, uint32_t nVerts ) {
+      enableTexcoords();
+      copyToGPUInterleaved((char*)data,
+                           nVerts,
+                           sizeof(vertex_t::v_texcoord),
+                           0,
+                           sizeof(vertex_t::v_texcoord),
+                           offsetof(vertex_t, v_texcoord),
+                           sizeof(vertex_t));
+    }
+
+
     void printBuffer(uint32_t nVerts) {
       glBindBuffer(GL_ARRAY_BUFFER, buf_);
       vertex_t* data = reinterpret_cast<vertex_t*>(glMapBuffer(GL_ARRAY_BUFFER, GL_READ_ONLY));
@@ -79,10 +110,15 @@ namespace gl {
         for (int j = 0; j < extent_position; j++) {
           std::cout << data[i].v_position[j] << " ";
         }
-        std::cout << data[i].v_custom << " ";
+        std::cout << data[i].v_custom1 << " ";
         for (int j = 0; j < extent_color; j++) {
           std::cout << data[i].v_color[j] << " ";
         }
+        for (int j = 0; j < extent_texcoord; j++) {
+          std::cout << data[i].v_texcoord[j] << " ";
+        }
+        std::cout << data[i].v_custom2 << " ";
+        std::cout << data[i].v_custom3 << " ";
         std::cout << std::endl;
       }
       glUnmapBuffer(GL_ARRAY_BUFFER);

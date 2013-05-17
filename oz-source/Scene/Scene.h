@@ -5,8 +5,10 @@
 #include "Scene/Light.h"
 #include "Scene/Node.h"
 #include "GL/ShaderProgram.h"
+#include "GL/Texture.h"
 
 namespace scene {
+
   class Scene {
   public:
 
@@ -18,13 +20,17 @@ namespace scene {
     Cameraf*        camera() { return camera_; }
     void            camera(Cameraf* camera) { camera_ = camera; }
     void            render();
+    void            render(gl::ShaderProgram* shader);
+    void            renderWithTexture(gl::Texture* tex);
     void            print();
 
   protected:
 
-    Nodef*            root_;
+    Nodef*                  root_;
     Cameraf*                camera_;
-    gl::ShaderProgram*      shader_;
+    gl::ShaderProgram*      dfltSPTextured_;
+    gl::ShaderProgram*      dfltSPVertexColors_;
+    gl::ShaderProgram*      defaultShader_;
     Vector<Nodef*>          nStack_;
     Vector<Nodef::Aff3>     tStack_;
 

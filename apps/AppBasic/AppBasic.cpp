@@ -9,6 +9,8 @@
 #include "AppBasic/AppBasic.h"
 #include "Geometry/Assimp.h"
 #include "Geometry/Primitives.h"
+#include "Geometry/TriangleMesh.h"
+#include "GL/Texture2D.h"
 #include <sstream>
 
 int main(int argc, char* argv[])
@@ -28,7 +30,7 @@ AppBasic::AppBasic() {
   scene::Cameraf* cam = new scene::CameraPerspective<float>(4/3., 1, 1, 100);
   cam->translate(0,0,-5);
   myScene->camera(cam);
-  geom::Geometry* model = geom::makeQuad();
+//  geom::Geometry* model = geom::makeQuad();
 //  geom::Geometry* cube = geom::makeCube(1.0);
 
 //  scene::Nodef* node = new scene::Nodef();
@@ -37,18 +39,26 @@ AppBasic::AppBasic() {
 //  node->local().rotateZ(.01);
 //  node->local().rotateX(.04);
 
+  stringstream ss;
+  ss << MODELS_DIR << "/lib_hand_model/hand_palm_parent_medium_wrist.dae";
+  auto model = geom::LoadTriangleMeshFromFile(ss.str());
 
-//  stringstream ss;
-//  ss << MODELS_DIR << "/lib_hand_model/hand_palm_parent_medium_wrist.dae";
-//  auto model = geom::LoadTriangleMeshFromFile(ss.str());
+  uint32_t imWidth, imHeight;
+  ss.str("");
+  ss.clear();
+  ss << MODELS_DIR << "/lib_hand_model/hand_texture_image.png";
 
-  scene::Nodef* node = new scene::Nodef();
+  auto image = reinterpret_cast<gl::rgba8888_t*>(image::LoadPNGRGBA8888(ss.str(), imWidth, imHeight));
+  auto tex = new gl::Texture2D<gl::rgba8888_t>(image, imWidth, imHeight);
+  auto node = new scene::Nodef();
+  auto node2 = new scene::Nodef();
+
   node->geometry(model);
 
   myScene->root()->addChild(node);
-
   myScene->print();
-
+  tex->copy2GPU();
+  ((geom::TriangleMesh<>*)(model))->attachTexture(tex);
 
 }
 

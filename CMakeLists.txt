@@ -32,9 +32,10 @@ IF(NOT FREETYPE_FOUND)
 ENDIF(NOT FREETYPE_FOUND)
 INCLUDE_DIRECTORIES(${FREETYPE_INCLUDE_DIRS})
 
-set(EXTRA_LIBS "${EXTRA_LIBS}" glfw3 ${FREETYPE_LIBRARIES} assimp)
+set(EXTRA_LIBS "${EXTRA_LIBS}" glfw3 ${FREETYPE_LIBRARIES} assimp freeimage)
 set(EIGEN_INCLUDE_DIRS /usr/local/include/eigen3)
 set(GLFW_INCLUDE_DIRS /usr/local/include/GL/)
+set(FREEIMAGE_INCLUDE_DIRS /usr/local/include)
 
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
 # OZ HEADERS
@@ -66,6 +67,7 @@ include_directories(
         ${ROOT_HEADER_DIR}
         ${GLFW_INCLUDE_DIRS}
         ${EIGEN_INCLUDE_DIRS}
+        ${FREEIMAGE_INCLUDE_DIRS}
 )
 
 #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
@@ -78,3 +80,5 @@ target_link_libraries(${PROJECT_NAME} ${EXTRA_LIBS})
 # TEST TARGETS
 #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
 add_executable(sandbox ${APPS_DIR}/main_eigen.cpp ${OZ_HEADER})
+add_executable(pngtest ${APPS_DIR}/main_png.cpp ${OZ_HEADER})
+target_link_libraries(pngtest ${EXTRA_LIBS})

@@ -63,6 +63,52 @@
             <DistClean command="/usr/bin/make -f &quot;/Users/murphy/oz/build/Makefile&quot;  VERBOSE=1 clean" />
          </MakeCommands>
       </Target>
+      <Target title="pngtest">
+         <Option output="/Users/murphy/oz/build/pngtest" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="/Users/murphy/oz/build" />
+         <Option object_output="./" />
+         <Option type="1" />
+         <Option compiler="gcc" />
+         <Compiler>
+            <Add option="-DGLFW_INCLUDE_GLCOREARB" />
+            <Add option="-DASSIMP_BUILD_BOOST_WORKAROUND" />
+            <Add directory="/Users/murphy/oz/apps" />
+            <Add directory="/Users/murphy/oz/oz-source" />
+            <Add directory="/usr/local/include" />
+            <Add directory="/usr/local/include/GL" />
+            <Add directory="/usr/local/include/eigen3" />
+            <Add directory="/usr/local/include/freetype2" />
+         </Compiler>
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/Users/murphy/oz/build/Makefile&quot;  VERBOSE=1 pngtest" />
+            <CompileFile command="/usr/bin/make -f &quot;/Users/murphy/oz/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/Users/murphy/oz/build/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/Users/murphy/oz/build/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="pngtest/fast">
+         <Option output="/Users/murphy/oz/build/pngtest" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="/Users/murphy/oz/build" />
+         <Option object_output="./" />
+         <Option type="1" />
+         <Option compiler="gcc" />
+         <Compiler>
+            <Add option="-DGLFW_INCLUDE_GLCOREARB" />
+            <Add option="-DASSIMP_BUILD_BOOST_WORKAROUND" />
+            <Add directory="/Users/murphy/oz/apps" />
+            <Add directory="/Users/murphy/oz/oz-source" />
+            <Add directory="/usr/local/include" />
+            <Add directory="/usr/local/include/GL" />
+            <Add directory="/usr/local/include/eigen3" />
+            <Add directory="/usr/local/include/freetype2" />
+         </Compiler>
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/Users/murphy/oz/build/Makefile&quot;  VERBOSE=1 pngtest/fast" />
+            <CompileFile command="/usr/bin/make -f &quot;/Users/murphy/oz/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/Users/murphy/oz/build/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/Users/murphy/oz/build/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
       <Target title="rebuild_cache">
          <Option working_dir="/Users/murphy/oz/build" />
          <Option type="4" />
@@ -124,6 +170,8 @@
       </Unit>
       <Unit filename="/Users/murphy/oz/apps/main_eigen.cpp">
       </Unit>
+      <Unit filename="/Users/murphy/oz/apps/main_png.cpp">
+      </Unit>
       <Unit filename="/Users/murphy/oz/oz-source/App/App.cpp">
       </Unit>
       <Unit filename="/Users/murphy/oz/oz-source/App/Window.cpp">
@@ -134,11 +182,17 @@
       </Unit>
       <Unit filename="/Users/murphy/oz/oz-source/GL/ShaderProgram.cpp">
       </Unit>
+      <Unit filename="/Users/murphy/oz/oz-source/GL/Texture.cpp">
+      </Unit>
+      <Unit filename="/Users/murphy/oz/oz-source/GL/Texture2D.cpp">
+      </Unit>
       <Unit filename="/Users/murphy/oz/oz-source/Geometry/Assimp.cpp">
       </Unit>
       <Unit filename="/Users/murphy/oz/oz-source/Geometry/Primitives.cpp">
       </Unit>
       <Unit filename="/Users/murphy/oz/oz-source/Geometry/TriangleMesh.cpp">
+      </Unit>
+      <Unit filename="/Users/murphy/oz/oz-source/Image/IO.cpp">
       </Unit>
       <Unit filename="/Users/murphy/oz/oz-source/Scene/Scene.cpp">
       </Unit>
@@ -156,9 +210,15 @@
       </Unit>
       <Unit filename="/Users/murphy/oz/oz-source/GL/GLContext.h">
       </Unit>
+      <Unit filename="/Users/murphy/oz/oz-source/GL/PixelTypes.h">
+      </Unit>
       <Unit filename="/Users/murphy/oz/oz-source/GL/Shader.h">
       </Unit>
       <Unit filename="/Users/murphy/oz/oz-source/GL/ShaderProgram.h">
+      </Unit>
+      <Unit filename="/Users/murphy/oz/oz-source/GL/Texture.h">
+      </Unit>
+      <Unit filename="/Users/murphy/oz/oz-source/GL/Texture2D.h">
       </Unit>
       <Unit filename="/Users/murphy/oz/oz-source/GL/VertexArrayObject.h">
       </Unit>
@@ -173,6 +233,8 @@
       <Unit filename="/Users/murphy/oz/oz-source/Geometry/Primitives.h">
       </Unit>
       <Unit filename="/Users/murphy/oz/oz-source/Geometry/TriangleMesh.h">
+      </Unit>
+      <Unit filename="/Users/murphy/oz/oz-source/Image/IO.h">
       </Unit>
       <Unit filename="/Users/murphy/oz/oz-source/Math/Math.h">
       </Unit>
@@ -197,6 +259,10 @@
       <Unit filename="/Users/murphy/oz/shaders/2d.f.glsl">
       </Unit>
       <Unit filename="/Users/murphy/oz/shaders/2d.v.glsl">
+      </Unit>
+      <Unit filename="/Users/murphy/oz/shaders/TriangleMeshWithTexture.f.glsl">
+      </Unit>
+      <Unit filename="/Users/murphy/oz/shaders/TriangleMeshWithTexture.v.glsl">
       </Unit>
       <Unit filename="/Users/murphy/oz/shaders/circle.f.glsl">
       </Unit>

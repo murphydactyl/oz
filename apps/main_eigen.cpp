@@ -5,13 +5,18 @@
 
 using namespace std;
 
+struct T {
+ const int nChannels = 2;
+ float a = 2;
+ float b = 3;
+};
+
 int main()
 {
 
-  Eigen::MatrixXf A;
-  A.resize(10,3);
-  A.row(2) << 1, 2, 3;
-  cout << A << endl;
+  T t;
+  cout << "sizeof T: " << sizeof(t) << endl;
+
   return 0;
 }
 

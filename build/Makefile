@@ -118,6 +118,19 @@ oz/fast:
 .PHONY : oz/fast
 
 #=============================================================================
+# Target rules for targets named pngtest
+
+# Build rule for target.
+pngtest: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 pngtest
+.PHONY : pngtest
+
+# fast build rule for target.
+pngtest/fast:
+	$(MAKE) -f CMakeFiles/pngtest.dir/build.make CMakeFiles/pngtest.dir/build
+.PHONY : pngtest/fast
+
+#=============================================================================
 # Target rules for targets named sandbox
 
 # Build rule for target.
@@ -177,6 +190,30 @@ apps/main_eigen.s: apps/main_eigen.cpp.s
 apps/main_eigen.cpp.s:
 	$(MAKE) -f CMakeFiles/sandbox.dir/build.make CMakeFiles/sandbox.dir/apps/main_eigen.cpp.s
 .PHONY : apps/main_eigen.cpp.s
+
+apps/main_png.o: apps/main_png.cpp.o
+.PHONY : apps/main_png.o
+
+# target to build an object file
+apps/main_png.cpp.o:
+	$(MAKE) -f CMakeFiles/pngtest.dir/build.make CMakeFiles/pngtest.dir/apps/main_png.cpp.o
+.PHONY : apps/main_png.cpp.o
+
+apps/main_png.i: apps/main_png.cpp.i
+.PHONY : apps/main_png.i
+
+# target to preprocess a source file
+apps/main_png.cpp.i:
+	$(MAKE) -f CMakeFiles/pngtest.dir/build.make CMakeFiles/pngtest.dir/apps/main_png.cpp.i
+.PHONY : apps/main_png.cpp.i
+
+apps/main_png.s: apps/main_png.cpp.s
+.PHONY : apps/main_png.s
+
+# target to generate assembly for a file
+apps/main_png.cpp.s:
+	$(MAKE) -f CMakeFiles/pngtest.dir/build.make CMakeFiles/pngtest.dir/apps/main_png.cpp.s
+.PHONY : apps/main_png.cpp.s
 
 oz-source/App/App.o: oz-source/App/App.cpp.o
 .PHONY : oz-source/App/App.o
@@ -298,6 +335,54 @@ oz-source/GL/ShaderProgram.cpp.s:
 	$(MAKE) -f CMakeFiles/oz.dir/build.make CMakeFiles/oz.dir/oz-source/GL/ShaderProgram.cpp.s
 .PHONY : oz-source/GL/ShaderProgram.cpp.s
 
+oz-source/GL/Texture.o: oz-source/GL/Texture.cpp.o
+.PHONY : oz-source/GL/Texture.o
+
+# target to build an object file
+oz-source/GL/Texture.cpp.o:
+	$(MAKE) -f CMakeFiles/oz.dir/build.make CMakeFiles/oz.dir/oz-source/GL/Texture.cpp.o
+.PHONY : oz-source/GL/Texture.cpp.o
+
+oz-source/GL/Texture.i: oz-source/GL/Texture.cpp.i
+.PHONY : oz-source/GL/Texture.i
+
+# target to preprocess a source file
+oz-source/GL/Texture.cpp.i:
+	$(MAKE) -f CMakeFiles/oz.dir/build.make CMakeFiles/oz.dir/oz-source/GL/Texture.cpp.i
+.PHONY : oz-source/GL/Texture.cpp.i
+
+oz-source/GL/Texture.s: oz-source/GL/Texture.cpp.s
+.PHONY : oz-source/GL/Texture.s
+
+# target to generate assembly for a file
+oz-source/GL/Texture.cpp.s:
+	$(MAKE) -f CMakeFiles/oz.dir/build.make CMakeFiles/oz.dir/oz-source/GL/Texture.cpp.s
+.PHONY : oz-source/GL/Texture.cpp.s
+
+oz-source/GL/Texture2D.o: oz-source/GL/Texture2D.cpp.o
+.PHONY : oz-source/GL/Texture2D.o
+
+# target to build an object file
+oz-source/GL/Texture2D.cpp.o:
+	$(MAKE) -f CMakeFiles/oz.dir/build.make CMakeFiles/oz.dir/oz-source/GL/Texture2D.cpp.o
+.PHONY : oz-source/GL/Texture2D.cpp.o
+
+oz-source/GL/Texture2D.i: oz-source/GL/Texture2D.cpp.i
+.PHONY : oz-source/GL/Texture2D.i
+
+# target to preprocess a source file
+oz-source/GL/Texture2D.cpp.i:
+	$(MAKE) -f CMakeFiles/oz.dir/build.make CMakeFiles/oz.dir/oz-source/GL/Texture2D.cpp.i
+.PHONY : oz-source/GL/Texture2D.cpp.i
+
+oz-source/GL/Texture2D.s: oz-source/GL/Texture2D.cpp.s
+.PHONY : oz-source/GL/Texture2D.s
+
+# target to generate assembly for a file
+oz-source/GL/Texture2D.cpp.s:
+	$(MAKE) -f CMakeFiles/oz.dir/build.make CMakeFiles/oz.dir/oz-source/GL/Texture2D.cpp.s
+.PHONY : oz-source/GL/Texture2D.cpp.s
+
 oz-source/Geometry/Assimp.o: oz-source/Geometry/Assimp.cpp.o
 .PHONY : oz-source/Geometry/Assimp.o
 
@@ -370,6 +455,30 @@ oz-source/Geometry/TriangleMesh.cpp.s:
 	$(MAKE) -f CMakeFiles/oz.dir/build.make CMakeFiles/oz.dir/oz-source/Geometry/TriangleMesh.cpp.s
 .PHONY : oz-source/Geometry/TriangleMesh.cpp.s
 
+oz-source/Image/IO.o: oz-source/Image/IO.cpp.o
+.PHONY : oz-source/Image/IO.o
+
+# target to build an object file
+oz-source/Image/IO.cpp.o:
+	$(MAKE) -f CMakeFiles/oz.dir/build.make CMakeFiles/oz.dir/oz-source/Image/IO.cpp.o
+.PHONY : oz-source/Image/IO.cpp.o
+
+oz-source/Image/IO.i: oz-source/Image/IO.cpp.i
+.PHONY : oz-source/Image/IO.i
+
+# target to preprocess a source file
+oz-source/Image/IO.cpp.i:
+	$(MAKE) -f CMakeFiles/oz.dir/build.make CMakeFiles/oz.dir/oz-source/Image/IO.cpp.i
+.PHONY : oz-source/Image/IO.cpp.i
+
+oz-source/Image/IO.s: oz-source/Image/IO.cpp.s
+.PHONY : oz-source/Image/IO.s
+
+# target to generate assembly for a file
+oz-source/Image/IO.cpp.s:
+	$(MAKE) -f CMakeFiles/oz.dir/build.make CMakeFiles/oz.dir/oz-source/Image/IO.cpp.s
+.PHONY : oz-source/Image/IO.cpp.s
+
 oz-source/Scene/Scene.o: oz-source/Scene/Scene.cpp.o
 .PHONY : oz-source/Scene/Scene.o
 
@@ -402,6 +511,7 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... oz"
+	@echo "... pngtest"
 	@echo "... rebuild_cache"
 	@echo "... sandbox"
 	@echo "... apps/AppBasic/AppBasic.o"
@@ -410,6 +520,9 @@ help:
 	@echo "... apps/main_eigen.o"
 	@echo "... apps/main_eigen.i"
 	@echo "... apps/main_eigen.s"
+	@echo "... apps/main_png.o"
+	@echo "... apps/main_png.i"
+	@echo "... apps/main_png.s"
 	@echo "... oz-source/App/App.o"
 	@echo "... oz-source/App/App.i"
 	@echo "... oz-source/App/App.s"
@@ -425,6 +538,12 @@ help:
 	@echo "... oz-source/GL/ShaderProgram.o"
 	@echo "... oz-source/GL/ShaderProgram.i"
 	@echo "... oz-source/GL/ShaderProgram.s"
+	@echo "... oz-source/GL/Texture.o"
+	@echo "... oz-source/GL/Texture.i"
+	@echo "... oz-source/GL/Texture.s"
+	@echo "... oz-source/GL/Texture2D.o"
+	@echo "... oz-source/GL/Texture2D.i"
+	@echo "... oz-source/GL/Texture2D.s"
 	@echo "... oz-source/Geometry/Assimp.o"
 	@echo "... oz-source/Geometry/Assimp.i"
 	@echo "... oz-source/Geometry/Assimp.s"
@@ -434,6 +553,9 @@ help:
 	@echo "... oz-source/Geometry/TriangleMesh.o"
 	@echo "... oz-source/Geometry/TriangleMesh.i"
 	@echo "... oz-source/Geometry/TriangleMesh.s"
+	@echo "... oz-source/Image/IO.o"
+	@echo "... oz-source/Image/IO.i"
+	@echo "... oz-source/Image/IO.s"
 	@echo "... oz-source/Scene/Scene.o"
 	@echo "... oz-source/Scene/Scene.i"
 	@echo "... oz-source/Scene/Scene.s"

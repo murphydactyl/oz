@@ -15,6 +15,7 @@ Geometry* geom::LoadTriangleMeshFromFile(string filename) {
   auto positions = g->positions();
   auto normals = g->normals();
   auto colors = g->colors();
+  auto texcoords = g->texcoords();
 
   if (inScene != nullptr) {
     cout << "Loaded scene from: " << filename << endl;
@@ -47,6 +48,14 @@ Geometry* geom::LoadTriangleMeshFromFile(string filename) {
       }
     }
 
+    if (inMesh->HasTextureCoords(0)) {
+      texcoords.resize(Eigen::NoChange, nVerts);
+      for (int i = 0; i < nVerts; i++) {
+        texcoords(0, i) = inMesh->mTextureCoords[0][i].x;
+        texcoords(1, i) = inMesh->mTextureCoords[0][i].y;
+      }
+    }
+
     if (inMesh->HasFaces()) {
       faces.resize(Eigen::NoChange, nFaces);
       cout << faces.rows() << endl;
@@ -58,13 +67,13 @@ Geometry* geom::LoadTriangleMeshFromFile(string filename) {
       }
     }
 
-
     g->nVerts(nVerts);
     g->nFaces(nFaces);
     g->vao()->bind();
-    g->vbo()->reserveNBytesOnGPU(nVerts * 8 * 4);
+    g->vbo()->reserveNBytesOnGPU(nVerts * (4 + 4 + 4) * 4);
     g->vbo()->copy2GPUPoints(positions.data(), nVerts);
     g->vbo()->copy2GPUColors(colors.data(), nVerts);
+    g->vbo()->copy2GPUTexcoords(texcoords.data(), nVerts);
     g->vao()->unbind();
 
     g->ebo()->bind();
