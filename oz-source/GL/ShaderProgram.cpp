@@ -293,29 +293,29 @@ void ShaderProgram::setUniform(string n,
     }
   gl::checkError("Error in setUniform", __LINE__, __FILE__);
 }
-void ShaderProgram::setUniform(string n, const Math::Vec3f &v) {
-  setUniform(n, v.x(), v.y(), v.z());
+void ShaderProgram::setUniform(string n, const math::Vec3f &v) {
+  setUniform(n, v.x, v.y, v.z);
   gl::checkError("Error in setUniform", __LINE__, __FILE__);
 }
 
-void ShaderProgram::setUniform(string n, const Math::Vec4f &v) {
-  setUniform(n, v.x(), v.y(), v.z(), v.w());
+void ShaderProgram::setUniform(string n, const math::Vec4f &v) {
+  setUniform(n, v.x, v.y, v.z, v.w);
   gl::checkError("Error in setUniform", __LINE__, __FILE__);
 }
 
-void ShaderProgram::setUniform(string n, Math::Mat3f &m) {
+void ShaderProgram::setUniform(string n, math::Mat3f &mat) {
   bind();
   GLint loc = getUniformLocation(n.c_str());
   if (loc > -1) {
-      glUniformMatrix3fv(loc, 1, OZ_ISROWMAJOR, m.data());
+      glUniformMatrix3fv(loc, 1, OZ_ISROWMAJOR, mat.m);
     }
   gl::checkError("Error in setUniform", __LINE__, __FILE__);
 }
-void ShaderProgram::setUniform(string n, Math::Mat4f &m) {
+void ShaderProgram::setUniform(string n, math::Mat4f &mat) {
   bind();
   GLint loc = getUniformLocation(n.c_str());
   if (loc > -1) {
-      glUniformMatrix4fv(loc, 1, OZ_ISROWMAJOR, m.data());
+      glUniformMatrix4fv(loc, 1, OZ_ISROWMAJOR, mat.m);
     }
   gl::checkError("Error in setUniform", __LINE__, __FILE__);
 }

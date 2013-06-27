@@ -32,8 +32,8 @@ IF(NOT FREETYPE_FOUND)
 ENDIF(NOT FREETYPE_FOUND)
 INCLUDE_DIRECTORIES(${FREETYPE_INCLUDE_DIRS})
 
-set(EXTRA_LIBS "${EXTRA_LIBS}" glfw3 ${FREETYPE_LIBRARIES} assimp freeimage)
 set(EIGEN_INCLUDE_DIRS /usr/local/include/eigen3)
+set(EXTRA_LIBS "${EXTRA_LIBS}" glfw3 ${FREETYPE_LIBRARIES} assimp freeimage)
 set(GLFW_INCLUDE_DIRS /usr/local/include/GL/)
 set(FREEIMAGE_INCLUDE_DIRS /usr/local/include)
 
@@ -44,6 +44,7 @@ set(ROOT_HEADER_DIR oz-source)
 set(ROOT_SOURCE_DIR oz-source)
 set(STATIC_LIB_DIR lib)
 set(SHADERS_DIR shaders)
+set(MATH_DIR ../math/include)
 set(APPS_DIR apps)
 
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
@@ -55,11 +56,10 @@ set(APPS_DIR apps)
 # point the imported target at the real file
 #set_property(TARGET assimp PROPERTY IMPORTED_LOCATION ${STATIC_LIB_DIR}/libassimp.a)
 
-
-
 file(GLOB_RECURSE OZ_SOURCE ${ROOT_SOURCE_DIR}/*.cpp)
 file(GLOB_RECURSE OZ_HEADER ${ROOT_HEADER_DIR}/*.h)
 file(GLOB_RECURSE OZ_SHADER ${SHADERS_DIR}/*.glsl)
+file(GLOB_RECURSE OZ_MATH ${MATH_DIR}/*.h)
 
 # INCLUDES
 include_directories(
@@ -68,6 +68,7 @@ include_directories(
         ${GLFW_INCLUDE_DIRS}
         ${EIGEN_INCLUDE_DIRS}
         ${FREEIMAGE_INCLUDE_DIRS}
+        ${OZ_MATH}
 )
 
 #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
@@ -79,6 +80,6 @@ target_link_libraries(${PROJECT_NAME} ${EXTRA_LIBS})
 #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
 # TEST TARGETS
 #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
-add_executable(sandbox ${APPS_DIR}/main_eigen.cpp ${OZ_HEADER})
+#add_executable(sandbox ${APPS_DIR}/main_eigen.cpp ${OZ_HEADER})
 add_executable(pngtest ${APPS_DIR}/main_png.cpp ${OZ_HEADER})
 target_link_libraries(pngtest ${EXTRA_LIBS})

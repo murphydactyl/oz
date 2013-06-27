@@ -30,8 +30,8 @@ void Scene::render(gl::ShaderProgram* shader) {
   glViewport(0, 0, 640, 480);
 
   shader->bind();
-  Math::Mat4f v = camera_->view().matrix();
-  Math::Mat4f p = camera_->perspective();
+  math::Mat4f v = camera_->view();
+  math::Mat4f p = camera_->perspective();
   shader->setUniform("v", v);
   shader->setUniform("p", p);
 
@@ -44,8 +44,8 @@ void Scene::render(gl::ShaderProgram* shader) {
 
     // POP TOP
     Nodef* top = nStack_.pop_back();
-    Nodef::Aff3 currentWorldTransform = tStack_.pop_back();
-    Math::Mat4f m = currentWorldTransform.matrix();
+    Nodef::Mat4 currentWorldTransform = tStack_.pop_back();
+    math::Mat4f m = currentWorldTransform;
     shader->setUniform("m", m);
     Geometry* g = top->geometry();
     if (g != nullptr) {
@@ -54,7 +54,7 @@ void Scene::render(gl::ShaderProgram* shader) {
 
     // PUSH TOP'S CHILDREN
     for (auto i = 0; i < top->nChildren(); i++) {
-      Nodef* child = top->child(i);
+      Nodef* child = top->getChild(i);
       nStack_.push_back(child);
       tStack_.push_back(currentWorldTransform * child->local());
     }

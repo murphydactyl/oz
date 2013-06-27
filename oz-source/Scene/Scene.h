@@ -32,7 +32,7 @@ namespace scene {
     gl::ShaderProgram*      dfltSPVertexColors_;
     gl::ShaderProgram*      defaultShader_;
     Vector<Nodef*>          nStack_;
-    Vector<Nodef::Aff3>     tStack_;
+    Vector<Nodef::Mat4>     tStack_;
 
   };
 }

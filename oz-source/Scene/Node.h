@@ -13,10 +13,10 @@ namespace scene {
   class Node : public Object {
 
     public:
-      typedef Eigen::Transform<Scalar, 3, Eigen::Affine> Aff3;
+      typedef math::Mat4f Mat4;
 
       // GETTERS ................................................................
-      Aff3&               local() { return local_; }
+      Mat4&               local() { return local_; }
       Node*               parent() { return parent_; }
       geom::Geometry*     geometry() { return geometry_; }
 
@@ -26,7 +26,7 @@ namespace scene {
 
       // CONSTRUCTOR ............................................................
       Node() {
-        local_ = Aff3::Identity();
+        local_ = Mat4(1.0);
         std::stringstream ss;
         ss << "Untitled Node " << nNodes++;
         name_ = ss.str();
@@ -79,7 +79,7 @@ namespace scene {
       }
 
     protected:
-      Aff3                local_;
+      Mat4                local_;
       Vector<Node*>       children_;
       static uint64_t     nNodes;
       geom::Geometry*     geometry_;

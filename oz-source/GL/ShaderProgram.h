@@ -47,11 +47,11 @@ namespace gl {
     void setUniform(string n, GLint v0, GLint v1, GLint v2);
     void setUniform(string n, GLint v0, GLint v1, GLint v2, GLint v3);
 
-    void setUniform(string n, Math::Mat4f& mat4);
-    void setUniform(string n, Math::Mat3f& mat3);
+    void setUniform(string n, math::Mat4f& mat4);
+    void setUniform(string n, math::Mat3f& mat3);
 
-    void setUniform(string n, const Math::Vec3f&);
-    void setUniform(string n, const Math::Vec4f&);
+    void setUniform(string n, const math::Vec3f&);
+    void setUniform(string n, const math::Vec4f&);
 
 
   protected:

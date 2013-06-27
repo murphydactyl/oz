@@ -73,8 +73,8 @@ void AppBasic::onMouseDrag(double dx, double dy) {
   double sy = windows_[0]->height() * 2;
   double azimuth = -dx / sx;
   double elevation = dy / sy;
-  myScene->camera()->anim().setRotationX(azimuth);
-  myScene->camera()->anim().rotateY(-elevation);
+  myScene->camera()->anim() = math::Mat4f::Rotation(azimuth, 0, 0);
+  myScene->camera()->anim().rotate(0, -elevation, 0);
 }
 
 void AppBasic::onMouseUp(double x, double y) {

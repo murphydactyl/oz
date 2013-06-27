@@ -20,11 +20,11 @@ namespace geom {
   };
 
   typedef gl::ElementBuffer<uint16_t>* eboptr_t;
-  typedef Math::Mat3Xf positions_t;
-  typedef Math::Mat3Xf normals_t;
-  typedef Math::Mat4Xf colors_t;
-  typedef Math::Mat3Xu16 faces_t;
-  typedef Math::Mat2Xf texcoord_t;
+  typedef math::Mat3Xf positions_t;
+  typedef math::Mat3Xf normals_t;
+  typedef math::Mat4Xf colors_t;
+  typedef math::Mat3Xu16 faces_t;
+  typedef math::Mat2Xf texcoord_t;
 
   template <element_t E=TRIANGLE>
   class TriangleMesh : public Geometry {

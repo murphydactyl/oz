@@ -4,9 +4,8 @@
 #include "Scene/Node.h"
 namespace geom {
 
-  typedef Eigen::Transform<float, 3, Eigen::Affine> Aff3;
-
+  typedef math::Mat4f Mat4;
   scene::Nodef* LoadTriangleMeshFromFile(std::string filename);
-  Aff3 convertAsimppBoneOffsetMatrixToNodeTransform(aiNode* asimppNode);
+  Mat4 convertAsimppBoneOffsetMatrixToNodeTransform(aiNode* asimppNode);
   scene::Nodef* cloneAsimppNodeAsOzNode(aiNode* asimppNode);
 }

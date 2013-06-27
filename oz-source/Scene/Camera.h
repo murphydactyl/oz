@@ -1,5 +1,5 @@
-#ifndef __OZ__SCENE__CAMERA__H
-#define __OZ__SCENE__CAMERA__H
+#ifndef __OZ__SCENE__CAMERA__H__
+#define __OZ__SCENE__CAMERA__H__
 
 #include "../Math/Math.h"
 #include "Scene/Node.h"
@@ -9,39 +9,39 @@ namespace scene {
   template<typename Scalar=float>
   class Camera : public Node<Scalar> {
     public:
-      typedef Eigen::Transform<Scalar, 3, Eigen::Affine> Aff3;
-      typedef Math::Vec3f Vec3f;
+      typedef math::Vec3f Vec3;
+      typedef math::Mat4f Mat4;
 
       Camera() {
-        anim_.setIdentity();
-        pos_.setIdentity();
-        rot_.setIdentity();
-        this->perspective_.setIdentity();
+        anim_.identity();
+        pos_.identity();
+        rot_.identity();
+        this->perspective_.identity();
       }
 
       void translate(Scalar x, Scalar y, Scalar z) {
-        Vec3f t = (rot_ * anim_) * Vec3f(x, y, z);
+        Vec3 t = (rot_ * anim_) * Vec3(x, y, z);
         pos_.translate(t);
       }
 
-      Aff3 view() {
-        Aff3 v = pos_ * rot_ * anim_;
-        return v.inverse();
+      Mat4 view() {
+        Mat4 v = pos_ * rot_ * anim_;
+        return v.affineInverse();
       }
 
-      Aff3& anim() { return anim_; }
+      Mat4& anim() { return anim_; }
 
       void makeAnimationPermanent() {
         this->rot_ = this->rot_ * anim_;
-        anim_.setIdentity();
+        anim_.identity();
       }
-      Math::Mat4f     perspective() { return this->perspective_; }
+      Mat4     perspective() { return this->perspective_; }
 
     protected:
-      Math::Mat4f perspective_;
-      Aff3 anim_;
-      Aff3 rot_;
-      Aff3 pos_;
+      Mat4 perspective_;
+      Mat4 anim_;
+      Mat4 rot_;
+      Mat4 pos_;
   };
 
 

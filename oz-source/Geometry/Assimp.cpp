@@ -10,17 +10,17 @@ using namespace geom;
 
 typedef scene::Nodef Node;
 
-Aff3 geom::convertAsimppBoneOffsetMatrixToNodeTransform(aiNode* asimppNode) {
+Mat4 geom::convertAsimppBoneOffsetMatrixToNodeTransform(aiNode* asimppNode) {
     float* pf = asimppNode->mTransformation[0];
-    Eigen::Map<Eigen::Matrix4f> map(pf, 4, 4);
-    Aff3 retMatrix = map.transpose();
-    return retMatrix;
+    Mat4 ret(pf);
+    return ret;
 }
 
 Node* geom::cloneAsimppNodeAsOzNode(aiNode* asimppNode) {
   Node* clonedNode = new Node();
   clonedNode->setName(asimppNode->mName.C_Str());
-  clonedNode->local().matrix() = convertAsimppBoneOffsetMatrixToNodeTransform(asimppNode);
+  clonedNode->local() = convertAsimppBoneOffsetMatrixToNodeTransform(asimppNode);
+  return clonedNode;
 }
 
 Node* geom::LoadTriangleMeshFromFile(string filename) {
@@ -40,27 +40,27 @@ Node* geom::LoadTriangleMeshFromFile(string filename) {
     //    * attach tree to corresponding parent in new tree
     //    * copy offset matrix
     //    * push asimpp nodes children to stack and recurse
-    Vector<aiNode*> unprocessedNodes;
-    unprocessedNodes.push_back(inScene->mRootNode);
-    while (! unprocessedNodes.isEmpty()) {
+//    Vector<aiNode*> unprocessedNodes;
+//    unprocessedNodes.push_back(inScene->mRootNode);
+//    while (! unprocessedNodes.isEmpty()) {
 
-      // POP
-      aiNode* asimppNode = unprocessedNodes.pop_back();
+//      // POP
+//      aiNode* asimppNode = unprocessedNodes.pop_back();
 
-      // CLONE NODE EXCEPT PARENT INFO
-      Node* clonedNode = cloneAsimppNodeAsOzNode(asimppNode);
+//      // CLONE NODE EXCEPT PARENT INFO
+//      Node* clonedNode = cloneAsimppNodeAsOzNode(asimppNode);
 
-      if (asimppNode->mParent == nullptr) {
-        Node* parentOfClonedNode = root->findByName(assimpNode->mParent->mName.C_Str());
-        clonedNode->setParent(parentOfClonedNode);
-      } else {
-        clonedNode->setParent(nullptr);
-      }
+//      if (asimppNode->mParent == nullptr) {
+//        Node* parentOfClonedNode = root->findByName(asimppNode->mParent->mName.C_Str());
+//        clonedNode->setParent(parentOfClonedNode);
+//      } else {
+//        clonedNode->setParent(nullptr);
+//      }
 
-      for (size_t i = 0; i < asimppNode->mNumChildren; i++) {
-        unprocessedNodes.push_back(asimppNode->mChildren[i]);
-      }
-    }
+//      for (size_t i = 0; i < asimppNode->mNumChildren; i++) {
+//        unprocessedNodes.push_back(asimppNode->mChildren[i]);
+//      }
+//    }
 
 
     auto g = new TriangleMesh<geom::TRIANGLE>();
