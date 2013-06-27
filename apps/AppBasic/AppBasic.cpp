@@ -28,8 +28,9 @@ AppBasic::AppBasic() {
 
   myScene = new scene::Scene();
   scene::Cameraf* cam = new scene::CameraPerspective<float>(4/3., 1, 1, 100);
-  cam->translate(0,0,-5);
+  cam->translate(0,0,5);
   myScene->camera(cam);
+
 //  geom::Geometry* model = geom::makeQuad();
 //  geom::Geometry* cube = geom::makeCube(1.0);
 
@@ -50,15 +51,11 @@ AppBasic::AppBasic() {
 
   auto image = reinterpret_cast<gl::rgba8888_t*>(image::LoadPNGRGBA8888(ss.str(), imWidth, imHeight));
   auto tex = new gl::Texture2D<gl::rgba8888_t>(image, imWidth, imHeight);
-  auto node = new scene::Nodef();
-  auto node2 = new scene::Nodef();
 
-  node->geometry(model);
-
-  myScene->root()->addChild(node);
+  myScene->root()->addChild(model);
   myScene->print();
   tex->copy2GPU();
-  ((geom::TriangleMesh<>*)(model))->attachTexture(tex);
+  ((geom::TriangleMesh<>*)(model->geometry()))->attachTexture(tex);
 
 }
 
@@ -89,22 +86,22 @@ void AppBasic::charDown(char c, bool isRepeat) {
   float scale = 0.1;
   switch(c) {
     case 'W':
-      myScene->camera()->translate(0, 0, scale);
-      break;
-    case 'S':
       myScene->camera()->translate(0, 0, -scale);
       break;
-    case 'A':
-      myScene->camera()->translate(scale, 0, 0);
+    case 'S':
+      myScene->camera()->translate(0, 0, scale);
       break;
-    case 'D':
+    case 'A':
       myScene->camera()->translate(-scale, 0, 0);
       break;
+    case 'D':
+      myScene->camera()->translate(scale, 0, 0);
+      break;
     case 'R':
-      myScene->camera()->translate(0, -scale, 0);
+      myScene->camera()->translate(0, scale, 0);
       break;
     case 'F':
-      myScene->camera()->translate(0, scale, 0);
+      myScene->camera()->translate(0, -scale, 0);
       break;
   }
 }

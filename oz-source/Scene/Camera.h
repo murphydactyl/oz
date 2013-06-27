@@ -10,6 +10,7 @@ namespace scene {
   class Camera : public Node<Scalar> {
     public:
       typedef Eigen::Transform<Scalar, 3, Eigen::Affine> Aff3;
+      typedef Math::Vec3f Vec3f;
 
       Camera() {
         anim_.setIdentity();
@@ -19,7 +20,8 @@ namespace scene {
       }
 
       void translate(Scalar x, Scalar y, Scalar z) {
-        pos_.translate(-x, -y, -z);
+        Vec3f t = (rot_ * anim_) * Vec3f(x, y, z);
+        pos_.translate(t);
       }
 
       Aff3 view() {
@@ -40,7 +42,6 @@ namespace scene {
       Aff3 anim_;
       Aff3 rot_;
       Aff3 pos_;
-
   };
 
 

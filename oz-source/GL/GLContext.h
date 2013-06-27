@@ -15,7 +15,7 @@ namespace gl {
     HAS_RGBA_COLOR = 0x00000001
   } POINT;
 
-  static int checkError(const std::string& msg, int line, const char* file) {
+  static inline int checkError(const std::string& msg, int line, const char* file) {
     std::stringstream s;
     s << msg << " at line " << line << " in file " << file;
     GLenum stat = glGetError();
@@ -27,7 +27,7 @@ namespace gl {
     return 1;
   }
 
-  static int checkError(const std::string& msg, bool always_print = false) {
+  static inline int checkError(const std::string& msg, bool always_print = false) {
     GLenum stat = glGetError();
     if (stat != GL_NO_ERROR) {
         std::cout << "[" << msg << "] Error: " << stat << std::endl;

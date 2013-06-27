@@ -27,35 +27,8 @@ namespace Math {
   typedef Eigen::Matrix<float, 4, Eigen::Dynamic, Eigen::ColMajor> Mat4Xf;
   typedef Eigen::Matrix<uint16_t, 3, Eigen::Dynamic, Eigen::ColMajor> Mat3Xu16;
 
-
-  class Vec4f : public Eigen::Vector4f
-  {
-  public:
-    inline float x() { return data()[0]; }
-    inline float y() { return data()[1]; }
-    inline float z() { return data()[2]; }
-    inline float w() { return data()[3]; }
-
-    inline float x() const { return data()[0]; }
-    inline float y() const { return data()[1]; }
-    inline float z() const { return data()[2]; }
-    inline float w() const { return data()[3]; }
-  };
-
-  class Vec3f : public Eigen::Vector3f
-  {
-  public:
-    Vec3f(float a, float b, float c) : Eigen::Vector3f(a,b,c) {}
-
-    inline float x() { return data()[0]; }
-    inline float y() { return data()[1]; }
-    inline float z() { return data()[2]; }
-
-    inline float x() const { return data()[0]; }
-    inline float y() const { return data()[1]; }
-    inline float z() const { return data()[2]; }
-
-  };
+  typedef Eigen::Vector3f Vec3f;
+  typedef Eigen::Vector4f Vec4f;
 }
 
 #endif

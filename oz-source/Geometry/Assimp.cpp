@@ -2,22 +2,76 @@
 #include "Geometry/Assimp.h"
 #include "Geometry/TriangleMesh.h"
 #include <iostream>
+#include "Vector/Vector.h"
+#include <queue>
 
 using namespace std;
 using namespace geom;
-Geometry* geom::LoadTriangleMeshFromFile(string filename) {
+
+typedef scene::Nodef Node;
+
+Aff3 geom::convertAsimppBoneOffsetMatrixToNodeTransform(aiNode* asimppNode) {
+    float* pf = asimppNode->mTransformation[0];
+    Eigen::Map<Eigen::Matrix4f> map(pf, 4, 4);
+    Aff3 retMatrix = map.transpose();
+    return retMatrix;
+}
+
+Node* geom::cloneAsimppNodeAsOzNode(aiNode* asimppNode) {
+  Node* clonedNode = new Node();
+  clonedNode->setName(asimppNode->mName.C_Str());
+  clonedNode->local().matrix() = convertAsimppBoneOffsetMatrixToNodeTransform(asimppNode);
+}
+
+Node* geom::LoadTriangleMeshFromFile(string filename) {
 
   Assimp::Importer importer;
   const aiScene* inScene = importer.ReadFile(filename.c_str(), aiProcess_Triangulate );
 
-  auto g = new TriangleMesh<geom::TRIANGLE>();
-  auto faces = g->faces();
-  auto positions = g->positions();
-  auto normals = g->normals();
-  auto colors = g->colors();
-  auto texcoords = g->texcoords();
-
   if (inScene != nullptr) {
+
+
+    auto root = new Node();
+    // LOAD BONES
+    // Clone Asimpp bone tree as Node tree
+    // *  push mRootNode onto stack
+    // *  pop topmost asimpp node off the top of the stack or stop
+    //    * create new node
+    //    * attach tree to corresponding parent in new tree
+    //    * copy offset matrix
+    //    * push asimpp nodes children to stack and recurse
+    Vector<aiNode*> unprocessedNodes;
+    unprocessedNodes.push_back(inScene->mRootNode);
+    while (! unprocessedNodes.isEmpty()) {
+
+      // POP
+      aiNode* asimppNode = unprocessedNodes.pop_back();
+
+      // CLONE NODE EXCEPT PARENT INFO
+      Node* clonedNode = cloneAsimppNodeAsOzNode(asimppNode);
+
+      if (asimppNode->mParent == nullptr) {
+        Node* parentOfClonedNode = root->findByName(assimpNode->mParent->mName.C_Str());
+        clonedNode->setParent(parentOfClonedNode);
+      } else {
+        clonedNode->setParent(nullptr);
+      }
+
+      for (size_t i = 0; i < asimppNode->mNumChildren; i++) {
+        unprocessedNodes.push_back(asimppNode->mChildren[i]);
+      }
+    }
+
+
+    auto g = new TriangleMesh<geom::TRIANGLE>();
+    auto faces = g->faces();
+    auto positions = g->positions();
+    auto normals = g->normals();
+    auto colors = g->colors();
+    auto texcoords = g->texcoords();
+
+    root->setGeometry(g);
+
     cout << "Loaded scene from: " << filename << endl;
     aiMesh* inMesh = inScene->mMeshes[0];
 
@@ -67,6 +121,7 @@ Geometry* geom::LoadTriangleMeshFromFile(string filename) {
       }
     }
 
+    g->name(inMesh->mName.C_Str());
     g->nVerts(nVerts);
     g->nFaces(nFaces);
     g->vao()->bind();
@@ -81,7 +136,26 @@ Geometry* geom::LoadTriangleMeshFromFile(string filename) {
     g->ebo()->copy2GPU(faces.data(), faces.cols(), faces.rows());
     g->ebo()->unbind();
 
-    return g;
+    // load bones
+
+
+    //    Vector<aiNode*> unprocessedNodes;
+//    unprocessedNodes.push_back(inScene->mRootNode);
+
+//    while (unprocessedNodes.isNotEmpty()) {
+//      aiNode* inTop = unprocessedNodes.pop_back();
+//      auto newNode = new scene::Nodef();
+//      float* pf = inTop->mTransformation[0];
+//      Eigen::Map<Eigen::Matrix4f> map(pf, 4, 4);
+//      newNode->local().matrix() = map.transpose();
+//      newNode->name(inTop->mName.C_Str());
+//      for (int i = 0; i < inTop->mNumChildren; i++) {
+//        unprocessedNodes.push_back(inTop->mChildren[i]);
+//      }
+//    }
+
+
+    return root;
 
   } else {
     cout << "WARNING: couldn't load scene from: " << filename << endl;

@@ -20,10 +20,9 @@ namespace scene {
       Node*               parent() { return parent_; }
       geom::Geometry*     geometry() { return geometry_; }
 
-
       // SETTERS ................................................................
-      void                parent(Node* p) { parent_ = p; }
-      void                geometry(geom::Geometry* g) { geometry_ = g; }
+      void                setParent(Node* p) { parent_ = p; }
+      void                setGeometry(geom::Geometry* g) { geometry_ = g; }
 
       // CONSTRUCTOR ............................................................
       Node() {
@@ -40,7 +39,7 @@ namespace scene {
       }
 
       void addChild(Node* child) {
-        child->parent(this);
+        child->setParent(this);
         children_.push_back(child);
       }
 
@@ -55,7 +54,7 @@ namespace scene {
         }
       }
 
-      Node* child(uint32_t i) {
+      Node* getChild(uint32_t i) {
         if (i >= children_.size()) {
           return nullptr;
         }
@@ -64,6 +63,20 @@ namespace scene {
 
       uint32_t nChildren() { return children_.size(); }
       Vector<Node*>     children() { return children_; }
+
+      Node* findByName(string name2LookFor) {
+        if (name_.compare(name2LookFor) == 0) {
+          return this;
+        }
+        Node* foundNode = nullptr;
+        for (size_t i = 0; i < nChildren(); i++) {
+          foundNode = getChild(i)->findByName(name2LookFor);
+          if (foundNode != nullptr) {
+            return foundNode;
+          }
+        }
+        return nullptr;
+      }
 
     protected:
       Aff3                local_;
@@ -75,7 +88,7 @@ namespace scene {
 
   /**
    nNodes
-   -- Keeps track of total nodes created of this type
+   -- Keeps track of total nod  es created of this type
   **/
   template<typename Scalar> uint64_t     Node<Scalar>::nNodes = 0;
 

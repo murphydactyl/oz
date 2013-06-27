@@ -905,6 +905,9 @@ CMakeFiles/oz.dir/oz-source/Geometry/Assimp.cpp.o
  ../oz-source/Geometry/Geometry.h
  ../oz-source/Geometry/TriangleMesh.h
  ../oz-source/Math/Math.h
+ ../oz-source/Scene/../Geometry/Geometry.h
+ ../oz-source/Scene/Node.h
+ ../oz-source/Scene/Object.h
  ../oz-source/Vector/Vector.h
  /Users/murphy/oz/oz-source/Geometry/Assimp.cpp
  /usr/local/include/GL/glfw3.h
