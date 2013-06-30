@@ -9,7 +9,7 @@ using namespace geom;
 
 Geometry* geom::makeCube(float unit) {
 
-  auto g = new TriangleMesh<TRIANGLE>();
+  auto g = new TriangleMesh();
 
   float u = unit;
   float points[] = {
@@ -111,7 +111,7 @@ Geometry* geom::makeCube(float unit) {
 
 Geometry* geom::makeQuad(float unit)
 {
-  auto g = new TriangleMesh<TRIANGLE>();
+  auto g = new TriangleMesh();
   float s = unit;
   float points[] = {
     -s, -s, 0,

@@ -44,7 +44,6 @@ set(ROOT_HEADER_DIR oz-source)
 set(ROOT_SOURCE_DIR oz-source)
 set(STATIC_LIB_DIR lib)
 set(SHADERS_DIR shaders)
-set(MATH_DIR ../math/include)
 set(APPS_DIR apps)
 
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
@@ -59,7 +58,6 @@ set(APPS_DIR apps)
 file(GLOB_RECURSE OZ_SOURCE ${ROOT_SOURCE_DIR}/*.cpp)
 file(GLOB_RECURSE OZ_HEADER ${ROOT_HEADER_DIR}/*.h)
 file(GLOB_RECURSE OZ_SHADER ${SHADERS_DIR}/*.glsl)
-file(GLOB_RECURSE OZ_MATH ${MATH_DIR}/*.h)
 
 # INCLUDES
 include_directories(

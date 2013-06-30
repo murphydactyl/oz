@@ -27,7 +27,7 @@ void Scene::render() {
 
 void Scene::render(gl::ShaderProgram* shader) {
 
-  glViewport(0, 0, 640, 480);
+  glViewport(0, 0, 1024, 768);
 
   shader->bind();
   math::Mat4f v = camera_->view();

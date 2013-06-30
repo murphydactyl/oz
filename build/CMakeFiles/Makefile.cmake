@@ -44,5 +44,4 @@ SET(CMAKE_MAKEFILE_PRODUCTS
 SET(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/oz.dir/DependInfo.cmake"
   "CMakeFiles/pngtest.dir/DependInfo.cmake"
-  "CMakeFiles/sandbox.dir/DependInfo.cmake"
   )

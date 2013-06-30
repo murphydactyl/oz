@@ -130,19 +130,6 @@ pngtest/fast:
 	$(MAKE) -f CMakeFiles/pngtest.dir/build.make CMakeFiles/pngtest.dir/build
 .PHONY : pngtest/fast
 
-#=============================================================================
-# Target rules for targets named sandbox
-
-# Build rule for target.
-sandbox: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 sandbox
-.PHONY : sandbox
-
-# fast build rule for target.
-sandbox/fast:
-	$(MAKE) -f CMakeFiles/sandbox.dir/build.make CMakeFiles/sandbox.dir/build
-.PHONY : sandbox/fast
-
 apps/AppBasic/AppBasic.o: apps/AppBasic/AppBasic.cpp.o
 .PHONY : apps/AppBasic/AppBasic.o
 
@@ -166,30 +153,6 @@ apps/AppBasic/AppBasic.s: apps/AppBasic/AppBasic.cpp.s
 apps/AppBasic/AppBasic.cpp.s:
 	$(MAKE) -f CMakeFiles/oz.dir/build.make CMakeFiles/oz.dir/apps/AppBasic/AppBasic.cpp.s
 .PHONY : apps/AppBasic/AppBasic.cpp.s
-
-apps/main_eigen.o: apps/main_eigen.cpp.o
-.PHONY : apps/main_eigen.o
-
-# target to build an object file
-apps/main_eigen.cpp.o:
-	$(MAKE) -f CMakeFiles/sandbox.dir/build.make CMakeFiles/sandbox.dir/apps/main_eigen.cpp.o
-.PHONY : apps/main_eigen.cpp.o
-
-apps/main_eigen.i: apps/main_eigen.cpp.i
-.PHONY : apps/main_eigen.i
-
-# target to preprocess a source file
-apps/main_eigen.cpp.i:
-	$(MAKE) -f CMakeFiles/sandbox.dir/build.make CMakeFiles/sandbox.dir/apps/main_eigen.cpp.i
-.PHONY : apps/main_eigen.cpp.i
-
-apps/main_eigen.s: apps/main_eigen.cpp.s
-.PHONY : apps/main_eigen.s
-
-# target to generate assembly for a file
-apps/main_eigen.cpp.s:
-	$(MAKE) -f CMakeFiles/sandbox.dir/build.make CMakeFiles/sandbox.dir/apps/main_eigen.cpp.s
-.PHONY : apps/main_eigen.cpp.s
 
 apps/main_png.o: apps/main_png.cpp.o
 .PHONY : apps/main_png.o
@@ -262,30 +225,6 @@ oz-source/App/Window.s: oz-source/App/Window.cpp.s
 oz-source/App/Window.cpp.s:
 	$(MAKE) -f CMakeFiles/oz.dir/build.make CMakeFiles/oz.dir/oz-source/App/Window.cpp.s
 .PHONY : oz-source/App/Window.cpp.s
-
-oz-source/GL/GLContext.o: oz-source/GL/GLContext.cpp.o
-.PHONY : oz-source/GL/GLContext.o
-
-# target to build an object file
-oz-source/GL/GLContext.cpp.o:
-	$(MAKE) -f CMakeFiles/oz.dir/build.make CMakeFiles/oz.dir/oz-source/GL/GLContext.cpp.o
-.PHONY : oz-source/GL/GLContext.cpp.o
-
-oz-source/GL/GLContext.i: oz-source/GL/GLContext.cpp.i
-.PHONY : oz-source/GL/GLContext.i
-
-# target to preprocess a source file
-oz-source/GL/GLContext.cpp.i:
-	$(MAKE) -f CMakeFiles/oz.dir/build.make CMakeFiles/oz.dir/oz-source/GL/GLContext.cpp.i
-.PHONY : oz-source/GL/GLContext.cpp.i
-
-oz-source/GL/GLContext.s: oz-source/GL/GLContext.cpp.s
-.PHONY : oz-source/GL/GLContext.s
-
-# target to generate assembly for a file
-oz-source/GL/GLContext.cpp.s:
-	$(MAKE) -f CMakeFiles/oz.dir/build.make CMakeFiles/oz.dir/oz-source/GL/GLContext.cpp.s
-.PHONY : oz-source/GL/GLContext.cpp.s
 
 oz-source/GL/Shader.o: oz-source/GL/Shader.cpp.o
 .PHONY : oz-source/GL/Shader.o
@@ -513,13 +452,9 @@ help:
 	@echo "... oz"
 	@echo "... pngtest"
 	@echo "... rebuild_cache"
-	@echo "... sandbox"
 	@echo "... apps/AppBasic/AppBasic.o"
 	@echo "... apps/AppBasic/AppBasic.i"
 	@echo "... apps/AppBasic/AppBasic.s"
-	@echo "... apps/main_eigen.o"
-	@echo "... apps/main_eigen.i"
-	@echo "... apps/main_eigen.s"
 	@echo "... apps/main_png.o"
 	@echo "... apps/main_png.i"
 	@echo "... apps/main_png.s"
@@ -529,9 +464,6 @@ help:
 	@echo "... oz-source/App/Window.o"
 	@echo "... oz-source/App/Window.i"
 	@echo "... oz-source/App/Window.s"
-	@echo "... oz-source/GL/GLContext.o"
-	@echo "... oz-source/GL/GLContext.i"
-	@echo "... oz-source/GL/GLContext.s"
 	@echo "... oz-source/GL/Shader.o"
 	@echo "... oz-source/GL/Shader.i"
 	@echo "... oz-source/GL/Shader.s"

@@ -1,5 +1,5 @@
-#include "../Math/Math.h"
 #include "Geometry/TriangleMesh.h"
+#include "Math/Math.h"
 #include "GL/VertexArrayObject.h"
 #include "GL/VertexBuffer.h"
 #include "GL/ElementBuffer.h"
@@ -9,7 +9,7 @@ using namespace geom;
 using namespace std;
 
 template <element_t E>
-TriangleMesh<E>::TriangleMesh() {
+Mesh<E>::Mesh() {
   vao_ = new gl::VertexArrayObject();
   vbo_ = new gl::VertexBuffer();
   ebo_ = new gl::ElementBuffer<uint16_t>();
@@ -21,86 +21,106 @@ TriangleMesh<E>::TriangleMesh() {
 }
 
 template <element_t E>
-TriangleMesh<E>::~TriangleMesh() {
+Mesh<E>::~Mesh() {
   delete vao_;
   delete vbo_;
   delete ebo_;
 }
 
 template <element_t E>
-gl::ElementBuffer<uint16_t>* TriangleMesh<E>::ebo() {
+gl::ElementBuffer<uint16_t>* Mesh<E>::ebo() {
   return ebo_;
 }
 
 template <element_t E>
-uint64_t TriangleMesh<E>::nFaces()
+uint64_t Mesh<E>::nFaces()
 {
   return nFaces_;
 }
 
 template <element_t E>
-uint64_t TriangleMesh<E>::nVerts()
+uint64_t Mesh<E>::nVerts()
 {
   return nVerts_;
 }
 
 template <element_t E>
-void TriangleMesh<E>::nFaces(uint64_t nFaces)
+void Mesh<E>::nFaces(uint64_t nFaces)
 {
   nFaces_ = nFaces;
 }
 
 template <element_t E>
-void TriangleMesh<E>::nVerts(uint64_t nVerts) {
+void Mesh<E>::nVerts(uint64_t nVerts) {
   nVerts_ = nVerts;
 }
 
 template <element_t E>
-element_t TriangleMesh<E>::elementType() {
+element_t Mesh<E>::elementType() {
   return elementType_;
 }
 
 template <element_t E>
-positions_t& TriangleMesh<E>::positions() {
+positions_t& Mesh<E>::positions() {
   return positions_;
 }
 
 template <element_t E>
-colors_t& TriangleMesh<E>::colors() {
+colors_t& Mesh<E>::colors() {
   return colors_;
 }
 
 template <element_t E>
-normals_t& TriangleMesh<E>::normals() {
+normals_t& Mesh<E>::normals() {
   return normals_;
 }
 
 template <element_t E>
-faces_t& TriangleMesh<E>::faces() {
+faces_t& Mesh<E>::faces() {
   return faces_;
 }
 
 template <element_t E>
-texcoord_t& TriangleMesh<E>::texcoords() {
+texcoord_t& Mesh<E>::texcoords() {
   return texcoords_;
 }
 
 template <element_t E>
-void TriangleMesh<E>::attachTexture(gl::Texture *tex)
+boneweights_t& Mesh<E>::boneweights() {
+  return boneweights_;
+}
+
+template <element_t E>
+boneids_t& Mesh<E>::boneids() {
+  return boneids_;
+}
+
+template <element_t E>
+void Mesh<E>::attachTexture(gl::Texture *tex)
 {
   tex_ = tex;
 }
 
 template <element_t E>
-bool TriangleMesh<E>::hasTexture()
+bool Mesh<E>::hasTexture()
 {
   return tex_ != nullptr;
 }
 
-
+template <element_t E>
+bool Mesh<E>::hasBones()
+{
+  return !bones_.isEmpty();
+}
 
 template <element_t E>
-void TriangleMesh<E>::draw(gl::ShaderProgram* shader) {
+bonelist_t& Mesh<E>::bones()
+{
+  return bones_;
+}
+
+template <element_t E>
+void Mesh<E>::draw(gl::ShaderProgram* shader) {
   if (hasTexture()) {
     shader->setUniform("tex", 0);
   }
@@ -138,6 +158,6 @@ void TriangleMesh<E>::draw(gl::ShaderProgram* shader) {
  EXPLICIT INSTANTIATIONS
 **/
 namespace geom {
-  template class TriangleMesh<TRIANGLE>;
-  template class TriangleMesh<TRIANGLE_STRIP>;
+  template class Mesh<TRIANGLE>;
+  template class Mesh<TRIANGLE_STRIP>;
 }

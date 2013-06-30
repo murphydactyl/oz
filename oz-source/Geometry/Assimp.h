@@ -2,10 +2,12 @@
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
 #include "Scene/Node.h"
-namespace geom {
+#include "Geometry/TriangleMesh.h"
 
-  typedef math::Mat4f Mat4;
-  scene::Nodef* LoadTriangleMeshFromFile(std::string filename);
-  Mat4 convertAsimppBoneOffsetMatrixToNodeTransform(aiNode* asimppNode);
-  scene::Nodef* cloneAsimppNodeAsOzNode(aiNode* asimppNode);
+namespace geom {
+  scene::Nodef* cloneAsimppNodeAsOzNode(const aiNode* asimppNode);
+  scene::Nodef* extractNodes(aiNode* scNode);
+  void extractBones(const aiMesh* srcMesh, TriangleMesh* outMesh, scene::Nodef* outRoot);
+  TriangleMesh* extractMesh(const aiMesh* srcMesh);
+  scene::Nodef* loadHandModel(std::string filename);
 }

@@ -22,7 +22,10 @@ CMakeFiles/oz.dir/apps/AppBasic/AppBasic.cpp.o: ../oz-source/Geometry/Primitives
 CMakeFiles/oz.dir/apps/AppBasic/AppBasic.cpp.o: ../oz-source/Geometry/TriangleMesh.h
 CMakeFiles/oz.dir/apps/AppBasic/AppBasic.cpp.o: ../oz-source/Image/IO.h
 CMakeFiles/oz.dir/apps/AppBasic/AppBasic.cpp.o: ../oz-source/Math/Math.h
-CMakeFiles/oz.dir/apps/AppBasic/AppBasic.cpp.o: ../oz-source/Scene/../Geometry/Geometry.h
+CMakeFiles/oz.dir/apps/AppBasic/AppBasic.cpp.o: ../oz-source/Math/matrix3.h
+CMakeFiles/oz.dir/apps/AppBasic/AppBasic.cpp.o: ../oz-source/Math/matrix4.h
+CMakeFiles/oz.dir/apps/AppBasic/AppBasic.cpp.o: ../oz-source/Math/vector3.h
+CMakeFiles/oz.dir/apps/AppBasic/AppBasic.cpp.o: ../oz-source/Math/vector4.h
 CMakeFiles/oz.dir/apps/AppBasic/AppBasic.cpp.o: ../oz-source/Scene/../Math/Math.h
 CMakeFiles/oz.dir/apps/AppBasic/AppBasic.cpp.o: ../oz-source/Scene/Camera.h
 CMakeFiles/oz.dir/apps/AppBasic/AppBasic.cpp.o: ../oz-source/Scene/Light.h
@@ -58,7 +61,6 @@ CMakeFiles/oz.dir/apps/AppBasic/AppBasic.cpp.o: /usr/local/include/assimp/textur
 CMakeFiles/oz.dir/apps/AppBasic/AppBasic.cpp.o: /usr/local/include/assimp/types.h
 CMakeFiles/oz.dir/apps/AppBasic/AppBasic.cpp.o: /usr/local/include/assimp/vector2.h
 CMakeFiles/oz.dir/apps/AppBasic/AppBasic.cpp.o: /usr/local/include/assimp/vector2.inl
-CMakeFiles/oz.dir/apps/AppBasic/AppBasic.cpp.o: /usr/local/include/assimp/vector3.h
 CMakeFiles/oz.dir/apps/AppBasic/AppBasic.cpp.o: /usr/local/include/assimp/vector3.inl
 CMakeFiles/oz.dir/apps/AppBasic/AppBasic.cpp.o: /usr/local/include/eigen3/Eigen/Cholesky
 CMakeFiles/oz.dir/apps/AppBasic/AppBasic.cpp.o: /usr/local/include/eigen3/Eigen/Core
@@ -272,9 +274,11 @@ CMakeFiles/oz.dir/oz-source/App/Window.cpp.o: ../oz-source/App/Window.cpp
 CMakeFiles/oz.dir/oz-source/App/Window.cpp.o: ../oz-source/App/Window.h
 CMakeFiles/oz.dir/oz-source/App/Window.cpp.o: /usr/local/include/GL/glfw3.h
 
-CMakeFiles/oz.dir/oz-source/GL/GLContext.cpp.o: ../oz-source/GL/GLContext.cpp
-
 CMakeFiles/oz.dir/oz-source/GL/Shader.cpp.o: ../oz-source/GL/../Math/Math.h
+CMakeFiles/oz.dir/oz-source/GL/Shader.cpp.o: ../oz-source/GL/../Math/matrix3.h
+CMakeFiles/oz.dir/oz-source/GL/Shader.cpp.o: ../oz-source/GL/../Math/matrix4.h
+CMakeFiles/oz.dir/oz-source/GL/Shader.cpp.o: ../oz-source/GL/../Math/vector3.h
+CMakeFiles/oz.dir/oz-source/GL/Shader.cpp.o: ../oz-source/GL/../Math/vector4.h
 CMakeFiles/oz.dir/oz-source/GL/Shader.cpp.o: ../oz-source/GL/Constants.h
 CMakeFiles/oz.dir/oz-source/GL/Shader.cpp.o: ../oz-source/GL/GLContext.h
 CMakeFiles/oz.dir/oz-source/GL/Shader.cpp.o: ../oz-source/GL/Shader.h
@@ -478,6 +482,10 @@ CMakeFiles/oz.dir/oz-source/GL/Shader.cpp.o: /usr/local/include/eigen3/Eigen/src
 CMakeFiles/oz.dir/oz-source/GL/Shader.cpp.o: /usr/local/include/eigen3/Eigen/src/misc/Solve.h
 
 CMakeFiles/oz.dir/oz-source/GL/ShaderProgram.cpp.o: ../oz-source/GL/../Math/Math.h
+CMakeFiles/oz.dir/oz-source/GL/ShaderProgram.cpp.o: ../oz-source/GL/../Math/matrix3.h
+CMakeFiles/oz.dir/oz-source/GL/ShaderProgram.cpp.o: ../oz-source/GL/../Math/matrix4.h
+CMakeFiles/oz.dir/oz-source/GL/ShaderProgram.cpp.o: ../oz-source/GL/../Math/vector3.h
+CMakeFiles/oz.dir/oz-source/GL/ShaderProgram.cpp.o: ../oz-source/GL/../Math/vector4.h
 CMakeFiles/oz.dir/oz-source/GL/ShaderProgram.cpp.o: ../oz-source/GL/Constants.h
 CMakeFiles/oz.dir/oz-source/GL/ShaderProgram.cpp.o: ../oz-source/GL/GLContext.h
 CMakeFiles/oz.dir/oz-source/GL/ShaderProgram.cpp.o: ../oz-source/GL/Shader.h
@@ -684,6 +692,10 @@ CMakeFiles/oz.dir/oz-source/GL/ShaderProgram.cpp.o: /usr/local/include/eigen3/Ei
 CMakeFiles/oz.dir/oz-source/GL/Texture.cpp.o: ../oz-source/GL/Texture.cpp
 
 CMakeFiles/oz.dir/oz-source/GL/Texture2D.cpp.o: ../oz-source/GL/../Math/Math.h
+CMakeFiles/oz.dir/oz-source/GL/Texture2D.cpp.o: ../oz-source/GL/../Math/matrix3.h
+CMakeFiles/oz.dir/oz-source/GL/Texture2D.cpp.o: ../oz-source/GL/../Math/matrix4.h
+CMakeFiles/oz.dir/oz-source/GL/Texture2D.cpp.o: ../oz-source/GL/../Math/vector3.h
+CMakeFiles/oz.dir/oz-source/GL/Texture2D.cpp.o: ../oz-source/GL/../Math/vector4.h
 CMakeFiles/oz.dir/oz-source/GL/Texture2D.cpp.o: ../oz-source/GL/Constants.h
 CMakeFiles/oz.dir/oz-source/GL/Texture2D.cpp.o: ../oz-source/GL/GLContext.h
 CMakeFiles/oz.dir/oz-source/GL/Texture2D.cpp.o: ../oz-source/GL/PixelTypes.h
@@ -904,7 +916,10 @@ CMakeFiles/oz.dir/oz-source/Geometry/Assimp.cpp.o: ../oz-source/Geometry/Assimp.
 CMakeFiles/oz.dir/oz-source/Geometry/Assimp.cpp.o: ../oz-source/Geometry/Geometry.h
 CMakeFiles/oz.dir/oz-source/Geometry/Assimp.cpp.o: ../oz-source/Geometry/TriangleMesh.h
 CMakeFiles/oz.dir/oz-source/Geometry/Assimp.cpp.o: ../oz-source/Math/Math.h
-CMakeFiles/oz.dir/oz-source/Geometry/Assimp.cpp.o: ../oz-source/Scene/../Geometry/Geometry.h
+CMakeFiles/oz.dir/oz-source/Geometry/Assimp.cpp.o: ../oz-source/Math/matrix3.h
+CMakeFiles/oz.dir/oz-source/Geometry/Assimp.cpp.o: ../oz-source/Math/matrix4.h
+CMakeFiles/oz.dir/oz-source/Geometry/Assimp.cpp.o: ../oz-source/Math/vector3.h
+CMakeFiles/oz.dir/oz-source/Geometry/Assimp.cpp.o: ../oz-source/Math/vector4.h
 CMakeFiles/oz.dir/oz-source/Geometry/Assimp.cpp.o: ../oz-source/Scene/Node.h
 CMakeFiles/oz.dir/oz-source/Geometry/Assimp.cpp.o: ../oz-source/Scene/Object.h
 CMakeFiles/oz.dir/oz-source/Geometry/Assimp.cpp.o: ../oz-source/Vector/Vector.h
@@ -936,7 +951,6 @@ CMakeFiles/oz.dir/oz-source/Geometry/Assimp.cpp.o: /usr/local/include/assimp/tex
 CMakeFiles/oz.dir/oz-source/Geometry/Assimp.cpp.o: /usr/local/include/assimp/types.h
 CMakeFiles/oz.dir/oz-source/Geometry/Assimp.cpp.o: /usr/local/include/assimp/vector2.h
 CMakeFiles/oz.dir/oz-source/Geometry/Assimp.cpp.o: /usr/local/include/assimp/vector2.inl
-CMakeFiles/oz.dir/oz-source/Geometry/Assimp.cpp.o: /usr/local/include/assimp/vector3.h
 CMakeFiles/oz.dir/oz-source/Geometry/Assimp.cpp.o: /usr/local/include/assimp/vector3.inl
 CMakeFiles/oz.dir/oz-source/Geometry/Assimp.cpp.o: /usr/local/include/eigen3/Eigen/Cholesky
 CMakeFiles/oz.dir/oz-source/Geometry/Assimp.cpp.o: /usr/local/include/eigen3/Eigen/Core
@@ -1151,6 +1165,12 @@ CMakeFiles/oz.dir/oz-source/Geometry/Primitives.cpp.o: ../oz-source/Geometry/Geo
 CMakeFiles/oz.dir/oz-source/Geometry/Primitives.cpp.o: ../oz-source/Geometry/Primitives.h
 CMakeFiles/oz.dir/oz-source/Geometry/Primitives.cpp.o: ../oz-source/Geometry/TriangleMesh.h
 CMakeFiles/oz.dir/oz-source/Geometry/Primitives.cpp.o: ../oz-source/Math/Math.h
+CMakeFiles/oz.dir/oz-source/Geometry/Primitives.cpp.o: ../oz-source/Math/matrix3.h
+CMakeFiles/oz.dir/oz-source/Geometry/Primitives.cpp.o: ../oz-source/Math/matrix4.h
+CMakeFiles/oz.dir/oz-source/Geometry/Primitives.cpp.o: ../oz-source/Math/vector3.h
+CMakeFiles/oz.dir/oz-source/Geometry/Primitives.cpp.o: ../oz-source/Math/vector4.h
+CMakeFiles/oz.dir/oz-source/Geometry/Primitives.cpp.o: ../oz-source/Scene/Node.h
+CMakeFiles/oz.dir/oz-source/Geometry/Primitives.cpp.o: ../oz-source/Scene/Object.h
 CMakeFiles/oz.dir/oz-source/Geometry/Primitives.cpp.o: ../oz-source/Vector/Vector.h
 CMakeFiles/oz.dir/oz-source/Geometry/Primitives.cpp.o: ../oz-source/Geometry/Primitives.cpp
 CMakeFiles/oz.dir/oz-source/Geometry/Primitives.cpp.o: /usr/local/include/GL/glfw3.h
@@ -1351,6 +1371,7 @@ CMakeFiles/oz.dir/oz-source/Geometry/Primitives.cpp.o: /usr/local/include/eigen3
 CMakeFiles/oz.dir/oz-source/Geometry/Primitives.cpp.o: /usr/local/include/eigen3/Eigen/src/misc/Kernel.h
 CMakeFiles/oz.dir/oz-source/Geometry/Primitives.cpp.o: /usr/local/include/eigen3/Eigen/src/misc/Solve.h
 
+CMakeFiles/oz.dir/oz-source/Geometry/TriangleMesh.cpp.o: ../oz-source/GL/../Math/Math.h
 CMakeFiles/oz.dir/oz-source/Geometry/TriangleMesh.cpp.o: ../oz-source/GL/ArrayBuffer.h
 CMakeFiles/oz.dir/oz-source/Geometry/TriangleMesh.cpp.o: ../oz-source/GL/Constants.h
 CMakeFiles/oz.dir/oz-source/Geometry/TriangleMesh.cpp.o: ../oz-source/GL/ElementBuffer.h
@@ -1365,8 +1386,13 @@ CMakeFiles/oz.dir/oz-source/Geometry/TriangleMesh.cpp.o: ../oz-source/GL/VertexB
 CMakeFiles/oz.dir/oz-source/Geometry/TriangleMesh.cpp.o: ../oz-source/Geometry/Geometry.h
 CMakeFiles/oz.dir/oz-source/Geometry/TriangleMesh.cpp.o: ../oz-source/Geometry/TriangleMesh.h
 CMakeFiles/oz.dir/oz-source/Geometry/TriangleMesh.cpp.o: ../oz-source/Math/Math.h
+CMakeFiles/oz.dir/oz-source/Geometry/TriangleMesh.cpp.o: ../oz-source/Math/matrix3.h
+CMakeFiles/oz.dir/oz-source/Geometry/TriangleMesh.cpp.o: ../oz-source/Math/matrix4.h
+CMakeFiles/oz.dir/oz-source/Geometry/TriangleMesh.cpp.o: ../oz-source/Math/vector3.h
+CMakeFiles/oz.dir/oz-source/Geometry/TriangleMesh.cpp.o: ../oz-source/Math/vector4.h
+CMakeFiles/oz.dir/oz-source/Geometry/TriangleMesh.cpp.o: ../oz-source/Scene/Node.h
+CMakeFiles/oz.dir/oz-source/Geometry/TriangleMesh.cpp.o: ../oz-source/Scene/Object.h
 CMakeFiles/oz.dir/oz-source/Geometry/TriangleMesh.cpp.o: ../oz-source/Vector/Vector.h
-CMakeFiles/oz.dir/oz-source/Geometry/TriangleMesh.cpp.o: ../oz-source/Geometry/../Math/Math.h
 CMakeFiles/oz.dir/oz-source/Geometry/TriangleMesh.cpp.o: ../oz-source/Geometry/TriangleMesh.cpp
 CMakeFiles/oz.dir/oz-source/Geometry/TriangleMesh.cpp.o: /usr/local/include/GL/glfw3.h
 CMakeFiles/oz.dir/oz-source/Geometry/TriangleMesh.cpp.o: /usr/local/include/eigen3/Eigen/Cholesky
@@ -1580,8 +1606,13 @@ CMakeFiles/oz.dir/oz-source/Scene/Scene.cpp.o: ../oz-source/GL/Texture.h
 CMakeFiles/oz.dir/oz-source/Scene/Scene.cpp.o: ../oz-source/GL/VertexArrayObject.h
 CMakeFiles/oz.dir/oz-source/Scene/Scene.cpp.o: ../oz-source/GL/VertexBuffer.h
 CMakeFiles/oz.dir/oz-source/Scene/Scene.cpp.o: ../oz-source/GL/VertexBufferBase.h
-CMakeFiles/oz.dir/oz-source/Scene/Scene.cpp.o: ../oz-source/Scene/../Geometry/Geometry.h
+CMakeFiles/oz.dir/oz-source/Scene/Scene.cpp.o: ../oz-source/Geometry/Geometry.h
+CMakeFiles/oz.dir/oz-source/Scene/Scene.cpp.o: ../oz-source/Math/Math.h
 CMakeFiles/oz.dir/oz-source/Scene/Scene.cpp.o: ../oz-source/Scene/../Math/Math.h
+CMakeFiles/oz.dir/oz-source/Scene/Scene.cpp.o: ../oz-source/Scene/../Math/matrix3.h
+CMakeFiles/oz.dir/oz-source/Scene/Scene.cpp.o: ../oz-source/Scene/../Math/matrix4.h
+CMakeFiles/oz.dir/oz-source/Scene/Scene.cpp.o: ../oz-source/Scene/../Math/vector3.h
+CMakeFiles/oz.dir/oz-source/Scene/Scene.cpp.o: ../oz-source/Scene/../Math/vector4.h
 CMakeFiles/oz.dir/oz-source/Scene/Scene.cpp.o: ../oz-source/Scene/Camera.h
 CMakeFiles/oz.dir/oz-source/Scene/Scene.cpp.o: ../oz-source/Scene/Light.h
 CMakeFiles/oz.dir/oz-source/Scene/Scene.cpp.o: ../oz-source/Scene/Node.h

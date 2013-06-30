@@ -1,12 +1,12 @@
-#ifndef __OZ__GEOMETRY__TRIANGLEMESH__H__
-#define __OZ__GEOMETRY__TRIANGLEMESH__H__
+#ifndef __OZ__GEOMETRY__MESH__H__
+#define __OZ__GEOMETRY__MESH__H__
 
 #include "Vector/Vector.h"
 #include "Math/Math.h"
 #include "Geometry/Geometry.h"
 #include "GL/ElementBuffer.h"
 #include "GL/Texture.h"
-
+#include "Scene/Node.h"
 
 namespace gl {
   template <typename uint16_t> class ElementBuffer;
@@ -15,24 +15,23 @@ namespace gl {
 
 namespace geom {
 
-  enum vertproperty_t {
-
-  };
-
   typedef gl::ElementBuffer<uint16_t>* eboptr_t;
   typedef math::Mat3Xf positions_t;
   typedef math::Mat3Xf normals_t;
   typedef math::Mat4Xf colors_t;
   typedef math::Mat3Xu16 faces_t;
   typedef math::Mat2Xf texcoord_t;
+  typedef math::Mat16Xf boneweights_t;
+  typedef math::Mat16Xu boneids_t;
+  typedef Vector<scene::Node<float>*> bonelist_t;
 
   template <element_t E=TRIANGLE>
-  class TriangleMesh : public Geometry {
+  class Mesh : public Geometry {
 
     public:
 
-      TriangleMesh();
-      ~TriangleMesh();
+      Mesh();
+      ~Mesh();
       virtual void draw(gl::ShaderProgram* shader=nullptr);
       uint64_t nFaces();
       uint64_t nVerts();
@@ -46,7 +45,11 @@ namespace geom {
       normals_t& normals();
       colors_t& colors();
       texcoord_t& texcoords();
+      boneweights_t& boneweights();
+      boneids_t& boneids();
       bool hasTexture();
+      bool hasBones();
+      bonelist_t& bones();
 
     protected:
       element_t elementType_ = E;
@@ -58,8 +61,14 @@ namespace geom {
       normals_t normals_;
       faces_t faces_;
       texcoord_t texcoords_;
+      boneweights_t boneweights_;
+      boneids_t boneids_;
       gl::Texture* tex_;
+      bonelist_t bones_;
   };
+
+  typedef Mesh<TRIANGLE> TriangleMesh;
+
 }
 
 #endif

@@ -124,6 +124,10 @@ class Vector {
       recapacity(size());
     }
 
+    void releaseData() {
+      _owns_memory = false;
+    }
+
     void fill(T val = 0) {
       for (int i = 0; i < _size; i++) {
         _data[i] = val;
@@ -144,6 +148,8 @@ class Vector {
       return _data[i];
     }
 
+    // THIS IS NOT SAFE FOR CLASSES WITH VIRTUAL METHODS
+    // TODO: ensure T has is_move_constructible property
     Vector& duplicate(T* src, size_t num) {
       resize(num);
       memcpy(raw(), reinterpret_cast<T*>(src), sizeInBytes());

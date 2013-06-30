@@ -24,7 +24,7 @@ int main(int argc, char* argv[])
 
 AppBasic::AppBasic() {
 
-  windows_.push_back(new Window(640, 480, "Untitled"));
+  windows_.push_back(new Window(1024, 768, "Untitled"));
 
   myScene = new scene::Scene();
   scene::Cameraf* cam = new scene::CameraPerspective<float>(4/3., 1, 1, 100);
@@ -42,7 +42,7 @@ AppBasic::AppBasic() {
 
   stringstream ss;
   ss << MODELS_DIR << "/lib_hand_model/hand_palm_parent_medium_wrist.dae";
-  auto model = geom::LoadTriangleMeshFromFile(ss.str());
+  auto model = geom::loadHandModel(ss.str());
 
   uint32_t imWidth, imHeight;
   ss.str("");
@@ -55,7 +55,7 @@ AppBasic::AppBasic() {
   myScene->root()->addChild(model);
   myScene->print();
   tex->copy2GPU();
-  ((geom::TriangleMesh<>*)(model->geometry()))->attachTexture(tex);
+  ((geom::TriangleMesh*)(model->geometry()))->attachTexture(tex);
 
 }
 

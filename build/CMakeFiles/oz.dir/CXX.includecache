@@ -6,45 +6,19 @@
 
 #IncludeRegexTransform: 
 
-../apps/AppBasic/AppBasic.h
-App/App.h
-../apps/AppBasic/App/App.h
-Scene/Scene.h
-../apps/AppBasic/Scene/Scene.h
-Geometry/Assimp.h
-../apps/AppBasic/Geometry/Assimp.h
-
-../oz-source/App/App.h
-iostream
--
-random
--
-chrono
--
-sstream
--
-GL/glfw3.h
--
-OpenGL/gl3.h
--
-App/Window.h
-../oz-source/App/App/Window.h
-Vector/Vector.h
-../oz-source/App/Vector/Vector.h
-Image/IO.h
-../oz-source/App/Image/IO.h
-
-../oz-source/App/Window.h
-iostream
--
-App/App.h
-../oz-source/App/App/App.h
-
 ../oz-source/GL/../Math/Math.h
 Eigen/Core
 -
 Eigen/Geometry
 -
+matrix3.h
+../oz-source/GL/../Math/matrix3.h
+matrix4.h
+../oz-source/GL/../Math/matrix4.h
+vector3.h
+../oz-source/GL/../Math/vector3.h
+vector4.h
+../oz-source/GL/../Math/vector4.h
 
 ../oz-source/GL/ArrayBuffer.h
 GL/GLContext.h
@@ -100,10 +74,6 @@ GL/GLContext.h
 GL/PixelTypes.h
 ../oz-source/GL/GL/PixelTypes.h
 
-../oz-source/GL/Texture2D.h
-GL/Texture.h
-../oz-source/GL/GL/Texture.h
-
 ../oz-source/GL/VertexArrayObject.h
 GL/GLContext.h
 ../oz-source/GL/GL/GLContext.h
@@ -131,6 +101,8 @@ assimp/postprocess.h
 -
 Scene/Node.h
 ../oz-source/Geometry/Scene/Node.h
+Geometry/TriangleMesh.h
+../oz-source/Geometry/Geometry/TriangleMesh.h
 
 ../oz-source/Geometry/Geometry.h
 GL/GLContext.h
@@ -141,8 +113,6 @@ GL/VertexBuffer.h
 ../oz-source/Geometry/GL/VertexBuffer.h
 GL/ShaderProgram.h
 ../oz-source/Geometry/GL/ShaderProgram.h
-
-../oz-source/Geometry/Primitives.h
 
 ../oz-source/Geometry/TriangleMesh.h
 Vector/Vector.h
@@ -155,48 +125,64 @@ GL/ElementBuffer.h
 ../oz-source/Geometry/GL/ElementBuffer.h
 GL/Texture.h
 ../oz-source/Geometry/GL/Texture.h
-
-../oz-source/Image/IO.h
-iostream
--
+Scene/Node.h
+../oz-source/Geometry/Scene/Node.h
 
 ../oz-source/Math/Math.h
 Eigen/Core
 -
 Eigen/Geometry
 -
+matrix3.h
+../oz-source/Math/matrix3.h
+matrix4.h
+../oz-source/Math/matrix4.h
+vector3.h
+../oz-source/Math/vector3.h
+vector4.h
+../oz-source/Math/vector4.h
 
-../oz-source/Scene/../Geometry/Geometry.h
-GL/GLContext.h
-../oz-source/Scene/../Geometry/GL/GLContext.h
-GL/VertexArrayObject.h
-../oz-source/Scene/../Geometry/GL/VertexArrayObject.h
-GL/VertexBuffer.h
-../oz-source/Scene/../Geometry/GL/VertexBuffer.h
-GL/ShaderProgram.h
-../oz-source/Scene/../Geometry/GL/ShaderProgram.h
-
-../oz-source/Scene/../Math/Math.h
-Eigen/Core
+../oz-source/Math/matrix3.h
+iostream
 -
-Eigen/Geometry
+vector4.h
+../oz-source/Math/vector4.h
+vector3.h
+../oz-source/Math/vector3.h
+
+../oz-source/Math/matrix4.h
+iostream
+-
+vector4.h
+../oz-source/Math/vector4.h
+vector3.h
+../oz-source/Math/vector3.h
+matrix3.h
+../oz-source/Math/matrix3.h
+memory.h
 -
 
-../oz-source/Scene/Camera.h
-../Math/Math.h
-../oz-source/Scene/../Math/Math.h
-Scene/Node.h
-../oz-source/Scene/Scene/Node.h
+../oz-source/Math/vector3.h
+iostream
+-
+math.h
+-
 
-../oz-source/Scene/Light.h
+../oz-source/Math/vector4.h
+iostream
+-
+math.h
+-
+initializer_list
+-
 
 ../oz-source/Scene/Node.h
-Vector/Vector.h
-../oz-source/Scene/Vector/Vector.h
-../Math/Math.h
-../oz-source/Scene/../Math/Math.h
-../Geometry/Geometry.h
-../oz-source/Scene/../Geometry/Geometry.h
+vector
+-
+Math/Math.h
+../oz-source/Scene/Math/Math.h
+Geometry/Geometry.h
+../oz-source/Scene/Geometry/Geometry.h
 Scene/Object.h
 ../oz-source/Scene/Scene/Object.h
 sstream
@@ -204,35 +190,9 @@ sstream
 
 ../oz-source/Scene/Object.h
 
-../oz-source/Scene/Scene.h
-Scene/Camera.h
-../oz-source/Scene/Scene/Camera.h
-Scene/Light.h
-../oz-source/Scene/Scene/Light.h
-Scene/Node.h
-../oz-source/Scene/Scene/Node.h
-GL/ShaderProgram.h
-../oz-source/Scene/GL/ShaderProgram.h
-GL/Texture.h
-../oz-source/Scene/GL/Texture.h
-
 ../oz-source/Vector/Vector.h
 iostream
 -
-sstream
--
-
-/Users/murphy/oz/apps/AppBasic/AppBasic.cpp
-AppBasic/AppBasic.h
-/Users/murphy/oz/apps/AppBasic/AppBasic/AppBasic.h
-Geometry/Assimp.h
-/Users/murphy/oz/apps/AppBasic/Geometry/Assimp.h
-Geometry/Primitives.h
-/Users/murphy/oz/apps/AppBasic/Geometry/Primitives.h
-Geometry/TriangleMesh.h
-/Users/murphy/oz/apps/AppBasic/Geometry/TriangleMesh.h
-GL/Texture2D.h
-/Users/murphy/oz/apps/AppBasic/GL/Texture2D.h
 sstream
 -
 
@@ -245,14 +205,12 @@ Geometry/TriangleMesh.h
 /Users/murphy/oz/oz-source/Geometry/Geometry/TriangleMesh.h
 iostream
 -
-Vector/Vector.h
-/Users/murphy/oz/oz-source/Geometry/Vector/Vector.h
+vector
+-
 queue
 -
-
-/Users/murphy/oz/oz-source/Scene/Scene.cpp
-Scene/Scene.h
-/Users/murphy/oz/oz-source/Scene/Scene/Scene.h
+algorithm
+-
 
 /usr/local/include/GL/glfw3.h
 stddef.h
@@ -413,6 +371,8 @@ math.h
 -
 stddef.h
 -
+limits.h
+-
 defs.h
 /usr/local/include/assimp/defs.h
 vector3.h
@@ -459,14 +419,6 @@ math.h
 /usr/local/include/assimp/vector2.inl
 vector2.h
 /usr/local/include/assimp/vector2.h
-
-/usr/local/include/assimp/vector3.h
-math.h
--
-./Compiler/pushpack1.h
-/usr/local/include/assimp/./Compiler/pushpack1.h
-./Compiler/poppack1.h
-/usr/local/include/assimp/./Compiler/poppack1.h
 
 /usr/local/include/assimp/vector3.inl
 vector3.h

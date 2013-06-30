@@ -6,6 +6,7 @@
 #include "Scene/Node.h"
 #include "GL/ShaderProgram.h"
 #include "GL/Texture.h"
+#include "Vector/Vector.h"
 
 namespace scene {
 

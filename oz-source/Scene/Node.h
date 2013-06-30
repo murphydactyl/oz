@@ -1,9 +1,9 @@
 #ifndef __OZ__SCENE__NODE__H
 #define __OZ__SCENE__NODE__H
 
-#include "Vector/Vector.h"
-#include "../Math/Math.h"
-#include "../Geometry/Geometry.h"
+#include <vector>
+#include "Math/Math.h"
+#include "Geometry/Geometry.h"
 #include "Scene/Object.h"
 #include <sstream>
 
@@ -25,46 +25,62 @@ namespace scene {
       void                setGeometry(geom::Geometry* g) { geometry_ = g; }
 
       // CONSTRUCTOR ............................................................
-      Node() {
+      Node() : Node("Untitled"){}
+
+      Node(std::string name) {
         local_ = Mat4(1.0);
-        std::stringstream ss;
-        ss << "Untitled Node " << nNodes++;
-        name_ = ss.str();
+        name_ = name;
         geometry_ = nullptr;
         parent_ = nullptr;
+        children_ = new std::vector<Node*>();
+        isBone_ = false;
+        std::cout << "Created node named " << name_ << std::endl;
       }
 
       virtual ~Node() {
+        delete children_;
         std::cout << "Destructor called for node named " << name_ << std::endl;
       }
 
       void addChild(Node* child) {
         child->setParent(this);
-        children_.push_back(child);
+        children_->push_back(child);
       }
 
       void print() {
-        cout << name_;
-        if (geometry_ != nullptr)
-          cout << " (G) ";
-        cout << endl;
-
-        for (int i = 0; i < children_.size(); i++) {
-          children_[i]->print();
+        std::cout << name_;
+        if (geometry_ != nullptr) {
+          std::cout << " (G) ";
         }
+        if (isBone()) {
+          std::cout << " (B) ";
+        }
+
+        if (parent() == nullptr) {
+          std::cout << "(child of root)";
+        } else {
+          std::cout << "(child of " << parent()->name() << ")";
+        }
+        std::cout << std::endl;
+//        std<<cout << "Matrix: ";
+//        local_.pprint();
+        for (int i = 0; i < nChildren(); i++) {
+          getChild(i)->print();
+        }
+
       }
 
       Node* getChild(uint32_t i) {
-        if (i >= children_.size()) {
+        if (i >= nChildren()) {
           return nullptr;
         }
-        return children_[i];
+        return children_->at(i);
       }
 
-      uint32_t nChildren() { return children_.size(); }
-      Vector<Node*>     children() { return children_; }
+      uint32_t nChildren() { return children_->size(); }
+      std::vector<Node*>*&   children() { return children_; }
 
-      Node* findByName(string name2LookFor) {
+      Node* findByName(std::string name2LookFor) {
         if (name_.compare(name2LookFor) == 0) {
           return this;
         }
@@ -78,19 +94,23 @@ namespace scene {
         return nullptr;
       }
 
-    protected:
-      Mat4                local_;
-      Vector<Node*>       children_;
-      static uint64_t     nNodes;
-      geom::Geometry*     geometry_;
-      Node*               parent_;
-  };
+      void becomeBone(Mat4& offset) {
+        boneOffset_ = offset;
+        isBone_ = true;
+      }
 
-  /**
-   nNodes
-   -- Keeps track of total nod  es created of this type
-  **/
-  template<typename Scalar> uint64_t     Node<Scalar>::nNodes = 0;
+      bool isBone() {
+        return isBone_;
+      }
+
+    protected:
+      Mat4                  local_;
+      std::vector<Node*>*   children_;
+      geom::Geometry*       geometry_;
+      Node*                 parent_;
+      Mat4                  boneOffset_;
+      bool                  isBone_;
+  };
 
   typedef Node<float> Nodef;
   typedef Node<double> Noded;

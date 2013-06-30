@@ -119,64 +119,14 @@
             <DistClean command="/usr/bin/make -f &quot;/Users/murphy/oz/build/Makefile&quot;  VERBOSE=1 clean" />
          </MakeCommands>
       </Target>
-      <Target title="sandbox">
-         <Option output="/Users/murphy/oz/build/sandbox" prefix_auto="0" extension_auto="0" />
-         <Option working_dir="/Users/murphy/oz/build" />
-         <Option object_output="./" />
-         <Option type="1" />
-         <Option compiler="gcc" />
-         <Compiler>
-            <Add option="-DGLFW_INCLUDE_GLCOREARB" />
-            <Add option="-DASSIMP_BUILD_BOOST_WORKAROUND" />
-            <Add directory="/Users/murphy/oz/apps" />
-            <Add directory="/Users/murphy/oz/oz-source" />
-            <Add directory="/usr/local/include" />
-            <Add directory="/usr/local/include/GL" />
-            <Add directory="/usr/local/include/eigen3" />
-            <Add directory="/usr/local/include/freetype2" />
-         </Compiler>
-         <MakeCommands>
-            <Build command="/usr/bin/make -f &quot;/Users/murphy/oz/build/Makefile&quot;  VERBOSE=1 sandbox" />
-            <CompileFile command="/usr/bin/make -f &quot;/Users/murphy/oz/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
-            <Clean command="/usr/bin/make -f &quot;/Users/murphy/oz/build/Makefile&quot;  VERBOSE=1 clean" />
-            <DistClean command="/usr/bin/make -f &quot;/Users/murphy/oz/build/Makefile&quot;  VERBOSE=1 clean" />
-         </MakeCommands>
-      </Target>
-      <Target title="sandbox/fast">
-         <Option output="/Users/murphy/oz/build/sandbox" prefix_auto="0" extension_auto="0" />
-         <Option working_dir="/Users/murphy/oz/build" />
-         <Option object_output="./" />
-         <Option type="1" />
-         <Option compiler="gcc" />
-         <Compiler>
-            <Add option="-DGLFW_INCLUDE_GLCOREARB" />
-            <Add option="-DASSIMP_BUILD_BOOST_WORKAROUND" />
-            <Add directory="/Users/murphy/oz/apps" />
-            <Add directory="/Users/murphy/oz/oz-source" />
-            <Add directory="/usr/local/include" />
-            <Add directory="/usr/local/include/GL" />
-            <Add directory="/usr/local/include/eigen3" />
-            <Add directory="/usr/local/include/freetype2" />
-         </Compiler>
-         <MakeCommands>
-            <Build command="/usr/bin/make -f &quot;/Users/murphy/oz/build/Makefile&quot;  VERBOSE=1 sandbox/fast" />
-            <CompileFile command="/usr/bin/make -f &quot;/Users/murphy/oz/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
-            <Clean command="/usr/bin/make -f &quot;/Users/murphy/oz/build/Makefile&quot;  VERBOSE=1 clean" />
-            <DistClean command="/usr/bin/make -f &quot;/Users/murphy/oz/build/Makefile&quot;  VERBOSE=1 clean" />
-         </MakeCommands>
-      </Target>
       </Build>
       <Unit filename="/Users/murphy/oz/apps/AppBasic/AppBasic.cpp">
-      </Unit>
-      <Unit filename="/Users/murphy/oz/apps/main_eigen.cpp">
       </Unit>
       <Unit filename="/Users/murphy/oz/apps/main_png.cpp">
       </Unit>
       <Unit filename="/Users/murphy/oz/oz-source/App/App.cpp">
       </Unit>
       <Unit filename="/Users/murphy/oz/oz-source/App/Window.cpp">
-      </Unit>
-      <Unit filename="/Users/murphy/oz/oz-source/GL/GLContext.cpp">
       </Unit>
       <Unit filename="/Users/murphy/oz/oz-source/GL/Shader.cpp">
       </Unit>
@@ -239,6 +189,14 @@
       <Unit filename="/Users/murphy/oz/oz-source/Math/Math.h">
       </Unit>
       <Unit filename="/Users/murphy/oz/oz-source/Math/TransformBaseAddons.h">
+      </Unit>
+      <Unit filename="/Users/murphy/oz/oz-source/Math/matrix3.h">
+      </Unit>
+      <Unit filename="/Users/murphy/oz/oz-source/Math/matrix4.h">
+      </Unit>
+      <Unit filename="/Users/murphy/oz/oz-source/Math/vector3.h">
+      </Unit>
+      <Unit filename="/Users/murphy/oz/oz-source/Math/vector4.h">
       </Unit>
       <Unit filename="/Users/murphy/oz/oz-source/Scene/Camera.h">
       </Unit>

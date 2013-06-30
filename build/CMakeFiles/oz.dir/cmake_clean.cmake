@@ -5,7 +5,6 @@ FILE(REMOVE_RECURSE
   "CMakeFiles/oz.dir/oz-source/Geometry/Assimp.cpp.o"
   "CMakeFiles/oz.dir/oz-source/Geometry/Primitives.cpp.o"
   "CMakeFiles/oz.dir/oz-source/Geometry/TriangleMesh.cpp.o"
-  "CMakeFiles/oz.dir/oz-source/GL/GLContext.cpp.o"
   "CMakeFiles/oz.dir/oz-source/GL/Shader.cpp.o"
   "CMakeFiles/oz.dir/oz-source/GL/ShaderProgram.cpp.o"
   "CMakeFiles/oz.dir/oz-source/GL/Texture.cpp.o"
