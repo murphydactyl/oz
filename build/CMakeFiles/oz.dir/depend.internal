@@ -18,6 +18,7 @@ CMakeFiles/oz.dir/apps/AppBasic/AppBasic.cpp.o
  ../oz-source/GL/VertexBuffer.h
  ../oz-source/GL/VertexBufferBase.h
  ../oz-source/Geometry/Assimp.h
+ ../oz-source/Geometry/Bone.h
  ../oz-source/Geometry/Geometry.h
  ../oz-source/Geometry/Primitives.h
  ../oz-source/Geometry/TriangleMesh.h
@@ -914,6 +915,7 @@ CMakeFiles/oz.dir/oz-source/Geometry/Assimp.cpp.o
  ../oz-source/GL/VertexBuffer.h
  ../oz-source/GL/VertexBufferBase.h
  ../oz-source/Geometry/Assimp.h
+ ../oz-source/Geometry/Bone.h
  ../oz-source/Geometry/Geometry.h
  ../oz-source/Geometry/TriangleMesh.h
  ../oz-source/Math/Math.h
@@ -1162,6 +1164,7 @@ CMakeFiles/oz.dir/oz-source/Geometry/Primitives.cpp.o
  ../oz-source/GL/VertexArrayObject.h
  ../oz-source/GL/VertexBuffer.h
  ../oz-source/GL/VertexBufferBase.h
+ ../oz-source/Geometry/Bone.h
  ../oz-source/Geometry/Geometry.h
  ../oz-source/Geometry/Primitives.h
  ../oz-source/Geometry/TriangleMesh.h
@@ -1170,8 +1173,6 @@ CMakeFiles/oz.dir/oz-source/Geometry/Primitives.cpp.o
  ../oz-source/Math/matrix4.h
  ../oz-source/Math/vector3.h
  ../oz-source/Math/vector4.h
- ../oz-source/Scene/Node.h
- ../oz-source/Scene/Object.h
  ../oz-source/Vector/Vector.h
  /Users/murphy/oz/oz-source/Geometry/Primitives.cpp
  /usr/local/include/GL/glfw3.h
@@ -1384,6 +1385,7 @@ CMakeFiles/oz.dir/oz-source/Geometry/TriangleMesh.cpp.o
  ../oz-source/GL/VertexArrayObject.h
  ../oz-source/GL/VertexBuffer.h
  ../oz-source/GL/VertexBufferBase.h
+ ../oz-source/Geometry/Bone.h
  ../oz-source/Geometry/Geometry.h
  ../oz-source/Geometry/TriangleMesh.h
  ../oz-source/Math/Math.h
@@ -1391,8 +1393,6 @@ CMakeFiles/oz.dir/oz-source/Geometry/TriangleMesh.cpp.o
  ../oz-source/Math/matrix4.h
  ../oz-source/Math/vector3.h
  ../oz-source/Math/vector4.h
- ../oz-source/Scene/Node.h
- ../oz-source/Scene/Object.h
  ../oz-source/Vector/Vector.h
  /Users/murphy/oz/oz-source/Geometry/TriangleMesh.cpp
  /usr/local/include/GL/glfw3.h
@@ -1607,6 +1607,7 @@ CMakeFiles/oz.dir/oz-source/Scene/Scene.cpp.o
  ../oz-source/GL/VertexArrayObject.h
  ../oz-source/GL/VertexBuffer.h
  ../oz-source/GL/VertexBufferBase.h
+ ../oz-source/Geometry/Bone.h
  ../oz-source/Geometry/Geometry.h
  ../oz-source/Math/Math.h
  ../oz-source/Scene/../Math/Math.h

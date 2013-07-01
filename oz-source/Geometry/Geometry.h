@@ -30,7 +30,7 @@ namespace geom {
       virtual void nVerts(uint64_t newSize)=0;
       virtual uint64_t nVerts()=0;
       virtual element_t elementType()=0;
-      vaoptr_t vao() { return vao_ ; }
+      vaoptr_t vao() { return vao_; }
       vboptr_t vbo() { return vbo_; }
       virtual std::string name() { return name_; }
       virtual void name(std::string name) { name_ = name; }

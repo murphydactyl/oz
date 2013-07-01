@@ -8,5 +8,4 @@ namespace geom {
 
   Geometry* makeCube(float unit=1.0f);
   Geometry* makeQuad(float unit=1.0f);
-
 }

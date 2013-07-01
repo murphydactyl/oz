@@ -55,7 +55,7 @@ AppBasic::AppBasic() {
   myScene->root()->addChild(model);
   myScene->print();
   tex->copy2GPU();
-  ((geom::TriangleMesh*)(model->geometry()))->attachTexture(tex);
+  ((geom::Mesh*)(model->geometry()))->attachTexture(tex);
 
 }
 

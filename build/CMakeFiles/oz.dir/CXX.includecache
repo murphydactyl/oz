@@ -104,6 +104,12 @@ Scene/Node.h
 Geometry/TriangleMesh.h
 ../oz-source/Geometry/Geometry/TriangleMesh.h
 
+../oz-source/Geometry/Bone.h
+Math/Math.h
+../oz-source/Geometry/Math/Math.h
+Geometry/Geometry.h
+../oz-source/Geometry/Geometry/Geometry.h
+
 ../oz-source/Geometry/Geometry.h
 GL/GLContext.h
 ../oz-source/Geometry/GL/GLContext.h
@@ -125,8 +131,8 @@ GL/ElementBuffer.h
 ../oz-source/Geometry/GL/ElementBuffer.h
 GL/Texture.h
 ../oz-source/Geometry/GL/Texture.h
-Scene/Node.h
-../oz-source/Geometry/Scene/Node.h
+Geometry/Bone.h
+../oz-source/Geometry/Geometry/Bone.h
 
 ../oz-source/Math/Math.h
 Eigen/Core
@@ -183,6 +189,8 @@ Math/Math.h
 ../oz-source/Scene/Math/Math.h
 Geometry/Geometry.h
 ../oz-source/Scene/Geometry/Geometry.h
+Geometry/Bone.h
+../oz-source/Scene/Geometry/Bone.h
 Scene/Object.h
 ../oz-source/Scene/Scene/Object.h
 sstream

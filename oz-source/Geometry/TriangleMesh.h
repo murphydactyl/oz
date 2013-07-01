@@ -6,7 +6,7 @@
 #include "Geometry/Geometry.h"
 #include "GL/ElementBuffer.h"
 #include "GL/Texture.h"
-#include "Scene/Node.h"
+#include "Geometry/Bone.h"
 
 namespace gl {
   template <typename uint16_t> class ElementBuffer;
@@ -23,13 +23,10 @@ namespace geom {
   typedef math::Mat2Xf texcoord_t;
   typedef math::Mat16Xf boneweights_t;
   typedef math::Mat16Xu boneids_t;
-  typedef Vector<scene::Node<float>*> bonelist_t;
+  typedef Vector<geom::Bone*> bonelist_t;
 
-  template <element_t E=TRIANGLE>
   class Mesh : public Geometry {
-
     public:
-
       Mesh();
       ~Mesh();
       virtual void draw(gl::ShaderProgram* shader=nullptr);
@@ -52,7 +49,7 @@ namespace geom {
       bonelist_t& bones();
 
     protected:
-      element_t elementType_ = E;
+      element_t elementType_;
       uint64_t nVerts_;
       uint64_t nFaces_;
       eboptr_t ebo_;
@@ -66,9 +63,6 @@ namespace geom {
       gl::Texture* tex_;
       bonelist_t bones_;
   };
-
-  typedef Mesh<TRIANGLE> TriangleMesh;
-
 }
 
 #endif

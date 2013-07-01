@@ -79,9 +79,9 @@ Node* geom::extractNodes(aiNode* src) {
 
 }
 
-TriangleMesh* geom::extractMesh(const aiMesh* srcMesh) {
+Mesh* geom::extractMesh(const aiMesh* srcMesh) {
 
-  auto g = new TriangleMesh();
+  auto g = new Mesh();
   auto faces = g->faces();
   auto positions = g->positions();
   auto normals = g->normals();
@@ -201,16 +201,17 @@ TriangleMesh* geom::extractMesh(const aiMesh* srcMesh) {
 
 }
 
-void geom::extractBones(const aiMesh* srcMesh, TriangleMesh* outMesh, Node* outRoot) {
+void geom::extractBones(const aiMesh* srcMesh, Mesh* outMesh, Node* outRoot) {
 
   outRoot->print();
 
   if (srcMesh->HasBones()) {
     for (uint32_t i = 0; i < srcMesh->mNumBones; i++) {
       auto aib = srcMesh->mBones[i];
-      auto ourBone = outRoot->findByName(aib->mName.C_Str());
-      Mat4 offset(reinterpret_cast<float*>(aib->mOffsetMatrix[0]));
-      ourBone->becomeBone(offset);
+      auto ourBoneNode = outRoot->findByName(aib->mName.C_Str());
+      auto ourBone = new Bone();
+      ourBone->offset = Mat4(reinterpret_cast<float*>(aib->mOffsetMatrix[0]));
+      ourBoneNode->addBone(ourBone);
       outMesh->bones().push_back(ourBone);
     }
   } else {
@@ -226,7 +227,7 @@ Node* geom::loadHandModel(std::string filename) {
   aiNode* srcNode = inScene->mRootNode->FindNode("root");
   aiMesh* srcMesh = inScene->mMeshes[0];
   Node* outRoot = extractNodes(srcNode);
-  TriangleMesh *outMesh = extractMesh(srcMesh);
+  Mesh *outMesh = extractMesh(srcMesh);
   extractBones(srcMesh, outMesh, outRoot);
   outRoot->setGeometry(outMesh);
 

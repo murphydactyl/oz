@@ -4,6 +4,7 @@
 #include <vector>
 #include "Math/Math.h"
 #include "Geometry/Geometry.h"
+#include "Geometry/Bone.h"
 #include "Scene/Object.h"
 #include <sstream>
 
@@ -33,7 +34,7 @@ namespace scene {
         geometry_ = nullptr;
         parent_ = nullptr;
         children_ = new std::vector<Node*>();
-        isBone_ = false;
+        bone_ = nullptr;
         std::cout << "Created node named " << name_ << std::endl;
       }
 
@@ -52,7 +53,7 @@ namespace scene {
         if (geometry_ != nullptr) {
           std::cout << " (G) ";
         }
-        if (isBone()) {
+        if (hasBone()) {
           std::cout << " (B) ";
         }
 
@@ -94,13 +95,15 @@ namespace scene {
         return nullptr;
       }
 
-      void becomeBone(Mat4& offset) {
-        boneOffset_ = offset;
-        isBone_ = true;
+      void addBone(geom::Bone* bone) {
+        if (bone_ != nullptr) {
+          delete bone_;
+        }
+        bone_ = bone;
       }
 
-      bool isBone() {
-        return isBone_;
+      bool hasBone() {
+        return bone_ != nullptr;
       }
 
     protected:
@@ -108,8 +111,7 @@ namespace scene {
       std::vector<Node*>*   children_;
       geom::Geometry*       geometry_;
       Node*                 parent_;
-      Mat4                  boneOffset_;
-      bool                  isBone_;
+      geom::Bone*           bone_;
   };
 
   typedef Node<float> Nodef;

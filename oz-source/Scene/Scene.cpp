@@ -41,7 +41,6 @@ void Scene::render(gl::ShaderProgram* shader) {
   tStack_.push_back(root_->local());
 
   while(nStack_.size() > 0) {
-
     // POP TOP
     Nodef* top = nStack_.pop_back();
     Nodef::Mat4 currentWorldTransform = tStack_.pop_back();
