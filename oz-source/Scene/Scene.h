@@ -7,33 +7,36 @@
 #include "GL/ShaderProgram.h"
 #include "GL/Texture.h"
 #include "Vector/Vector.h"
+#include "Geometry/TriangleMesh.h"
 
 namespace scene {
 
   class Scene {
-  public:
+    public:
 
-    Scene();
-    ~Scene();
+      Scene();
+      ~Scene();
 
-    void            root(Node<float>* root) { root_ = root; }
-    Node<float>*    root() { return root_; }
-    Cameraf*        camera() { return camera_; }
-    void            camera(Cameraf* camera) { camera_ = camera; }
-    void            render();
-    void            render(gl::ShaderProgram* shader);
-    void            renderWithTexture(gl::Texture* tex);
-    void            print();
+      void            root(Node<float>* root) { root_ = root; }
+      Node<float>*    root() { return root_; }
+      Cameraf*        camera() { return camera_; }
+      void            camera(Cameraf* camera) { camera_ = camera; }
+      void            render();
+      void            render(gl::ShaderProgram* shader);
+      void            renderWithTexture(gl::Texture* tex);
+      void            print();
+      void            drawCube(gl::ShaderProgram* shader);
 
-  protected:
+    protected:
 
-    Nodef*                  root_;
-    Cameraf*                camera_;
-    gl::ShaderProgram*      dfltSPTextured_;
-    gl::ShaderProgram*      dfltSPVertexColors_;
-    gl::ShaderProgram*      defaultShader_;
-    Vector<Nodef*>          nStack_;
-    Vector<Nodef::Mat4>     tStack_;
+      Nodef*                  root_;
+      Cameraf*                camera_;
+      gl::ShaderProgram*      dfltSPTextured_;
+      gl::ShaderProgram*      dfltSPVertexColors_;
+      gl::ShaderProgram*      defaultShader_;
+      Vector<Nodef*>          nStack_;
+      Vector<Nodef::Mat4>     tStack_;
+      geom::Geometry*         cube_;
 
   };
 }

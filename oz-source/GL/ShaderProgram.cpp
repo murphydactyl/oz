@@ -97,14 +97,12 @@ ShaderProgram::~ShaderProgram() {
 }
 
 void ShaderProgram::setDefaultAttribLocations() {
-  glBindAttribLocation(_glName, gl::ATTRIB_V_POSITION, "v_position");
-  glBindAttribLocation(_glName, gl::ATTRIB_V_NORMAL, "v_normal");
-  glBindAttribLocation(_glName, gl::ATTRIB_V_COLOR, "v_color");
-  glBindAttribLocation(_glName, gl::ATTRIB_V_TEXCOORD, "v_texcoord");
-  glBindAttribLocation(_glName, gl::ATTRIB_V_BONE_ID, "v_boneid");
-  glBindAttribLocation(_glName, gl::ATTRIB_V_BONE_WEIGHT, "v_boneweight");
-  glBindAttribLocation(_glName, gl::ATTRIB_V_TANGENT, "v_tangent");
-  glBindAttribLocation(_glName, gl::ATTRIB_V_BITANGENT, "v_bitangent");
+  glBindAttribLocation(_glName, gl::ATTRIB_V_POSITION_LOC, "v_position");
+  glBindAttribLocation(_glName, gl::ATTRIB_V_NORMAL_LOC, "v_normal");
+  glBindAttribLocation(_glName, gl::ATTRIB_V_COLOR_LOC, "v_color");
+  glBindAttribLocation(_glName, gl::ATTRIB_V_TEXCOORD_LOC, "v_texcoord");
+  glBindAttribLocation(_glName, gl::ATTRIB_V_BONE_ID_LOC, "v_boneid");
+  glBindAttribLocation(_glName, gl::ATTRIB_V_BONE_WEIGHT_LOC, "v_boneweight");
 }
 
 void ShaderProgram::setDefaultFragDataLocations() {

@@ -15,7 +15,6 @@ CMakeFiles/oz.dir/apps/AppBasic/AppBasic.cpp.o: ../oz-source/GL/Texture.h
 CMakeFiles/oz.dir/apps/AppBasic/AppBasic.cpp.o: ../oz-source/GL/Texture2D.h
 CMakeFiles/oz.dir/apps/AppBasic/AppBasic.cpp.o: ../oz-source/GL/VertexArrayObject.h
 CMakeFiles/oz.dir/apps/AppBasic/AppBasic.cpp.o: ../oz-source/GL/VertexBuffer.h
-CMakeFiles/oz.dir/apps/AppBasic/AppBasic.cpp.o: ../oz-source/GL/VertexBufferBase.h
 CMakeFiles/oz.dir/apps/AppBasic/AppBasic.cpp.o: ../oz-source/Geometry/Assimp.h
 CMakeFiles/oz.dir/apps/AppBasic/AppBasic.cpp.o: ../oz-source/Geometry/Bone.h
 CMakeFiles/oz.dir/apps/AppBasic/AppBasic.cpp.o: ../oz-source/Geometry/Geometry.h
@@ -912,7 +911,6 @@ CMakeFiles/oz.dir/oz-source/Geometry/Assimp.cpp.o: ../oz-source/GL/ShaderProgram
 CMakeFiles/oz.dir/oz-source/Geometry/Assimp.cpp.o: ../oz-source/GL/Texture.h
 CMakeFiles/oz.dir/oz-source/Geometry/Assimp.cpp.o: ../oz-source/GL/VertexArrayObject.h
 CMakeFiles/oz.dir/oz-source/Geometry/Assimp.cpp.o: ../oz-source/GL/VertexBuffer.h
-CMakeFiles/oz.dir/oz-source/Geometry/Assimp.cpp.o: ../oz-source/GL/VertexBufferBase.h
 CMakeFiles/oz.dir/oz-source/Geometry/Assimp.cpp.o: ../oz-source/Geometry/Assimp.h
 CMakeFiles/oz.dir/oz-source/Geometry/Assimp.cpp.o: ../oz-source/Geometry/Bone.h
 CMakeFiles/oz.dir/oz-source/Geometry/Assimp.cpp.o: ../oz-source/Geometry/Geometry.h
@@ -1162,7 +1160,6 @@ CMakeFiles/oz.dir/oz-source/Geometry/Primitives.cpp.o: ../oz-source/GL/ShaderPro
 CMakeFiles/oz.dir/oz-source/Geometry/Primitives.cpp.o: ../oz-source/GL/Texture.h
 CMakeFiles/oz.dir/oz-source/Geometry/Primitives.cpp.o: ../oz-source/GL/VertexArrayObject.h
 CMakeFiles/oz.dir/oz-source/Geometry/Primitives.cpp.o: ../oz-source/GL/VertexBuffer.h
-CMakeFiles/oz.dir/oz-source/Geometry/Primitives.cpp.o: ../oz-source/GL/VertexBufferBase.h
 CMakeFiles/oz.dir/oz-source/Geometry/Primitives.cpp.o: ../oz-source/Geometry/Bone.h
 CMakeFiles/oz.dir/oz-source/Geometry/Primitives.cpp.o: ../oz-source/Geometry/Geometry.h
 CMakeFiles/oz.dir/oz-source/Geometry/Primitives.cpp.o: ../oz-source/Geometry/Primitives.h
@@ -1383,7 +1380,6 @@ CMakeFiles/oz.dir/oz-source/Geometry/TriangleMesh.cpp.o: ../oz-source/GL/ShaderP
 CMakeFiles/oz.dir/oz-source/Geometry/TriangleMesh.cpp.o: ../oz-source/GL/Texture.h
 CMakeFiles/oz.dir/oz-source/Geometry/TriangleMesh.cpp.o: ../oz-source/GL/VertexArrayObject.h
 CMakeFiles/oz.dir/oz-source/Geometry/TriangleMesh.cpp.o: ../oz-source/GL/VertexBuffer.h
-CMakeFiles/oz.dir/oz-source/Geometry/TriangleMesh.cpp.o: ../oz-source/GL/VertexBufferBase.h
 CMakeFiles/oz.dir/oz-source/Geometry/TriangleMesh.cpp.o: ../oz-source/Geometry/Bone.h
 CMakeFiles/oz.dir/oz-source/Geometry/TriangleMesh.cpp.o: ../oz-source/Geometry/Geometry.h
 CMakeFiles/oz.dir/oz-source/Geometry/TriangleMesh.cpp.o: ../oz-source/Geometry/TriangleMesh.h
@@ -1598,6 +1594,7 @@ CMakeFiles/oz.dir/oz-source/Image/IO.cpp.o: /usr/local/include/FreeImage.h
 
 CMakeFiles/oz.dir/oz-source/Scene/Scene.cpp.o: ../oz-source/GL/ArrayBuffer.h
 CMakeFiles/oz.dir/oz-source/Scene/Scene.cpp.o: ../oz-source/GL/Constants.h
+CMakeFiles/oz.dir/oz-source/Scene/Scene.cpp.o: ../oz-source/GL/ElementBuffer.h
 CMakeFiles/oz.dir/oz-source/Scene/Scene.cpp.o: ../oz-source/GL/GLContext.h
 CMakeFiles/oz.dir/oz-source/Scene/Scene.cpp.o: ../oz-source/GL/PixelTypes.h
 CMakeFiles/oz.dir/oz-source/Scene/Scene.cpp.o: ../oz-source/GL/Shader.h
@@ -1605,9 +1602,10 @@ CMakeFiles/oz.dir/oz-source/Scene/Scene.cpp.o: ../oz-source/GL/ShaderProgram.h
 CMakeFiles/oz.dir/oz-source/Scene/Scene.cpp.o: ../oz-source/GL/Texture.h
 CMakeFiles/oz.dir/oz-source/Scene/Scene.cpp.o: ../oz-source/GL/VertexArrayObject.h
 CMakeFiles/oz.dir/oz-source/Scene/Scene.cpp.o: ../oz-source/GL/VertexBuffer.h
-CMakeFiles/oz.dir/oz-source/Scene/Scene.cpp.o: ../oz-source/GL/VertexBufferBase.h
 CMakeFiles/oz.dir/oz-source/Scene/Scene.cpp.o: ../oz-source/Geometry/Bone.h
 CMakeFiles/oz.dir/oz-source/Scene/Scene.cpp.o: ../oz-source/Geometry/Geometry.h
+CMakeFiles/oz.dir/oz-source/Scene/Scene.cpp.o: ../oz-source/Geometry/Primitives.h
+CMakeFiles/oz.dir/oz-source/Scene/Scene.cpp.o: ../oz-source/Geometry/TriangleMesh.h
 CMakeFiles/oz.dir/oz-source/Scene/Scene.cpp.o: ../oz-source/Math/Math.h
 CMakeFiles/oz.dir/oz-source/Scene/Scene.cpp.o: ../oz-source/Scene/../Math/Math.h
 CMakeFiles/oz.dir/oz-source/Scene/Scene.cpp.o: ../oz-source/Scene/../Math/matrix3.h

@@ -28,6 +28,7 @@ namespace geom {
   class Mesh : public Geometry {
     public:
       Mesh();
+      Mesh(element_t e);
       ~Mesh();
       virtual void draw(gl::ShaderProgram* shader=nullptr);
       uint64_t nFaces();
@@ -35,7 +36,6 @@ namespace geom {
       void nVerts(uint64_t newSize);
       void nFaces(uint64_t nFaces);
       void attachTexture(gl::Texture* tex);
-      element_t elementType();
       eboptr_t ebo();
       faces_t& faces();
       positions_t& positions();
@@ -49,7 +49,6 @@ namespace geom {
       bonelist_t& bones();
 
     protected:
-      element_t elementType_;
       uint64_t nVerts_;
       uint64_t nFaces_;
       eboptr_t ebo_;

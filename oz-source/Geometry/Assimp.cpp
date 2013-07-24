@@ -26,7 +26,7 @@ typedef struct boneidweight_t {
 Node* geom::cloneAsimppNodeAsOzNode(const aiNode* assimpNode) {
   Node* clonedNode = new Node(assimpNode->mName.C_Str());
   const float* pf = assimpNode->mTransformation[0];
-  clonedNode->local() = Mat4(pf);
+  clonedNode->mLocal = Mat4(pf);
   return clonedNode;
 }
 
@@ -185,11 +185,11 @@ Mesh* geom::extractMesh(const aiMesh* srcMesh) {
   g->nFaces(nFaces);
   g->vao()->bind();
   g->vbo()->reserveNBytesOnGPU(nVerts * (4 + 4 + 4 + 4 * 4) * 4);
-  g->vbo()->copy2GPUPoints(positions.data(), nVerts);
-  g->vbo()->copy2GPUColors(colors.data(), nVerts);
-  g->vbo()->copy2GPUTexcoords(texcoords.data(), nVerts);
-  g->vbo()->copy2GPUBoneWeights(boneweights.data(), nVerts);
-  g->vbo()->copy2GPUBoneIds(boneids.data(), nVerts);
+  g->vbo()->copyVertDataToGPU(positions.data(), nVerts, gl::vposition);
+  g->vbo()->copyVertDataToGPU(colors.data(), nVerts, gl::vcolor);
+  g->vbo()->copyVertDataToGPU(texcoords.data(), nVerts, gl::vtexcoord);
+  g->vbo()->copyVertDataToGPU(boneweights.data(), nVerts, gl::vboneweight);
+  g->vbo()->copyVertDataToGPU(boneids.data(), nVerts, gl::vboneid);
   g->vao()->unbind();
 
   g->ebo()->bind();

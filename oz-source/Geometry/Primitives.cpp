@@ -9,7 +9,7 @@ using namespace geom;
 
 Geometry* geom::makeCube(float unit) {
 
-  auto g = new Mesh();
+  auto g = new Mesh(TRIANGLE);
 
   float u = unit;
   float points[] = {
@@ -77,8 +77,6 @@ Geometry* geom::makeCube(float unit) {
     0, 0, 0, a,
   };
 
-
-
   uint16_t faces[] = {
     0,   1,    2,
     2,   3,    0,
@@ -94,15 +92,15 @@ Geometry* geom::makeCube(float unit) {
     23,   22,   21,
   };
 
-  g->nVerts(24);
+    g->nVerts(24);
   g->nFaces(12);
 
   g->vao()->bind();
-  g->vbo()->reserveNBytesOnGPU(g->nVerts() * 8 * 4);
+  g->vbo()->reserveNBytesOnGPU(g->nVerts() * (4 + 4) * 4);
   g->ebo()->reserveNBytesOnGPU(g->nFaces() * 3 * 2);
 
-  g->vbo()->copy2GPUPoints(points, g->nVerts());
-  g->vbo()->copy2GPUColors(colors, g->nVerts());
+  g->vbo()->copyVertDataToGPU(points, g->nVerts(), gl::vposition);
+  g->vbo()->copyVertDataToGPU(colors, g->nVerts(), gl::vcolor);
   g->ebo()->copy2GPU(faces, g->nFaces(), 3);
   g->vao()->unbind();
 
@@ -111,22 +109,27 @@ Geometry* geom::makeCube(float unit) {
 
 Geometry* geom::makeQuad(float unit)
 {
-  auto g = new Mesh();
+  auto g = new Mesh(TRIANGLE);
   float s = unit;
   float points[] = {
-    -s, -s, 0,
-    +s ,-s, 0,
-    -s, +s, 0,
-    +s, +s, 0
+    -s, -s, 0, 1,
+    +s ,-s, 0, 1,
+    -s, +s, 0, 1,
+    +s, +s, 0, 1
   };
-//  _vbo_quad = new VertexBuffer<vertex_t>({{-1, -1}, {1 ,-1}, {-1, 1}, {1, 1}});
-
 
   float colors[] = {
     1, 0, 0, 1,
     0, 1, 0, 1,
     0, 0, 1, 1,
     1, 1, 1, 1
+  };
+
+  float normals[] = {
+    0, 0, 1, 1,
+    0, 0, 1, 1,
+    0, 0, 1, 1,
+    0, 0, 1, 1
   };
 
   float texcoords[] = {
@@ -143,18 +146,21 @@ Geometry* geom::makeQuad(float unit)
 
   g->nVerts(4);
   g->vao()->bind();
-  g->vbo()->reserveNBytesOnGPU(g->nVerts() * (4 + 4 + 2) * 4);
-  g->vbo()->copy2GPUPoints(points, 4);
-  g->vbo()->copy2GPUColors(colors, 4);
-  g->vbo()->copy2GPUTexcoords(texcoords, 4);
+
+  g->vbo()->reserveNBytesOnGPU(g->nVerts() * (4 + 4 + 4 + 2) * 4);
+  g->vbo()->copyVertDataToGPU(points, 4, gl::vposition);
+  g->vbo()->copyVertDataToGPU(texcoords, 4, gl::vtexcoord);
+  g->vbo()->copyVertDataToGPU(normals, 4, gl::vnormal);
+  g->vbo()->copyVertDataToGPU(colors, 4, gl::vcolor);
   g->vbo()->printBuffer(4);
   g->vao()->unbind();
 
   g->nFaces(2);
   g->ebo()->bind();
   g->ebo()->reserveNBytesOnGPU(g->nFaces() * 3 * 2);
-  g->ebo()->copy2GPU(faces, g->nFaces(), 2);
+  g->ebo()->copy2GPU(faces, g->nFaces(), 3);
   g->ebo()->unbind();
+  g->ebo()->printBuffer(2);
 
   return g;
 }

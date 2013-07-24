@@ -31,31 +31,25 @@ AppBasic::AppBasic() {
   cam->translate(0,0,5);
   myScene->camera(cam);
 
-//  geom::Geometry* model = geom::makeQuad();
-//  geom::Geometry* cube = geom::makeCube(1.0);
+  geom::Geometry* quad = geom::makeQuad(5.0);
+  myScene->root()->setGeometry(quad);
 
-//  scene::Nodef* node = new scene::Nodef();
-//  node->geometry(cube);
-//  node->local().translate(.1, 0, 0);
-//  node->local().rotateZ(.01);
-//  node->local().rotateX(.04);
+//  stringstream ss;
+//  ss << MODELS_DIR << "/lib_hand_model/hand_palm_parent_medium_wrist.dae";
+//  auto model = geom::loadHandModel(ss.str());
 
-  stringstream ss;
-  ss << MODELS_DIR << "/lib_hand_model/hand_palm_parent_medium_wrist.dae";
-  auto model = geom::loadHandModel(ss.str());
+//  uint32_t imWidth, imHeight;
+//  ss.str("");
+//  ss.clear();
+//  ss << MODELS_DIR << "/lib_hand_model/hand_texture_image.png";
 
-  uint32_t imWidth, imHeight;
-  ss.str("");
-  ss.clear();
-  ss << MODELS_DIR << "/lib_hand_model/hand_texture_image.png";
+//  auto image = reinterpret_cast<gl::rgba8888_t*>(image::LoadPNGRGBA8888(ss.str(), imWidth, imHeight));
+//  auto tex = new gl::Texture2D<gl::rgba8888_t>(image, imWidth, imHeight);
 
-  auto image = reinterpret_cast<gl::rgba8888_t*>(image::LoadPNGRGBA8888(ss.str(), imWidth, imHeight));
-  auto tex = new gl::Texture2D<gl::rgba8888_t>(image, imWidth, imHeight);
-
-  myScene->root()->addChild(model);
-  myScene->print();
-  tex->copy2GPU();
-  ((geom::Mesh*)(model->geometry()))->attachTexture(tex);
+//  myScene->root()->addChild(model);
+//  myScene->print();
+//  tex->copy2GPU();
+//  ((geom::Mesh*)(model->geometry()))->attachTexture(tex);
 
 }
 

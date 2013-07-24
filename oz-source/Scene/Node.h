@@ -17,7 +17,6 @@ namespace scene {
       typedef math::Mat4f Mat4;
 
       // GETTERS ................................................................
-      Mat4&               local() { return local_; }
       Node*               parent() { return parent_; }
       geom::Geometry*     geometry() { return geometry_; }
 
@@ -29,7 +28,7 @@ namespace scene {
       Node() : Node("Untitled"){}
 
       Node(std::string name) {
-        local_ = Mat4(1.0);
+        mLocal = Mat4(1.0);
         name_ = name;
         geometry_ = nullptr;
         parent_ = nullptr;
@@ -64,7 +63,7 @@ namespace scene {
         }
         std::cout << std::endl;
 //        std<<cout << "Matrix: ";
-//        local_.pprint();
+//        mLocal.pprint();
         for (int i = 0; i < nChildren(); i++) {
           getChild(i)->print();
         }
@@ -106,8 +105,10 @@ namespace scene {
         return bone_ != nullptr;
       }
 
+      Mat4                  mLocal;
+      Mat4                  mWorld;
+
     protected:
-      Mat4                  local_;
       std::vector<Node*>*   children_;
       geom::Geometry*       geometry_;
       Node*                 parent_;

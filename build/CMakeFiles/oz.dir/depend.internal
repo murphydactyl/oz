@@ -16,7 +16,6 @@ CMakeFiles/oz.dir/apps/AppBasic/AppBasic.cpp.o
  ../oz-source/GL/Texture2D.h
  ../oz-source/GL/VertexArrayObject.h
  ../oz-source/GL/VertexBuffer.h
- ../oz-source/GL/VertexBufferBase.h
  ../oz-source/Geometry/Assimp.h
  ../oz-source/Geometry/Bone.h
  ../oz-source/Geometry/Geometry.h
@@ -913,7 +912,6 @@ CMakeFiles/oz.dir/oz-source/Geometry/Assimp.cpp.o
  ../oz-source/GL/Texture.h
  ../oz-source/GL/VertexArrayObject.h
  ../oz-source/GL/VertexBuffer.h
- ../oz-source/GL/VertexBufferBase.h
  ../oz-source/Geometry/Assimp.h
  ../oz-source/Geometry/Bone.h
  ../oz-source/Geometry/Geometry.h
@@ -1163,7 +1161,6 @@ CMakeFiles/oz.dir/oz-source/Geometry/Primitives.cpp.o
  ../oz-source/GL/Texture.h
  ../oz-source/GL/VertexArrayObject.h
  ../oz-source/GL/VertexBuffer.h
- ../oz-source/GL/VertexBufferBase.h
  ../oz-source/Geometry/Bone.h
  ../oz-source/Geometry/Geometry.h
  ../oz-source/Geometry/Primitives.h
@@ -1384,7 +1381,6 @@ CMakeFiles/oz.dir/oz-source/Geometry/TriangleMesh.cpp.o
  ../oz-source/GL/Texture.h
  ../oz-source/GL/VertexArrayObject.h
  ../oz-source/GL/VertexBuffer.h
- ../oz-source/GL/VertexBufferBase.h
  ../oz-source/Geometry/Bone.h
  ../oz-source/Geometry/Geometry.h
  ../oz-source/Geometry/TriangleMesh.h
@@ -1599,6 +1595,7 @@ CMakeFiles/oz.dir/oz-source/Image/IO.cpp.o
 CMakeFiles/oz.dir/oz-source/Scene/Scene.cpp.o
  ../oz-source/GL/ArrayBuffer.h
  ../oz-source/GL/Constants.h
+ ../oz-source/GL/ElementBuffer.h
  ../oz-source/GL/GLContext.h
  ../oz-source/GL/PixelTypes.h
  ../oz-source/GL/Shader.h
@@ -1606,9 +1603,10 @@ CMakeFiles/oz.dir/oz-source/Scene/Scene.cpp.o
  ../oz-source/GL/Texture.h
  ../oz-source/GL/VertexArrayObject.h
  ../oz-source/GL/VertexBuffer.h
- ../oz-source/GL/VertexBufferBase.h
  ../oz-source/Geometry/Bone.h
  ../oz-source/Geometry/Geometry.h
+ ../oz-source/Geometry/Primitives.h
+ ../oz-source/Geometry/TriangleMesh.h
  ../oz-source/Math/Math.h
  ../oz-source/Scene/../Math/Math.h
  ../oz-source/Scene/../Math/matrix3.h

@@ -29,13 +29,15 @@ namespace geom {
       virtual void draw(gl::ShaderProgram* shader)=0;
       virtual void nVerts(uint64_t newSize)=0;
       virtual uint64_t nVerts()=0;
-      virtual element_t elementType()=0;
       vaoptr_t vao() { return vao_; }
       vboptr_t vbo() { return vbo_; }
       virtual std::string name() { return name_; }
       virtual void name(std::string name) { name_ = name; }
+      element_t elementType() { return elementType_; }
+      void setElementType(element_t e) { elementType_ = e; }
 
     protected:
+      element_t elementType_;
       vboptr_t vbo_;
       vaoptr_t vao_;
       std::string name_;

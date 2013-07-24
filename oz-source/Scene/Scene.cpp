@@ -1,15 +1,20 @@
 #include "Scene/Scene.h"
+#include "Geometry/Geometry.h"
+#include "Geometry/Primitives.h"
 
 using namespace scene;
 using namespace geom;
+using namespace std;
+
 
 Scene::Scene() {
   root_ = new Node<float>();
   dfltSPTextured_ = new gl::ShaderProgram("TriangleMeshWithTexture.v.glsl", "TriangleMeshWithTexture.f.glsl");
   dfltSPVertexColors_ = new gl::ShaderProgram("triangle.v.glsl", "triangle.f.glsl");
-  defaultShader_ = dfltSPTextured_;
+  defaultShader_ = dfltSPVertexColors_;
   nStack_.resize(0);
   tStack_.resize(0);
+  cube_ = nullptr;
 }
 
 Scene::~Scene() {
@@ -36,28 +41,50 @@ void Scene::render(gl::ShaderProgram* shader) {
   shader->setUniform("p", p);
 
   nStack_.resize(0);
-  tStack_.resize(0);
   nStack_.push_back(root_);
-  tStack_.push_back(root_->local());
+  root_->mWorld.identity();
 
   while(nStack_.size() > 0) {
     // POP TOP
     Nodef* top = nStack_.pop_back();
-    Nodef::Mat4 currentWorldTransform = tStack_.pop_back();
-    math::Mat4f m = currentWorldTransform;
-    shader->setUniform("m", m);
-    Geometry* g = top->geometry();
-    if (g != nullptr) {
-      g->draw(shader);
+
+    if (top->parent() != nullptr) {
+      top->mWorld = top->parent()->mWorld * top->mLocal;
+    } else {
+      top->mWorld.identity();
     }
 
     // PUSH TOP'S CHILDREN
     for (auto i = 0; i < top->nChildren(); i++) {
       Nodef* child = top->getChild(i);
       nStack_.push_back(child);
-      tStack_.push_back(currentWorldTransform * child->local());
+    }
+  }
+
+  nStack_.push_back(root_);
+  while (nStack_.size() > 0) {
+    // POP TOP
+    Nodef* top = nStack_.pop_back();
+    shader->setUniform("m", top->mWorld);
+    if (top->geometry() != nullptr) {
+      top->geometry()->draw(shader);
+    }
+    if (top->hasBone()) {
+      drawCube(shader);
     }
 
+    // PUSH TOP'S CHILDREN
+    for (auto i = 0; i < top->nChildren(); i++) {
+      Nodef* child = top->getChild(i);
+      nStack_.push_back(child);
+    }
   }
+}
+
+void Scene::drawCube(gl::ShaderProgram* shader) {
+  if (cube_ == nullptr) {
+    cube_ = geom::makeCube(0.1);
+  }
+  cube_->draw(dfltSPVertexColors_);
 }
 

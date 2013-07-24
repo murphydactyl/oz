@@ -36,6 +36,7 @@ namespace gl {
   protected:
     GLuint buf_;
     uint32_t nBytesOnGPU_;
+    uint32_t nBytesPerVertex_;
 
   };
 }
