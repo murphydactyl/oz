@@ -16,16 +16,27 @@ namespace gl {
   public:
       VertexArrayObject() {
           gl::checkError("VAO @ constructor");
-          glGenVertexArrays(1, &vao_);
+          glGenVertexArrays(1, &glName);
           gl::checkError("VAO finished constructor");
       }
-
-      ~VertexArrayObject() { glDeleteVertexArrays(1, &vao_); }
-      void bind() { glBindVertexArray(vao_); }
-      void unbind() { glBindVertexArray(0); }
+      ~VertexArrayObject() {
+        gl::checkError("VAO @ destructor");
+        glDeleteVertexArrays(1, &glName);
+        gl::checkError("VAO @ destructor");
+      }
+      void bind() {
+        gl::checkError("VAO @ before bind");
+        glBindVertexArray(glName);
+        gl::checkError("VAO @ after bind");
+      }
+      void unbind() {
+        gl::checkError("VAO @ before unbind");
+        glBindVertexArray(0);
+        gl::checkError("VAO @ after unbind");
+      }
 
   protected:
-      GLuint vao_;
+      GLuint glName;
   };
 }
 

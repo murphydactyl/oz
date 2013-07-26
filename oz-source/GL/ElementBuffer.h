@@ -25,7 +25,6 @@ namespace gl {
                     GL_STREAM_DRAW);
       glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
       gl::checkError("EBO finsihed sync");
-      std::cout << "copied: " << nBytesOnGPU_ << " bytes to element buffer" << std::endl;
     }
 
     void bind() {
@@ -41,6 +40,7 @@ namespace gl {
     }
 
     void printBuffer(uint32_t nFaces) {
+      gl::checkError("EBO @ before print");
       glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, buf_);
       I* data = reinterpret_cast<I*>(glMapBuffer(GL_ELEMENT_ARRAY_BUFFER, GL_READ_ONLY));
       for (int i = 0; i < nFaces; i++) {
@@ -50,6 +50,7 @@ namespace gl {
         std::cout << std::endl;
       }
       glUnmapBuffer(GL_ELEMENT_ARRAY_BUFFER);
+      gl::checkError("EBO @ after print");
     }
 
   protected:

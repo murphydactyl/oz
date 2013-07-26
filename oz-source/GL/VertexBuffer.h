@@ -104,22 +104,7 @@ namespace gl {
       /*
        * Build up known offsets based on which attributes are enabled
        */
-      VertexBuffer(uint32_t enabled_attributes) {
-        enabled_attributes_ = enabled_attributes;
-        if (isEnabled(ATTRIB_V_POSITION)) vpatts.push_back(vposition);
-        if (isEnabled(ATTRIB_V_NORMAL)) vpatts.push_back(vnormal);
-        if (isEnabled(ATTRIB_V_TEXCOORD)) vpatts.push_back(vtexcoord);
-        if (isEnabled(ATTRIB_V_COLOR)) vpatts.push_back(vcolor);
-        if (isEnabled(ATTRIB_V_BONEID)) vpatts.push_back(vboneid);
-        if (isEnabled(ATTRIB_V_BONEWEIGHT)) vpatts.push_back(vboneweight);
-
-        // compute offsets
-        nBytesPerVertex_ = 0;
-        for (int i = 0; i < vpatts.size(); i++) {
-          nBytesPerVertex_ += vpatts[i].sizeInBytes();
-        }
-        std::cout << "nBytesPerVertex is " << nBytesPerVertex_ << std::endl;
-      }
+      VertexBuffer() {}
 
       uint32_t calculateOffset(vattribute a) {
         uint32_t offset = 0;
@@ -134,48 +119,37 @@ namespace gl {
         assert(false);
       }
 
-      void enableAttribute(vattribute a) {
-        uint32_t byte_offset = calculateOffset(a);
-        gl::checkError("VBO @ before binding attribute " + a.name);
-        glBindBuffer(GL_ARRAY_BUFFER, buf_);
-        glEnableVertexAttribArray(a.shader_location);
-        glVertexAttribPointer(  a.shader_location,
-                                a.num_elements,
-                                a.gl_underlying_type,
-                                a.normalized,
-                                nBytesPerVertex_,
-                                reinterpret_cast<GLvoid*>(byte_offset));
-        glBindBuffer(GL_ARRAY_BUFFER, 0);
-        gl::checkError("VBO @ after binding attribute " + a.name);
+      void setVertexType(uint32_t flags) {
+        enabled_attributes_ = flags;
+        vpatts.clear();
+        if (isEnabled(ATTRIB_V_POSITION)) vpatts.push_back(vposition);
+        if (isEnabled(ATTRIB_V_NORMAL)) vpatts.push_back(vnormal);
+        if (isEnabled(ATTRIB_V_TEXCOORD)) vpatts.push_back(vtexcoord);
+        if (isEnabled(ATTRIB_V_COLOR)) vpatts.push_back(vcolor);
+        if (isEnabled(ATTRIB_V_BONEID)) vpatts.push_back(vboneid);
+        if (isEnabled(ATTRIB_V_BONEWEIGHT)) vpatts.push_back(vboneweight);
+
+        // compute offsets
+        nBytesPerVertex_ = 0;
+        for (int i = 0; i < vpatts.size(); i++) {
+          std::cout << "enabled: " << vpatts[i].name << std::endl;
+          nBytesPerVertex_ += vpatts[i].sizeInBytes();
+        }
+
+        for (int i = 0; i < vpatts.size(); i++) {
+          enableAttribute(vpatts[i]);
+        }
+        std::cout << "nBytesPerVertex is " << nBytesPerVertex_ << std::endl;
       }
 
       void copyVertDataToGPU(void* data, size_t nVerts, vattribute a) {
         gl::checkError("VBO @ before copying vert data " + a.name);
-        std::cout << "copyVertDataToGPU..." << std::endl;
-        std::cout << "name: " << a.name << std::endl;
-        std::cout << "offset: " << calculateOffset(a) << std::endl;
-        std::cout << "nBytes: " << a.sizeInBytes() << std::endl;
-        std::cout << "nBytesPerVertex: " << nBytesPerVertex_ << std::endl;
         uint32_t byte_offset = calculateOffset(a);
         copyToGPUInterleaved((char*)data, nVerts, a.sizeInBytes(),
                              0, a.sizeInBytes(),
                              byte_offset, nBytesPerVertex_);
         gl::checkError("VBO @ after copying vert data " + a.name);
       }
-
-      void printBuffer(uint32_t nVerts) {
-        glBindBuffer(GL_ARRAY_BUFFER, buf_);
-        char* data = reinterpret_cast<char*>(glMapBuffer(GL_ARRAY_BUFFER, GL_READ_ONLY));
-        for (auto i = 0; i < nVerts; i++) {
-          for (auto j = 0; j < vpatts.size(); j++) {
-            vpatts[j].print(data);
-            data += vpatts[j].sizeInBytes();
-          }
-        }
-        glUnmapBuffer(GL_ARRAY_BUFFER);
-      }
-
-    protected:
 
       void copyToGPUInterleaved(char*    src, uint32_t nVerts, uint32_t nBytesToCopyPerVert,
                                 uint32_t nSrcOffsetBytes, uint32_t nSrcStrideBytes,
@@ -190,9 +164,40 @@ namespace gl {
           dst += nDstStrideBytes;
         }
         glUnmapBuffer(GL_ARRAY_BUFFER);
-        glBindBuffer(GL_ARRAY_BUFFER, 0);
       }
 
+      void printBuffer(uint32_t nVerts) {
+        glBindBuffer(GL_ARRAY_BUFFER, buf_);
+        char* data = reinterpret_cast<char*>(glMapBuffer(GL_ARRAY_BUFFER, GL_READ_ONLY));
+        for (auto i = 0; i < nVerts; i++) {
+          for (auto j = 0; j < vpatts.size(); j++) {
+            vpatts[j].print(data);
+            data += vpatts[j].sizeInBytes();
+          }
+        }
+        glUnmapBuffer(GL_ARRAY_BUFFER);
+      }
+
+      void allocVertexMemoryOnGPU(uint32_t nVerts) {
+        reserveNBytesOnGPU(nBytesPerVertex() * nVerts);
+      }
+
+
+    protected:
+
+      void enableAttribute(vattribute a) {
+        gl::checkError("VBO @ before binding attribute " + a.name);
+        uint32_t byte_offset = calculateOffset(a);
+        glBindBuffer(GL_ARRAY_BUFFER, buf_);
+        glEnableVertexAttribArray(a.shader_location);
+        glVertexAttribPointer(  a.shader_location,
+                                a.num_elements,
+                                a.gl_underlying_type,
+                                a.normalized,
+                                nBytesPerVertex(),
+                                reinterpret_cast<GLvoid*>(byte_offset));
+        gl::checkError("VBO @ after binding attribute " + a.name);
+      }
 
   };
 

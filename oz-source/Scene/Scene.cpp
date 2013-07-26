@@ -83,7 +83,7 @@ void Scene::render(gl::ShaderProgram* shader) {
 
 void Scene::drawCube(gl::ShaderProgram* shader) {
   if (cube_ == nullptr) {
-    cube_ = geom::makeCube(0.1);
+    cube_ = geom::makeBox(1.0, 1.0, 1.0);
   }
   cube_->draw(dfltSPVertexColors_);
 }

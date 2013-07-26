@@ -8,24 +8,21 @@
 using namespace geom;
 using namespace std;
 
+
+typedef struct point {
+    float position[4];
+    float color[4];
+} point_t;
+
 Mesh::Mesh() : Mesh(TRIANGLE){}
 
 Mesh::Mesh(element_t e){
   elementType_ = e;
 
   vao_ = new gl::VertexArrayObject();
-  vbo_ = new gl::VertexBuffer(gl::ATTRIB_V_POSITION |
-                              gl::ATTRIB_V_NORMAL |
-                              gl::ATTRIB_V_COLOR |
-                              gl::ATTRIB_V_TEXCOORD);
+  vbo_ = new gl::VertexBuffer();
   ebo_ = new gl::ElementBuffer<uint16_t>();
 
-  vao_->bind();
-  vbo_->enableAttribute(gl::vposition);
-  vbo_->enableAttribute(gl::vcolor);
-  vbo_->enableAttribute(gl::vnormal);
-  vbo_->enableAttribute(gl::vtexcoord);
-  vao_->unbind();
   nVerts_ = 0;
   nFaces_ = 0;
   tex_ = nullptr;
@@ -112,18 +109,26 @@ void Mesh::draw(gl::ShaderProgram* shader) {
   if (hasTexture()) {
     shader->setUniform("tex", 0);
   }
+
+  //  cout << "Position of v_position in shader is "
+  //       << glGetAttribLocation(shader->glName(), "v_position") << endl;
+  //  cout << "Position of v_color in shader is "
+  //       << glGetAttribLocation(shader->glName(), "v_color") << endl;
+
   vao_->bind();
-    glPointSize(10.0f);
-    //  glEnable(GL_DEPTH_TEST);
-//  glEnable(GL_LINE_SMOOTH);
-//  glEnable(GL_CULL_FACE);
-//  glEnable(GL_BLEND);
-//  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-//  glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-//  ebo_->bind();
-        glDrawArrays(GL_POINTS, 0, 1);
-//  glDrawElements(elementType_, 3 * nFaces_, GL_UNSIGNED_SHORT, (void*)(nullptr));
-//          ebo_->unbind();
+  //  glPointSize(10.0f);
+
+  glEnable(GL_DEPTH_TEST);
+  glEnable(GL_LINE_SMOOTH);
+  glEnable(GL_CULL_FACE);
+  glEnable(GL_BLEND);
+  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+  glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+  ebo_->bind();
+
+  //  glDrawArrays(GL_POINTS, 0, 4);
+  glDrawElements(elementType_, 3 * nFaces_, GL_UNSIGNED_SHORT, (void*)(nullptr));
+  ebo_->unbind();
   vao_->unbind();
 }
 

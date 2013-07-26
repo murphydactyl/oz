@@ -28,33 +28,40 @@ AppBasic::AppBasic() {
 
   myScene = new scene::Scene();
   scene::Cameraf* cam = new scene::CameraPerspective<float>(4/3., 1, 1, 100);
-  cam->translate(0,0,5);
+  cam->translate(0,0,20);
   myScene->camera(cam);
 
-  geom::Geometry* quad = geom::makeQuad(5.0);
-  myScene->root()->setGeometry(quad);
+  geom::Geometry* quad = geom::makeQuad(1.0);
+  geom::Geometry* cube = geom::makeBox();
 
-//  stringstream ss;
-//  ss << MODELS_DIR << "/lib_hand_model/hand_palm_parent_medium_wrist.dae";
-//  auto model = geom::loadHandModel(ss.str());
+  myScene->root()->addChild(new scene::Nodef("box"));
+  myScene->root()->findByName("box")->setGeometry(cube);
+  myScene->root()->findByName("box")->mLocal.translate(4,0,0);
+  myScene->root()->addChild(new scene::Nodef("quad"));
+  myScene->root()->findByName("quad")->setGeometry(quad);
+  myScene->root()->findByName("quad")->mLocal.translate(-4, 0, 0);
 
-//  uint32_t imWidth, imHeight;
-//  ss.str("");
-//  ss.clear();
-//  ss << MODELS_DIR << "/lib_hand_model/hand_texture_image.png";
+  stringstream ss;
+  ss << MODELS_DIR << "/lib_hand_model/hand_palm_parent_medium_wrist.dae";
+  auto model = geom::loadHandModel(ss.str());
 
-//  auto image = reinterpret_cast<gl::rgba8888_t*>(image::LoadPNGRGBA8888(ss.str(), imWidth, imHeight));
-//  auto tex = new gl::Texture2D<gl::rgba8888_t>(image, imWidth, imHeight);
+  uint32_t imWidth, imHeight;
+  ss.str("");
+  ss.clear();
+  ss << MODELS_DIR << "/lib_hand_model/hand_texture_image.png";
 
-//  myScene->root()->addChild(model);
-//  myScene->print();
-//  tex->copy2GPU();
-//  ((geom::Mesh*)(model->geometry()))->attachTexture(tex);
+  auto image = reinterpret_cast<gl::rgba8888_t*>(image::LoadPNGRGBA8888(ss.str(), imWidth, imHeight));
+  auto tex = new gl::Texture2D<gl::rgba8888_t>(image, imWidth, imHeight);
+
+  myScene->root()->addChild(model);
+  myScene->print();
+  tex->copy2GPU();
+  ((geom::Mesh*)(model->geometry()))->attachTexture(tex);
 
 }
 
 void AppBasic::update() {
-  glClearColor(0.3, 0.3, 0.3, 1.0);
+  glClearColor(0.8, 0.8, 0.1, 1.0);
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT) ;
   myScene->render();
   stringstream ss;

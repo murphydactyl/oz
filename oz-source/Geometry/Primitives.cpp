@@ -7,41 +7,40 @@
 
 using namespace geom;
 
-Geometry* geom::makeCube(float unit) {
+Geometry* geom::makeBox(float ux, float uy, float uz) {
 
   auto g = new Mesh(TRIANGLE);
 
-  float u = unit;
   float points[] = {
-    -u, -u, +u,
-    +u, -u, +u,
-    +u, +u, +u,
-    -u, +u, +u,
+    -ux, -uy, +uz, 1,
+    +ux, -uy, +uz, 1,
+    +ux, +uy, +uz, 1,
+    -ux, +uy, +uz, 1,
 
-    -u, -u, -u,
-    +u, -u, -u,
-    +u, +u, -u,
-    -u, +u, -u,
+    -ux, -uy, -uz, 1,
+    +ux, -uy, -uz, 1,
+    +ux, +uy, -uz, 1,
+    -ux, +uy, -uz, 1,
 
-    +u, -u, +u,
-    +u, -u, -u,
-    +u, +u, -u,
-    +u, +u, +u,
+    +ux, -uy, +uz, 1,
+    +ux, -uy, -uz, 1,
+    +ux, +uy, -uz, 1,
+    +ux, +uy, +uz, 1,
 
-    -u, -u, +u,
-    -u, -u, -u,
-    -u, +u, -u,
-    -u, +u, +u,
+    -ux, -uy, +uz, 1,
+    -ux, -uy, -uz, 1,
+    -ux, +uy, -uz, 1,
+    -ux, +uy, +uz, 1,
 
-    -u, +u, +u,
-    +u, +u, +u,
-    +u, +u, -u,
-    -u, +u, -u,
+    -ux, +uy, +uz, 1,
+    +ux, +uy, +uz, 1,
+    +ux, +uy, -uz, 1,
+    -ux, +uy, -uz, 1,
 
-    -u, -u, +u,   // 20
-    +u, -u, +u,   // 21
-    +u, -u, -u,   // 22
-    -u, -u, -u,   // 23
+    -ux, -uy, +uz, 1,   // 20
+    +ux, -uy, +uz, 1,   // 21
+    +ux, -uy, -uz, 1,   // 22
+    -ux, -uy, -uz, 1   // 23
   };
 
   float a = 0.5;
@@ -92,17 +91,22 @@ Geometry* geom::makeCube(float unit) {
     23,   22,   21,
   };
 
-    g->nVerts(24);
-  g->nFaces(12);
-
+  g->nVerts(24);
   g->vao()->bind();
-  g->vbo()->reserveNBytesOnGPU(g->nVerts() * (4 + 4) * 4);
-  g->ebo()->reserveNBytesOnGPU(g->nFaces() * 3 * 2);
-
-  g->vbo()->copyVertDataToGPU(points, g->nVerts(), gl::vposition);
+  g->vbo()->bind();
+  g->vbo()->setVertexType(gl::ATTRIB_V_POSITION |
+                          gl::ATTRIB_V_COLOR);
+  g->vbo()->allocVertexMemoryOnGPU(g->nVerts());
   g->vbo()->copyVertDataToGPU(colors, g->nVerts(), gl::vcolor);
-  g->ebo()->copy2GPU(faces, g->nFaces(), 3);
+  g->vbo()->copyVertDataToGPU(points, g->nVerts(), gl::vposition);
+  g->vbo()->printBuffer(g->nVerts());
   g->vao()->unbind();
+
+  g->nFaces(12);
+  g->ebo()->bind();
+  g->ebo()->reserveNBytesOnGPU(g->nFaces() * 3 * 2);
+  g->ebo()->copy2GPU(faces, g->nFaces(), 3);
+  g->ebo()->unbind();
 
   return g;
 }
@@ -146,13 +150,17 @@ Geometry* geom::makeQuad(float unit)
 
   g->nVerts(4);
   g->vao()->bind();
-
-  g->vbo()->reserveNBytesOnGPU(g->nVerts() * (4 + 4 + 4 + 2) * 4);
-  g->vbo()->copyVertDataToGPU(points, 4, gl::vposition);
-  g->vbo()->copyVertDataToGPU(texcoords, 4, gl::vtexcoord);
-  g->vbo()->copyVertDataToGPU(normals, 4, gl::vnormal);
-  g->vbo()->copyVertDataToGPU(colors, 4, gl::vcolor);
-  g->vbo()->printBuffer(4);
+  g->vbo()->bind();
+  g->vbo()->setVertexType(gl::ATTRIB_V_POSITION |
+                          gl::ATTRIB_V_COLOR |
+                          gl::ATTRIB_V_NORMAL |
+                          gl::ATTRIB_V_TEXCOORD);
+  g->vbo()->allocVertexMemoryOnGPU(g->nVerts());
+  g->vbo()->copyVertDataToGPU(normals, g->nVerts(), gl::vnormal);
+  g->vbo()->copyVertDataToGPU(colors, g->nVerts(), gl::vcolor);
+  g->vbo()->copyVertDataToGPU(texcoords, g->nVerts(), gl::vtexcoord);
+  g->vbo()->copyVertDataToGPU(points, g->nVerts(), gl::vposition);
+  g->vbo()->printBuffer(g->nVerts());
   g->vao()->unbind();
 
   g->nFaces(2);
@@ -160,7 +168,7 @@ Geometry* geom::makeQuad(float unit)
   g->ebo()->reserveNBytesOnGPU(g->nFaces() * 3 * 2);
   g->ebo()->copy2GPU(faces, g->nFaces(), 3);
   g->ebo()->unbind();
-  g->ebo()->printBuffer(2);
+
 
   return g;
 }

@@ -21,16 +21,30 @@ namespace gl {
     }
 
     void reserveNBytesOnGPU(uint32_t s) {
+      gl::checkError("VBO begin reserving bytes on GPU");
       nBytesOnGPU_ = s;
       glBindBuffer(GL_ARRAY_BUFFER, buf_);
       glBufferData(GL_ARRAY_BUFFER,
                    nBytesOnGPU_,
                    NULL,
                    GL_STREAM_DRAW);
+      gl::checkError("VBO after reserving bytes on GPU");
+    }
+
+    void bind() {
+      gl::checkError("Before bind vbo");
+      glBindBuffer(GL_ARRAY_BUFFER, buf_);
+      gl::checkError("After bind vbo");
+    }
+
+    void unbind() {
+      gl::checkError("Before unbind vbo");
       glBindBuffer(GL_ARRAY_BUFFER, 0);
+      gl::checkError("After unbind vbo");
     }
 
     size_t nBytesOnGPU() { return nBytesOnGPU_; }
+    size_t nBytesPerVertex() { return nBytesPerVertex_; }
     GLuint object() { return buf_; }
 
   protected:
