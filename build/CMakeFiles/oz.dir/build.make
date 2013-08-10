@@ -193,9 +193,32 @@ CMakeFiles/oz.dir/oz-source/Geometry/TriangleMesh.cpp.o.provides: CMakeFiles/oz.
 
 CMakeFiles/oz.dir/oz-source/Geometry/TriangleMesh.cpp.o.provides.build: CMakeFiles/oz.dir/oz-source/Geometry/TriangleMesh.cpp.o
 
+CMakeFiles/oz.dir/oz-source/Geometry/Wire.cpp.o: CMakeFiles/oz.dir/flags.make
+CMakeFiles/oz.dir/oz-source/Geometry/Wire.cpp.o: ../oz-source/Geometry/Wire.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/murphy/oz/build/CMakeFiles $(CMAKE_PROGRESS_7)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/oz.dir/oz-source/Geometry/Wire.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/oz.dir/oz-source/Geometry/Wire.cpp.o -c /Users/murphy/oz/oz-source/Geometry/Wire.cpp
+
+CMakeFiles/oz.dir/oz-source/Geometry/Wire.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/oz.dir/oz-source/Geometry/Wire.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/murphy/oz/oz-source/Geometry/Wire.cpp > CMakeFiles/oz.dir/oz-source/Geometry/Wire.cpp.i
+
+CMakeFiles/oz.dir/oz-source/Geometry/Wire.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/oz.dir/oz-source/Geometry/Wire.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/murphy/oz/oz-source/Geometry/Wire.cpp -o CMakeFiles/oz.dir/oz-source/Geometry/Wire.cpp.s
+
+CMakeFiles/oz.dir/oz-source/Geometry/Wire.cpp.o.requires:
+.PHONY : CMakeFiles/oz.dir/oz-source/Geometry/Wire.cpp.o.requires
+
+CMakeFiles/oz.dir/oz-source/Geometry/Wire.cpp.o.provides: CMakeFiles/oz.dir/oz-source/Geometry/Wire.cpp.o.requires
+	$(MAKE) -f CMakeFiles/oz.dir/build.make CMakeFiles/oz.dir/oz-source/Geometry/Wire.cpp.o.provides.build
+.PHONY : CMakeFiles/oz.dir/oz-source/Geometry/Wire.cpp.o.provides
+
+CMakeFiles/oz.dir/oz-source/Geometry/Wire.cpp.o.provides.build: CMakeFiles/oz.dir/oz-source/Geometry/Wire.cpp.o
+
 CMakeFiles/oz.dir/oz-source/GL/Shader.cpp.o: CMakeFiles/oz.dir/flags.make
 CMakeFiles/oz.dir/oz-source/GL/Shader.cpp.o: ../oz-source/GL/Shader.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /Users/murphy/oz/build/CMakeFiles $(CMAKE_PROGRESS_7)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/murphy/oz/build/CMakeFiles $(CMAKE_PROGRESS_8)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/oz.dir/oz-source/GL/Shader.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/oz.dir/oz-source/GL/Shader.cpp.o -c /Users/murphy/oz/oz-source/GL/Shader.cpp
 
@@ -218,7 +241,7 @@ CMakeFiles/oz.dir/oz-source/GL/Shader.cpp.o.provides.build: CMakeFiles/oz.dir/oz
 
 CMakeFiles/oz.dir/oz-source/GL/ShaderProgram.cpp.o: CMakeFiles/oz.dir/flags.make
 CMakeFiles/oz.dir/oz-source/GL/ShaderProgram.cpp.o: ../oz-source/GL/ShaderProgram.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /Users/murphy/oz/build/CMakeFiles $(CMAKE_PROGRESS_8)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/murphy/oz/build/CMakeFiles $(CMAKE_PROGRESS_9)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/oz.dir/oz-source/GL/ShaderProgram.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/oz.dir/oz-source/GL/ShaderProgram.cpp.o -c /Users/murphy/oz/oz-source/GL/ShaderProgram.cpp
 
@@ -241,7 +264,7 @@ CMakeFiles/oz.dir/oz-source/GL/ShaderProgram.cpp.o.provides.build: CMakeFiles/oz
 
 CMakeFiles/oz.dir/oz-source/GL/Texture.cpp.o: CMakeFiles/oz.dir/flags.make
 CMakeFiles/oz.dir/oz-source/GL/Texture.cpp.o: ../oz-source/GL/Texture.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /Users/murphy/oz/build/CMakeFiles $(CMAKE_PROGRESS_9)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/murphy/oz/build/CMakeFiles $(CMAKE_PROGRESS_10)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/oz.dir/oz-source/GL/Texture.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/oz.dir/oz-source/GL/Texture.cpp.o -c /Users/murphy/oz/oz-source/GL/Texture.cpp
 
@@ -264,7 +287,7 @@ CMakeFiles/oz.dir/oz-source/GL/Texture.cpp.o.provides.build: CMakeFiles/oz.dir/o
 
 CMakeFiles/oz.dir/oz-source/GL/Texture2D.cpp.o: CMakeFiles/oz.dir/flags.make
 CMakeFiles/oz.dir/oz-source/GL/Texture2D.cpp.o: ../oz-source/GL/Texture2D.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /Users/murphy/oz/build/CMakeFiles $(CMAKE_PROGRESS_10)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/murphy/oz/build/CMakeFiles $(CMAKE_PROGRESS_11)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/oz.dir/oz-source/GL/Texture2D.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/oz.dir/oz-source/GL/Texture2D.cpp.o -c /Users/murphy/oz/oz-source/GL/Texture2D.cpp
 
@@ -287,7 +310,7 @@ CMakeFiles/oz.dir/oz-source/GL/Texture2D.cpp.o.provides.build: CMakeFiles/oz.dir
 
 CMakeFiles/oz.dir/oz-source/Image/IO.cpp.o: CMakeFiles/oz.dir/flags.make
 CMakeFiles/oz.dir/oz-source/Image/IO.cpp.o: ../oz-source/Image/IO.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /Users/murphy/oz/build/CMakeFiles $(CMAKE_PROGRESS_11)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/murphy/oz/build/CMakeFiles $(CMAKE_PROGRESS_12)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/oz.dir/oz-source/Image/IO.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/oz.dir/oz-source/Image/IO.cpp.o -c /Users/murphy/oz/oz-source/Image/IO.cpp
 
@@ -310,7 +333,7 @@ CMakeFiles/oz.dir/oz-source/Image/IO.cpp.o.provides.build: CMakeFiles/oz.dir/oz-
 
 CMakeFiles/oz.dir/oz-source/Scene/Scene.cpp.o: CMakeFiles/oz.dir/flags.make
 CMakeFiles/oz.dir/oz-source/Scene/Scene.cpp.o: ../oz-source/Scene/Scene.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /Users/murphy/oz/build/CMakeFiles $(CMAKE_PROGRESS_12)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/murphy/oz/build/CMakeFiles $(CMAKE_PROGRESS_13)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/oz.dir/oz-source/Scene/Scene.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/oz.dir/oz-source/Scene/Scene.cpp.o -c /Users/murphy/oz/oz-source/Scene/Scene.cpp
 
@@ -339,6 +362,7 @@ oz_OBJECTS = \
 "CMakeFiles/oz.dir/oz-source/Geometry/Assimp.cpp.o" \
 "CMakeFiles/oz.dir/oz-source/Geometry/Primitives.cpp.o" \
 "CMakeFiles/oz.dir/oz-source/Geometry/TriangleMesh.cpp.o" \
+"CMakeFiles/oz.dir/oz-source/Geometry/Wire.cpp.o" \
 "CMakeFiles/oz.dir/oz-source/GL/Shader.cpp.o" \
 "CMakeFiles/oz.dir/oz-source/GL/ShaderProgram.cpp.o" \
 "CMakeFiles/oz.dir/oz-source/GL/Texture.cpp.o" \
@@ -355,6 +379,7 @@ oz: CMakeFiles/oz.dir/oz-source/App/Window.cpp.o
 oz: CMakeFiles/oz.dir/oz-source/Geometry/Assimp.cpp.o
 oz: CMakeFiles/oz.dir/oz-source/Geometry/Primitives.cpp.o
 oz: CMakeFiles/oz.dir/oz-source/Geometry/TriangleMesh.cpp.o
+oz: CMakeFiles/oz.dir/oz-source/Geometry/Wire.cpp.o
 oz: CMakeFiles/oz.dir/oz-source/GL/Shader.cpp.o
 oz: CMakeFiles/oz.dir/oz-source/GL/ShaderProgram.cpp.o
 oz: CMakeFiles/oz.dir/oz-source/GL/Texture.cpp.o
@@ -377,6 +402,7 @@ CMakeFiles/oz.dir/requires: CMakeFiles/oz.dir/oz-source/App/Window.cpp.o.require
 CMakeFiles/oz.dir/requires: CMakeFiles/oz.dir/oz-source/Geometry/Assimp.cpp.o.requires
 CMakeFiles/oz.dir/requires: CMakeFiles/oz.dir/oz-source/Geometry/Primitives.cpp.o.requires
 CMakeFiles/oz.dir/requires: CMakeFiles/oz.dir/oz-source/Geometry/TriangleMesh.cpp.o.requires
+CMakeFiles/oz.dir/requires: CMakeFiles/oz.dir/oz-source/Geometry/Wire.cpp.o.requires
 CMakeFiles/oz.dir/requires: CMakeFiles/oz.dir/oz-source/GL/Shader.cpp.o.requires
 CMakeFiles/oz.dir/requires: CMakeFiles/oz.dir/oz-source/GL/ShaderProgram.cpp.o.requires
 CMakeFiles/oz.dir/requires: CMakeFiles/oz.dir/oz-source/GL/Texture.cpp.o.requires

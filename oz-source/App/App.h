@@ -18,6 +18,7 @@
 #include "App/Window.h"
 #include "Vector/Vector.h"
 #include "Image/IO.h"
+#include "Keyboard.h"
 
 using namespace std;
 
@@ -65,6 +66,7 @@ class App {
     double startDragXLeft_;
     double startDragYLeft_;
     bool isDraggingLeft_;
+    Keyboard* keys;
 
     //----------------------------------------------------------------------------
     // STATIC MEMBERS

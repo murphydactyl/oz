@@ -27,6 +27,7 @@ Node* geom::cloneAsimppNodeAsOzNode(const aiNode* assimpNode) {
   Node* clonedNode = new Node(assimpNode->mName.C_Str());
   const float* pf = assimpNode->mTransformation[0];
   clonedNode->mLocal = Mat4(pf);
+  clonedNode->mLocal.pprint();
   return clonedNode;
 }
 
@@ -45,12 +46,12 @@ Node* geom::extractNodes(aiNode* src) {
     aiNode* ain = unprocessedNodes.back();
     unprocessedNodes.pop_back();
 
-    cout << "Processing aiNode named " << ain->mName.C_Str() << endl;
+    cout << "Processing AssimpNode named " << ain->mName.C_Str() << endl;
 
     Node* ozNode = root->findByName(ain->mName.C_Str());
     if (ozNode == nullptr) {
       // CLONE NODE EXCEPT PARENT INFO
-      cout << "Couldn't find oz node named " << ain->mName.C_Str() << endl;
+      cout << "Couldn't find OZ Node named " << ain->mName.C_Str() << endl;
       ozNode = cloneAsimppNodeAsOzNode(ain);
       cout << "This new node has \t\t" << ain->mNumMeshes << " meshes" << endl;
       cout << "                  \t\t" << ain->mNumChildren << " children" << endl;
@@ -59,7 +60,7 @@ Node* geom::extractNodes(aiNode* src) {
 
     if (ozNode != root) {
       if (ain->mParent != nullptr) {
-        cout << "trying to find ainode's parent named " << ain->mParent->mName.C_Str() << "...";
+        cout << "trying to find Assimp Node's parent named " << ain->mParent->mName.C_Str() << "...";
         Node* ozNodeParent = root->findByName(ain->mParent->mName.C_Str());
         if (ozNodeParent == nullptr) {
           cout << "Failed." << endl;
@@ -81,7 +82,7 @@ Node* geom::extractNodes(aiNode* src) {
 
 Mesh* geom::extractMesh(const aiMesh* srcMesh) {
 
-  auto g = new Mesh();
+  auto g = new Mesh(TRIANGLE);
   auto faces = g->faces();
   auto positions = g->positions();
   auto normals = g->normals();
@@ -101,10 +102,11 @@ Mesh* geom::extractMesh(const aiMesh* srcMesh) {
       positions(0, i) = srcMesh->mVertices[i].x;
       positions(1, i) = srcMesh->mVertices[i].y;
       positions(2, i) = srcMesh->mVertices[i].z;
+      positions(3, i) = 1.0f;
       colors(0, i) = 1.0;
-      colors(1, i) = 1.0;
+      colors(1, i) = 0.5;
       colors(2, i) = 1.0;
-      colors(3, i) = 1.0;
+      colors(3, i) = 0.5;
     }
   }
 
@@ -114,6 +116,7 @@ Mesh* geom::extractMesh(const aiMesh* srcMesh) {
       normals(0, i) = srcMesh->mNormals[i].x;
       normals(1, i) = srcMesh->mNormals[i].y;
       normals(2, i) = srcMesh->mNormals[i].z;
+      normals(3, i) = 1.0f;
     }
   }
 
@@ -182,14 +185,18 @@ Mesh* geom::extractMesh(const aiMesh* srcMesh) {
 
   g->name(srcMesh->mName.C_Str());
   g->nVerts(nVerts);
-  g->nFaces(nFaces);
   g->vao()->bind();
-  g->vbo()->reserveNBytesOnGPU(nVerts * (4 + 4 + 4 + 4 * 4) * 4);
+  g->vbo()->setVertexType(gl::ATTRIB_V_POSITION | gl::ATTRIB_V_COLOR |
+                          gl::ATTRIB_V_NORMAL | gl::ATTRIB_V_TEXCOORD);
+
+  g->nFaces(nFaces);
+  g->vbo()->allocVertexMemoryOnGPU(g->nVerts());
   g->vbo()->copyVertDataToGPU(positions.data(), nVerts, gl::vposition);
   g->vbo()->copyVertDataToGPU(colors.data(), nVerts, gl::vcolor);
+  g->vbo()->copyVertDataToGPU(normals.data(), nVerts, gl::vnormal);
   g->vbo()->copyVertDataToGPU(texcoords.data(), nVerts, gl::vtexcoord);
-  g->vbo()->copyVertDataToGPU(boneweights.data(), nVerts, gl::vboneweight);
-  g->vbo()->copyVertDataToGPU(boneids.data(), nVerts, gl::vboneid);
+//  g->vbo()->copyVertDataToGPU(boneweights.data(), nVerts, gl::vboneweight);
+//  g->vbo()->copyVertDataToGPU(boneids.data(), nVerts, gl::vboneid);
   g->vao()->unbind();
 
   g->ebo()->bind();
@@ -203,33 +210,44 @@ Mesh* geom::extractMesh(const aiMesh* srcMesh) {
 
 void geom::extractBones(const aiMesh* srcMesh, Mesh* outMesh, Node* outRoot) {
 
-  outRoot->print();
-
   if (srcMesh->HasBones()) {
+  cout << "Extracting " << srcMesh->mNumBones << " bones." << endl;
+  cout << "------------------------------------" << endl;
     for (uint32_t i = 0; i < srcMesh->mNumBones; i++) {
       auto aib = srcMesh->mBones[i];
-      auto ourBoneNode = outRoot->findByName(aib->mName.C_Str());
       auto ourBone = new Bone();
+      ourBone->name = aib->mName.C_Str();
       ourBone->offset = Mat4(reinterpret_cast<float*>(aib->mOffsetMatrix[0]));
+      auto ourBoneNode = outRoot->findByName(ourBone->name);
       ourBoneNode->addBone(ourBone);
-      outMesh->bones().push_back(ourBone);
+      outMesh->bones()->push_back(ourBone);
+      cout << "Extracting bone named named: " << ourBone->name << "..." <<  endl;
     }
   } else {
     cout << "Warning!  No bones found in input mesh." << endl;
   }
+
+  cout << "Extracted " << outMesh->bones()->size() << " bones and added them to mesh." << endl;
 }
 
+// TODO:
+// Automatically attach texture here.
 Node* geom::loadHandModel(std::string filename) {
 
   Assimp::Importer importer;
   const aiScene* inScene = importer.ReadFile(filename.c_str(), aiProcess_Triangulate );
 
-  aiNode* srcNode = inScene->mRootNode->FindNode("root");
+  cout << "Loading hand model from file: " << filename << endl;
+  cout << "File has " << inScene->mNumMeshes << " meshes." << endl;
+  aiNode* srcNode = inScene->mRootNode;
   aiMesh* srcMesh = inScene->mMeshes[0];
   Node* outRoot = extractNodes(srcNode);
   Mesh *outMesh = extractMesh(srcMesh);
   extractBones(srcMesh, outMesh, outRoot);
-  outRoot->setGeometry(outMesh);
+
+  // Should be 'hand_mesh' not Armature, but whatever...
+  Node* hand_mesh = outRoot->findByName("Armature");
+  hand_mesh->setGeometry(outMesh);
 
   return outRoot;
 }

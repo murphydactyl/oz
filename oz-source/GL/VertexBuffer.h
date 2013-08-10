@@ -92,6 +92,7 @@ namespace gl {
   class VertexBuffer : public ArrayBuffer {
 
     private:
+
       uint32_t enabled_attributes_ = 0;
       std::vector<vattribute> vpatts;
 
@@ -179,7 +180,13 @@ namespace gl {
       }
 
       void allocVertexMemoryOnGPU(uint32_t nVerts) {
-        reserveNBytesOnGPU(nBytesPerVertex() * nVerts);
+        uint64_t nBytesRequested = nBytesPerVertex() * nVerts;
+        if (nBytesRequested != nBytesOnGPU()) {
+          std::cout << "Allocating " << nBytesRequested
+                    << " bytes on GPU for VertexBuffer" << object() << "...";
+          reserveNBytesOnGPU(nBytesRequested);
+          std::cout << " Success" << std::endl;
+        }
       }
 
 

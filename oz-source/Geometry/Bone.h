@@ -3,6 +3,7 @@
 
 #include "Math/Math.h"
 #include "Geometry/Geometry.h"
+#include <string>
 
 namespace geom {
 
@@ -10,9 +11,15 @@ namespace geom {
     typedef math::Mat4f Mat4;
 
     public:
+      Bone() {
+        offset.identity();
+        final.identity();
+      }
+
       // Member variables -----------------------------------------------
       Mat4 offset;
       Mat4 final;
+      std::string name;
   };
 
 }

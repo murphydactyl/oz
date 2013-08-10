@@ -100,45 +100,25 @@ bool Mesh::hasBones()
   return !bones_.isEmpty();
 }
 
-bonelist_t& Mesh::bones()
+bonelist_t* Mesh::bones()
 {
-  return bones_;
+  return &bones_;
 }
 
 void Mesh::draw(gl::ShaderProgram* shader) {
   if (hasTexture()) {
     shader->setUniform("tex", 0);
   }
-
-  //  cout << "Position of v_position in shader is "
-  //       << glGetAttribLocation(shader->glName(), "v_position") << endl;
-  //  cout << "Position of v_color in shader is "
-  //       << glGetAttribLocation(shader->glName(), "v_color") << endl;
-
   vao_->bind();
-  //  glPointSize(10.0f);
-
+  ebo_->bind();
   glEnable(GL_DEPTH_TEST);
   glEnable(GL_LINE_SMOOTH);
   glEnable(GL_CULL_FACE);
   glEnable(GL_BLEND);
   glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
   glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-  ebo_->bind();
-
-  //  glDrawArrays(GL_POINTS, 0, 4);
-  glDrawElements(elementType_, 3 * nFaces_, GL_UNSIGNED_SHORT, (void*)(nullptr));
+//  glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+  glDrawElements(elementType_, 3 * nFaces_, GL_UNSIGNED_SHORT, 0);
   ebo_->unbind();
   vao_->unbind();
 }
-
-//void Geometry::drawArray() {
-//  switch (primitiveType_) {
-//    case GL_TRIANGLES:
-//      glDrawArrays(GL_TRIANGLES, 0, nVerts());
-//      break;
-//    case GL_TRIANGLE_STRIP:
-//      glDrawArrays(GL_TRIANGLE_STRIP, 0, nVerts());
-//      break;
-//  }
-//}

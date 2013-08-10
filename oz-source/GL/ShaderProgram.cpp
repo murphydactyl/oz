@@ -301,7 +301,7 @@ void ShaderProgram::setUniform(string n, const math::Vec4f &v) {
   gl::checkError("Error in setUniform", __LINE__, __FILE__);
 }
 
-void ShaderProgram::setUniform(string n, math::Mat3f &mat) {
+void ShaderProgram::setUniform(string n, const math::Mat3f &mat) {
   bind();
   GLint loc = getUniformLocation(n.c_str());
   if (loc > -1) {
@@ -309,7 +309,7 @@ void ShaderProgram::setUniform(string n, math::Mat3f &mat) {
     }
   gl::checkError("Error in setUniform", __LINE__, __FILE__);
 }
-void ShaderProgram::setUniform(string n, math::Mat4f &mat) {
+void ShaderProgram::setUniform(string n, const math::Mat4f &mat) {
   bind();
   GLint loc = getUniformLocation(n.c_str());
   if (loc > -1) {

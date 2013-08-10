@@ -14,6 +14,7 @@ SET(CMAKE_DEPENDS_CHECK_CXX
   "/Users/murphy/oz/oz-source/Geometry/Assimp.cpp" "/Users/murphy/oz/build/CMakeFiles/oz.dir/oz-source/Geometry/Assimp.cpp.o"
   "/Users/murphy/oz/oz-source/Geometry/Primitives.cpp" "/Users/murphy/oz/build/CMakeFiles/oz.dir/oz-source/Geometry/Primitives.cpp.o"
   "/Users/murphy/oz/oz-source/Geometry/TriangleMesh.cpp" "/Users/murphy/oz/build/CMakeFiles/oz.dir/oz-source/Geometry/TriangleMesh.cpp.o"
+  "/Users/murphy/oz/oz-source/Geometry/Wire.cpp" "/Users/murphy/oz/build/CMakeFiles/oz.dir/oz-source/Geometry/Wire.cpp.o"
   "/Users/murphy/oz/oz-source/Image/IO.cpp" "/Users/murphy/oz/build/CMakeFiles/oz.dir/oz-source/Image/IO.cpp.o"
   "/Users/murphy/oz/oz-source/Scene/Scene.cpp" "/Users/murphy/oz/build/CMakeFiles/oz.dir/oz-source/Scene/Scene.cpp.o"
   )

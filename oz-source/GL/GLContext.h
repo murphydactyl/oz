@@ -20,28 +20,28 @@ namespace gl {
     s << msg << " at line " << line << " in file " << file;
     GLenum stat = glGetError();
     if (stat != GL_NO_ERROR) {
-        std::cout << "[" << s.str() << "] Error: " << stat << std::endl;
-        assert(0);
-        return 0;
-      }
+      std::cout << "[" << s.str() << "] Error: " << stat << std::endl;
+      assert(0);
+      return 0;
+    }
     return 1;
   }
 
   static inline int checkError(const std::string& msg, bool always_print = false) {
     GLenum stat = glGetError();
     if (stat != GL_NO_ERROR) {
-        std::cout << "[" << msg << "] Error: " << stat << std::endl;
-        assert(0);
-        return 0;
-      } else if (always_print) {
-        std::cout << "[" << msg << "] No error." << std::endl;
-      }
+      std::cout << "[" << msg << "] Error: " << stat << std::endl;
+      assert(0);
+      return 0;
+    } else if (always_print) {
+      std::cout << "[" << msg << "] No error." << std::endl;
+    }
     return 1;
   }
 
   class GLContext {
-  public:
-
+    public:
+    protected:
   };
 }
 

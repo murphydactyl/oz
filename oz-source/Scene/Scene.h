@@ -8,6 +8,7 @@
 #include "GL/Texture.h"
 #include "Vector/Vector.h"
 #include "Geometry/TriangleMesh.h"
+#include "Geometry/Wire.h"
 
 namespace scene {
 
@@ -17,28 +18,32 @@ namespace scene {
       Scene();
       ~Scene();
 
-      void            root(Node<float>* root) { root_ = root; }
-      Node<float>*    root() { return root_; }
-      Cameraf*        camera() { return camera_; }
-      void            camera(Cameraf* camera) { camera_ = camera; }
-      void            render();
-      void            render(gl::ShaderProgram* shader);
-      void            renderWithTexture(gl::Texture* tex);
-      void            print();
-      void            drawCube(gl::ShaderProgram* shader);
+      void                root(Node<float>* root) { root_ = root; }
+      Node<float>*        root() { return root_; }
+      Cameraf*            camera() { return camera_; }
+      void                camera(Cameraf* camera) { camera_ = camera; }
+      void                render(int x, int y, int width, int height);
+      void                updatePerNodeWorldTransform();
+      void                renderRecursively();
+      void                print();
+      gl::ShaderProgram*  shader();
+      void                setShader(gl::ShaderProgram* newShader);
+      void                renderHierarchy();
 
-    protected:
 
+    protected:                // member variables
       Nodef*                  root_;
       Cameraf*                camera_;
-      gl::ShaderProgram*      dfltSPTextured_;
-      gl::ShaderProgram*      dfltSPVertexColors_;
-      gl::ShaderProgram*      defaultShader_;
+      gl::ShaderProgram*      shader_;
+      gl::ShaderProgram*      lineShader_;
       Vector<Nodef*>          nStack_;
-      Vector<Nodef::Mat4>     tStack_;
+      Vector<Nodef*>          rNodes_;
       geom::Geometry*         cube_;
-
+      bool                    bOwnsRoot_;
+      bool                    bShowBones_;
+      Vector<geom::Bone*>*    bones_;
+      Nodef*                  lineNode_;
+      geom::Wire*             lines_;
   };
 }
-
 #endif

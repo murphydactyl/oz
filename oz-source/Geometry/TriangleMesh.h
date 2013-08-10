@@ -16,8 +16,8 @@ namespace gl {
 namespace geom {
 
   typedef gl::ElementBuffer<uint16_t>* eboptr_t;
-  typedef math::Mat3Xf positions_t;
-  typedef math::Mat3Xf normals_t;
+  typedef math::Mat4Xf positions_t;
+  typedef math::Mat4Xf normals_t;
   typedef math::Mat4Xf colors_t;
   typedef math::Mat3Xu16 faces_t;
   typedef math::Mat2Xf texcoord_t;
@@ -46,7 +46,7 @@ namespace geom {
       boneids_t& boneids();
       bool hasTexture();
       bool hasBones();
-      bonelist_t& bones();
+      bonelist_t* bones();
 
     protected:
       uint64_t nVerts_;

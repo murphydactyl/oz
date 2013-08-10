@@ -42,9 +42,10 @@ namespace scene {
         std::cout << "Destructor called for node named " << name_ << std::endl;
       }
 
-      void addChild(Node* child) {
+      Node* addChild(Node* child) {
         child->setParent(this);
         children_->push_back(child);
+        return child;
       }
 
       void print() {
@@ -67,7 +68,6 @@ namespace scene {
         for (int i = 0; i < nChildren(); i++) {
           getChild(i)->print();
         }
-
       }
 
       Node* getChild(uint32_t i) {
@@ -104,6 +104,8 @@ namespace scene {
       bool hasBone() {
         return bone_ != nullptr;
       }
+
+      geom::Bone* bone() { return bone_; }
 
       Mat4                  mLocal;
       Mat4                  mWorld;

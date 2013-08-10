@@ -26,13 +26,24 @@ namespace geom {
 
   class Geometry {
     public:
+      /*
+       * Pure-virtual Methods
+       */
       virtual void draw(gl::ShaderProgram* shader)=0;
       virtual void nVerts(uint64_t newSize)=0;
       virtual uint64_t nVerts()=0;
-      vaoptr_t vao() { return vao_; }
-      vboptr_t vbo() { return vbo_; }
+
+      /*
+       * Virtual methods
+       */
       virtual std::string name() { return name_; }
       virtual void name(std::string name) { name_ = name; }
+
+      /*
+       * Built-in methods
+       */
+      vaoptr_t vao() { return vao_; }
+      vboptr_t vbo() { return vbo_; }
       element_t elementType() { return elementType_; }
       void setElementType(element_t e) { elementType_ = e; }
 

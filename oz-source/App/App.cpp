@@ -105,15 +105,17 @@ void App::onKeyPressed(GLFWwindow* h, int key, int action) {
         w->onCharDown(c);
         w->onKeyDown(key);
         gApp->charDown(c, false);
+        gApp->keys->makeDown(c);
         break;
       case GLFW_RELEASE:
         w->onCharUp(c);
         w->onKeyUp(key);
+        gApp->keys->makeUp(c);
         break;
       case GLFW_REPEAT:
         w->onCharRepeat(c);
         w->onKeyRepeat(key);
-        gApp->charDown(c, true);
+        gApp->keys->makeDown(c);
         break;
     }
 
@@ -121,7 +123,7 @@ void App::onKeyPressed(GLFWwindow* h, int key, int action) {
     bool superl_down =  glfwGetKey(h, GLFW_KEY_LSUPER) == GLFW_PRESS;
     if (key == GLFW_KEY_Q && (superr_down || superl_down)) {
       cout << "Super-Q caught..." << endl;
-     gApp->shutdown(1);
+      gApp->shutdown(1);
     }
   }
 }
@@ -156,6 +158,7 @@ void App::init() {
   startDragYLeft_ = 0;
   isDraggingLeft_ = false;
 
+  keys = new Keyboard();
 }
 
 void App::run() {
@@ -167,8 +170,8 @@ void App::run() {
       if (w->isActive()) {
         glfwMakeContextCurrent(w->handle());
         update();
-//        w->onUpdate();
-//        w->onDraw();
+        //        w->onUpdate();
+        //        w->onDraw();
         glfwSwapBuffers(w->handle());
       }
     }

@@ -142,6 +142,8 @@
       </Unit>
       <Unit filename="/Users/murphy/oz/oz-source/Geometry/TriangleMesh.cpp">
       </Unit>
+      <Unit filename="/Users/murphy/oz/oz-source/Geometry/Wire.cpp">
+      </Unit>
       <Unit filename="/Users/murphy/oz/oz-source/Image/IO.cpp">
       </Unit>
       <Unit filename="/Users/murphy/oz/oz-source/Scene/Scene.cpp">
@@ -149,6 +151,8 @@
       <Unit filename="/Users/murphy/oz/apps/AppBasic/AppBasic.h">
       </Unit>
       <Unit filename="/Users/murphy/oz/oz-source/App/App.h">
+      </Unit>
+      <Unit filename="/Users/murphy/oz/oz-source/App/Keyboard.h">
       </Unit>
       <Unit filename="/Users/murphy/oz/oz-source/App/Window.h">
       </Unit>
@@ -174,6 +178,8 @@
       </Unit>
       <Unit filename="/Users/murphy/oz/oz-source/GL/VertexBuffer.h">
       </Unit>
+      <Unit filename="/Users/murphy/oz/oz-source/GL/VertexWriter.h">
+      </Unit>
       <Unit filename="/Users/murphy/oz/oz-source/Geometry/Assimp.h">
       </Unit>
       <Unit filename="/Users/murphy/oz/oz-source/Geometry/Bone.h">
@@ -183,6 +189,8 @@
       <Unit filename="/Users/murphy/oz/oz-source/Geometry/Primitives.h">
       </Unit>
       <Unit filename="/Users/murphy/oz/oz-source/Geometry/TriangleMesh.h">
+      </Unit>
+      <Unit filename="/Users/murphy/oz/oz-source/Geometry/Wire.h">
       </Unit>
       <Unit filename="/Users/murphy/oz/oz-source/Image/IO.h">
       </Unit>

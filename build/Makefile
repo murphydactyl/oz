@@ -394,6 +394,30 @@ oz-source/Geometry/TriangleMesh.cpp.s:
 	$(MAKE) -f CMakeFiles/oz.dir/build.make CMakeFiles/oz.dir/oz-source/Geometry/TriangleMesh.cpp.s
 .PHONY : oz-source/Geometry/TriangleMesh.cpp.s
 
+oz-source/Geometry/Wire.o: oz-source/Geometry/Wire.cpp.o
+.PHONY : oz-source/Geometry/Wire.o
+
+# target to build an object file
+oz-source/Geometry/Wire.cpp.o:
+	$(MAKE) -f CMakeFiles/oz.dir/build.make CMakeFiles/oz.dir/oz-source/Geometry/Wire.cpp.o
+.PHONY : oz-source/Geometry/Wire.cpp.o
+
+oz-source/Geometry/Wire.i: oz-source/Geometry/Wire.cpp.i
+.PHONY : oz-source/Geometry/Wire.i
+
+# target to preprocess a source file
+oz-source/Geometry/Wire.cpp.i:
+	$(MAKE) -f CMakeFiles/oz.dir/build.make CMakeFiles/oz.dir/oz-source/Geometry/Wire.cpp.i
+.PHONY : oz-source/Geometry/Wire.cpp.i
+
+oz-source/Geometry/Wire.s: oz-source/Geometry/Wire.cpp.s
+.PHONY : oz-source/Geometry/Wire.s
+
+# target to generate assembly for a file
+oz-source/Geometry/Wire.cpp.s:
+	$(MAKE) -f CMakeFiles/oz.dir/build.make CMakeFiles/oz.dir/oz-source/Geometry/Wire.cpp.s
+.PHONY : oz-source/Geometry/Wire.cpp.s
+
 oz-source/Image/IO.o: oz-source/Image/IO.cpp.o
 .PHONY : oz-source/Image/IO.o
 
@@ -485,6 +509,9 @@ help:
 	@echo "... oz-source/Geometry/TriangleMesh.o"
 	@echo "... oz-source/Geometry/TriangleMesh.i"
 	@echo "... oz-source/Geometry/TriangleMesh.s"
+	@echo "... oz-source/Geometry/Wire.o"
+	@echo "... oz-source/Geometry/Wire.i"
+	@echo "... oz-source/Geometry/Wire.s"
 	@echo "... oz-source/Image/IO.o"
 	@echo "... oz-source/Image/IO.i"
 	@echo "... oz-source/Image/IO.s"

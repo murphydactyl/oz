@@ -22,9 +22,11 @@ public:
   void charDown(char c, bool isRepeat);
   void onMouseDrag(double x, double y);
   void onMouseUp(double x, double y);
+  void handlePressedKeys();
 
 protected:
   scene::Scene* myScene;
+  scene::Scene* boneView;
 };
 
 #endif /* defined(__ModelVis__app__) */
